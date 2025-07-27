@@ -1,12 +1,13 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Github, Calendar, Code2, ArrowUpRight, ExternalLink } from 'lucide-react';
+import { Calendar, Code2, ArrowUpRight, ExternalLink, Briefcase } from 'lucide-react';
 import Link from 'next/link';
 import GitHubChart from '@/components/GitHubChart';
 import Footer from '@/components/Footer';
 import { getRecentProjects } from '@/data/projects';
 import { getRecentArticles } from '@/data/articles';
+import { getRecentExperiences } from '@/data/experience';
 
 const fadeInUp = {
   initial: { opacity: 0, y: 20 },
@@ -25,6 +26,7 @@ const staggerContainer = {
 export default function Home() {
   const recentProjects = getRecentProjects(2);
   const recentArticles = getRecentArticles(3);
+  const recentExperiences = getRecentExperiences(2);
   return (
     <div className="min-h-screen" style={{ background: '#000223' }}>
       <motion.div 
@@ -40,7 +42,7 @@ export default function Home() {
           <div className="flex items-start justify-between">
             <div>
               <motion.h1 
-                className="text-4xl md:text-3xl font-bold mb-3 text-white"
+                className="md:text-2xl font-bold mb-3 text-white"
                 variants={fadeInUp}
               >
                 Michael Han
@@ -92,7 +94,7 @@ export default function Home() {
                         ease: "easeInOut"
                       }}
                     />
-                    <span className="text-sm text-slate-300">Tinkering at Toronto.</span>
+                    <span className="text-sm text-slate-300">Tinkering in Toronto. Looking for fall 2025 SWE/AI internships.</span>
                   </div>
                 </div>
               </motion.div>
@@ -138,6 +140,54 @@ export default function Home() {
             variants={fadeInUp}
           >
             <GitHubChart />
+          </motion.div>
+        </motion.section>
+
+        <motion.section 
+          className="mb-16"
+          variants={fadeInUp}
+        >
+          <motion.h2 
+            className="text-xl font-semibold mb-6 text-white"
+            variants={fadeInUp}
+          >
+            Professional Experience
+          </motion.h2>
+          <motion.div 
+            className="space-y-6"
+            variants={staggerContainer}
+          >
+            {recentExperiences.map((experience, index) => (
+              <motion.div
+                key={experience.id}
+                className="bg-slate-800/30 rounded-2xl p-6 border border-slate-700/50"
+                variants={fadeInUp}
+              >
+                <div className="flex items-start gap-4">
+                  <div className="flex-shrink-0 mt-1">
+                    <Briefcase size={20} className="text-blue-400" />
+                  </div>
+                  <div className="flex-grow">
+                    <div className="flex items-start justify-between mb-2">
+                      <div>
+                        <h3 className="text-lg font-semibold text-white">{experience.title}</h3>
+                        <p className="text-blue-400 font-medium">{experience.company}</p>
+                      </div>
+                      <div className="text-xs text-slate-500">
+                        {new Date(experience.startDate).toLocaleDateString('en-US', { 
+                          year: 'numeric', 
+                          month: 'short' 
+                        })} - {experience.current ? 'Present' : new Date(experience.endDate!).toLocaleDateString('en-US', { 
+                          year: 'numeric', 
+                          month: 'short' 
+                        })}
+                      </div>
+                    </div>
+                    <p className="text-sm text-slate-300 leading-relaxed">{experience.description}</p>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
           </motion.div>
         </motion.section>
 

@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Code2, ArrowUpRight, Calendar, Github } from 'lucide-react';
+import { Code2, ArrowUpRight, Calendar } from 'lucide-react';
 import Link from 'next/link';
 import { projects } from '@/data/projects';
 import Footer from '@/components/Footer';

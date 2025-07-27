@@ -1,63 +1,29 @@
-import { promises as fs } from 'fs';
-import path from 'path';
-import matter from 'gray-matter';
+import { marked } from 'marked';
 
-const blogDirectory = path.join(process.cwd(), 'content/blog');
+marked.setOptions({
+  breaks: true,
+  gfm: true
+});
 
-export interface BlogPost {
-  slug: string;
-  title: string;
-  date: string;
-  excerpt: string;
-  content: string;
-}
-
-export async function getBlogPosts(): Promise<BlogPost[]> {
+export async function getBlogContent(slug: string): Promise<string> {
   try {
-    const fileNames = await fs.readdir(blogDirectory);
-    const allPostsData = await Promise.all(
-      fileNames
-        .filter(name => name.endsWith('.mdx'))
-        .map(async (fileName) => {
-          const slug = fileName.replace(/\.mdx$/, '');
-          const fullPath = path.join(blogDirectory, fileName);
-          const fileContents = await fs.readFile(fullPath, 'utf8');
-          const { data, content } = matter(fileContents);
-
-          return {
-            slug,
-            title: data.title,
-            date: data.date,
-            excerpt: data.excerpt,
-            content,
-          };
-        })
-    );
-
-    return allPostsData.sort((a, b) => {
-      return new Date(b.date).getTime() - new Date(a.date).getTime();
-    });
+    const url = `/blog-content/${slug}.md`;
+    console.log('Fetching from:', url);
+    
+    const response = await fetch(url);
+    console.log('Response status:', response.status);
+    
+    if (!response.ok) {
+      throw new Error(`Blog post not found: ${response.status} ${response.statusText}`);
+    }
+    
+    const markdown = await response.text();
+    console.log('Markdown content length:', markdown.length);
+    
+    const html = marked(markdown);
+    return html;
   } catch (error) {
-    console.error('Error reading blog posts:', error);
-    return [];
-  }
-}
-
-export async function getBlogPost(slug: string): Promise<BlogPost | null> {
-  try {
-    const fullPath = path.join(blogDirectory, `${slug}.mdx`);
-    const fileContents = await fs.readFile(fullPath, 'utf8');
-    const { data, content } = matter(fileContents);
-
-    return {
-      slug,
-      title: data.title,
-      date: data.date,
-      excerpt: data.excerpt,
-      content,
-    };
-  } catch (error) {
-    console.error(`Error reading blog post ${slug}:`, error);
-    return null;
+    console.error('Error loading blog content:', error);
+    return `<p>Content not available: ${error instanceof Error ? error.message : 'Unknown error'}</p>`;
   }
 }

@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Calendar, Clock, Github } from 'lucide-react';
+import { Calendar, Clock } from 'lucide-react';
 import Link from 'next/link';
 import { articles } from '@/data/articles';
 import Footer from '@/components/Footer';
