@@ -1,9 +1,12 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Github, Linkedin, Twitter, ExternalLink, Calendar, Code2, ArrowUpRight } from 'lucide-react';
+import { Github, Calendar, Code2, ArrowUpRight, ExternalLink } from 'lucide-react';
 import Link from 'next/link';
 import GitHubChart from '@/components/GitHubChart';
+import Footer from '@/components/Footer';
+import { getRecentProjects } from '@/data/projects';
+import { getRecentArticles } from '@/data/articles';
 
 const fadeInUp = {
   initial: { opacity: 0, y: 20 },
@@ -19,55 +22,11 @@ const staggerContainer = {
   }
 };
 
-const projects = [
-  {
-    title: "Project One",
-    description: "A brief description of your first project. Explain what technologies you used and what problem it solves.",
-    image: "/next.svg",
-    github: "https://github.com/yourusername/project-one",
-    demo: "https://project-one-demo.com"
-  },
-  {
-    title: "Project Two", 
-    description: "Another project description. Highlight the key features and your role in developing it.",
-    image: "/vercel.svg",
-    github: "https://github.com/yourusername/project-two",
-    demo: "https://project-two-demo.com"
-  },
-  {
-    title: "Project Three",
-    description: "Your third project showcasing different skills. Mention any unique challenges you overcame.",
-    image: "/globe.svg",
-    github: "https://github.com/yourusername/project-three",
-    demo: null
-  }
-];
-
-const blogPosts = [
-  {
-    title: "My First Blog Post",
-    excerpt: "This is a sample blog post excerpt. Replace with your actual blog content.",
-    date: "2024-01-15",
-    slug: "my-first-blog-post"
-  },
-  {
-    title: "Learning Next.js",
-    excerpt: "Thoughts and experiences while learning Next.js framework for React development.",
-    date: "2024-01-08", 
-    slug: "learning-nextjs"
-  },
-  {
-    title: "Portfolio Development",
-    excerpt: "The process of building this portfolio website from scratch using modern tools.",
-    date: "2024-01-01",
-    slug: "portfolio-development"
-  }
-];
-
-
 export default function Home() {
+  const recentProjects = getRecentProjects(2);
+  const recentArticles = getRecentArticles(3);
   return (
-    <div className="min-h-screen" style={{ background: '#0a0f1c' }}>
+    <div className="min-h-screen" style={{ background: '#000223' }}>
       <motion.div 
         className="max-w-4xl mx-auto px-4 py-12"
         variants={staggerContainer}
@@ -81,37 +40,59 @@ export default function Home() {
           <div className="flex items-start justify-between">
             <div>
               <motion.h1 
-                className="text-4xl md:text-5xl font-bold mb-3 text-white"
+                className="text-4xl md:text-3xl font-bold mb-3 text-white"
                 variants={fadeInUp}
               >
-                Your Name Here
+                Michael Han
               </motion.h1>
               <motion.p 
                 className="text-base text-slate-300 mb-1"
                 variants={fadeInUp}
               >
-                Your short title/description here.
+                Technology optimist, chilli maker, athletics enjoyer, on a quest to maximize surface area for luck.
               </motion.p>
               <motion.p 
                 className="text-base text-slate-300"
                 variants={fadeInUp}
               >
-                Computer Science at University.
+                Mathematics and Computer Engineering at <span className="underline">Queen's University.</span>
               </motion.p>
               
               <motion.div 
                 className="mt-6"
                 variants={fadeInUp}
               >
-                <div className="text-xs text-slate-500 mb-2">NOW</div>
+                <div className="text-xs text-slate-500 mb-2">As of late:</div>
                 <div className="space-y-2">
                   <div className="flex items-center gap-2">
-                    <div className="w-2 h-2 bg-green-400 rounded-full"></div>
-                    <span className="text-sm text-slate-300">Research engineering at <span className="underline decoration-green-400">Company</span>.</span>
+                    <motion.div 
+                      className="w-2 h-2 bg-green-400 rounded-full"
+                      animate={{ 
+                        opacity: [1, 0.4, 1],
+                        scale: [1, 0.9, 1]
+                      }}
+                      transition={{ 
+                        duration: 2,
+                        repeat: Infinity,
+                        ease: "easeInOut"
+                      }}
+                    />
+                    <span className="text-sm text-slate-300">Co-Founded <span className="underline decoration-green-400">Merin.ai</span>.</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
-                    <span className="text-sm text-slate-300">Tinkering at Location.</span>
+                    <motion.div 
+                      className="w-2 h-2 bg-blue-400 rounded-full"
+                      animate={{ 
+                        opacity: [1, 0.4, 1],
+                        scale: [1, 0.9, 1]
+                      }}
+                      transition={{ 
+                        duration: 2,
+                        repeat: Infinity,
+                        ease: "easeInOut"
+                      }}
+                    />
+                    <span className="text-sm text-slate-300">Tinkering at Toronto.</span>
                   </div>
                 </div>
               </motion.div>
@@ -122,7 +103,7 @@ export default function Home() {
               variants={fadeInUp}
             >
               <a 
-                href="https://linkedin.com/in/yourusername" 
+                href="https://www.linkedin.com/in/michael-y-han/" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="text-sm text-slate-400 hover:text-blue-400 transition-colors"
@@ -130,7 +111,7 @@ export default function Home() {
                 LinkedIn
               </a>
               <a 
-                href="https://github.com/yourusername" 
+                href="https://github.com/michael-han-dev" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="text-sm text-slate-400 hover:text-blue-400 transition-colors"
@@ -138,7 +119,7 @@ export default function Home() {
                 GitHub
               </a>
               <a 
-                href="https://twitter.com/yourusername" 
+                href="https://x.com/michaelyhan_" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="text-sm text-slate-400 hover:text-blue-400 transition-colors"
@@ -164,17 +145,18 @@ export default function Home() {
           className="mb-16"
           variants={fadeInUp}
         >
-          <motion.h2 
-            className="text-xl font-semibold mb-6 text-white"
-            variants={fadeInUp}
-          >
-            Featured Projects
-          </motion.h2>
+          <motion.div className="flex items-center justify-between mb-6" variants={fadeInUp}>
+            <h2 className="text-xl font-semibold text-white">Featured Projects</h2>
+            <Link href="/projects" className="flex items-center gap-1 text-sm text-slate-400 hover:text-blue-400 transition-colors">
+              <span>View all</span>
+              <ExternalLink size={14} />
+            </Link>
+          </motion.div>
           <motion.div 
             className="grid md:grid-cols-2 gap-6"
             variants={staggerContainer}
           >
-            {projects.map((project, index) => (
+            {recentProjects.map((project, index) => (
               <motion.a
                 key={index}
                 href={project.github}
@@ -215,56 +197,43 @@ export default function Home() {
           className="mb-16"
           variants={fadeInUp}
         >
-          <motion.h2 
-            className="text-xl font-semibold mb-6 text-white"
-            variants={fadeInUp}
-          >
-            Latest Thoughts
-          </motion.h2>
+          <motion.div className="flex items-center justify-between mb-6" variants={fadeInUp}>
+            <h2 className="text-xl font-semibold text-white">Latest Thoughts</h2>
+            <Link href="/writing" className="flex items-center gap-1 text-sm text-slate-400 hover:text-blue-400 transition-colors">
+              <span>View all</span>
+              <ExternalLink size={14} />
+            </Link>
+          </motion.div>
           <motion.div 
             className="space-y-4"
             variants={staggerContainer}
           >
-            {blogPosts.map((post, index) => (
+            {recentArticles.map((article, index) => (
               <motion.article 
                 key={index}
                 className="group border-b border-slate-700/30 pb-4 last:border-b-0"
                 variants={fadeInUp}
               >
-                <Link href={`/blog/${post.slug}`} className="block">
+                <Link href={`/blog/${article.slug}`} className="block">
                   <div className="flex items-center gap-2 text-xs text-slate-500 mb-2">
                     <Calendar size={12} />
-                    <time>{new Date(post.date).toLocaleDateString('en-US', { 
+                    <time>{new Date(article.date).toLocaleDateString('en-US', { 
                       year: 'numeric', 
                       month: 'long', 
                       day: 'numeric' 
                     })}</time>
                   </div>
                   <h3 className="text-base font-medium mb-2 text-white group-hover:text-blue-400 transition-colors duration-200">
-                    {post.title}
+                    {article.title}
                   </h3>
-                  <p className="text-sm text-slate-400 leading-relaxed group-hover:text-slate-300 transition-colors">{post.excerpt}</p>
+                  <p className="text-sm text-slate-400 leading-relaxed group-hover:text-slate-300 transition-colors">{article.excerpt}</p>
                 </Link>
               </motion.article>
             ))}
           </motion.div>
         </motion.section>
 
-        <motion.footer 
-          className="flex items-center justify-between pt-12 border-t border-slate-700/30"
-          variants={fadeInUp}
-        >
-          <p className="text-slate-500 text-xs">&copy; {new Date().getFullYear()} Your Name. All rights reserved.</p>
-          <a 
-            href="https://github.com/yourusername/portfolio-source"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-1 text-slate-500 hover:text-blue-400 transition-colors text-xs"
-          >
-            <Github size={12} />
-            <span>Source</span>
-          </a>
-        </motion.footer>
+        <Footer />
       </motion.div>
     </div>
   );

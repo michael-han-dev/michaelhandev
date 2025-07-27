@@ -22,7 +22,10 @@ export const metadata: Metadata = {
   title: "michaelhandev",
   description: "michael's portfolio",
   icons: {
-    icon: "/softletterm.png",
+    icon: [
+      { url: "/softletterm.png", sizes: "any" },
+      { url: "/icon.png", sizes: "any" },
+    ],
     shortcut: "/softletterm.png",
     apple: "/softletterm.png",
   },
@@ -40,6 +43,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <link rel="icon" type="image/png" href="/softletterm.png" />
+        <link rel="shortcut icon" type="image/png" href="/softletterm.png" />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${instrumentSerif.variable} antialiased`}
       >
