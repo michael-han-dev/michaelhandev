@@ -21,6 +21,16 @@ const instrumentSerif = Instrument_Serif({
 export const metadata: Metadata = {
   title: "michaelhandev",
   description: "michael's portfolio",
+  icons: {
+    icon: "/softletterm.png",
+    shortcut: "/softletterm.png",
+    apple: "/softletterm.png",
+  },
+  openGraph: {
+    title: "michaelhandev",
+    description: "michael's portfolio",
+    images: ["/softletterm.png"],
+  },
 };
 
 export default function RootLayout({
@@ -31,7 +41,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${instrumentSerif.variable} antialiased`}
       >
         {children}
       </body>
