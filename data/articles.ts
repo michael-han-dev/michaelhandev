@@ -32,6 +32,14 @@ export const articles: Article[] = [
     date: "2024-01-01",
     slug: "portfolio-development",
     readTime: 12
+  },
+  {
+    id: "transforming",
+    title: "Transforming Ancient Technology: Windows",
+    excerpt: "Using Quantum Dot Solar Technology to Electrify Windows",
+    date: "2023-08-18",
+    slug: "quantum-dot",
+    readTime: 6
   }
 ];
 

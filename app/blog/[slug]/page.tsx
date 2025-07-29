@@ -7,6 +7,7 @@ import { notFound } from 'next/navigation';
 import { articles } from '@/data/articles';
 import Footer from '@/components/Footer';
 import { getBlogContent } from '@/lib/blog';
+import { getBlogImages, BlogImage } from '@/lib/images';
 import { useEffect, useState } from 'react';
 import Prism from 'prismjs';
 import 'prismjs/themes/prism-tomorrow.css';
@@ -28,6 +29,7 @@ export default function BlogPostPage({ params }: { params: Promise<{ slug: strin
   const [loading, setLoading] = useState(true);
   const [slug, setSlug] = useState<string>('');
   const [article, setArticle] = useState<any>(null);
+  const [images, setImages] = useState<BlogImage[]>([]);
 
   useEffect(() => {
     params.then(({ slug }) => {
@@ -39,8 +41,25 @@ export default function BlogPostPage({ params }: { params: Promise<{ slug: strin
 
   useEffect(() => {
     if (article) {
-      getBlogContent(article.slug).then((content) => {
-        setContent(content);
+      Promise.all([
+        getBlogContent(article.slug),
+        getBlogImages(article.id)
+      ]).then(([content, blogImages]) => {
+        // Replace image placeholders with actual images
+        let processedContent = content;
+        blogImages.forEach((image) => {
+          const placeholder = `{{image:${image.display_order}}}`;
+          const imageHtml = `
+            <div class="my-8 rounded-lg overflow-hidden border border-slate-700/50">
+              <img src="${image.url}" alt="${image.alt_text || ''}" class="w-full h-auto" />
+              ${image.alt_text ? `<div class="p-3 bg-slate-800/50 text-sm text-slate-400 text-center">${image.alt_text}</div>` : ''}
+            </div>
+          `;
+          processedContent = processedContent.replace(placeholder, imageHtml);
+        });
+        
+        setContent(processedContent);
+        setImages(blogImages);
         setLoading(false);
         setTimeout(() => Prism.highlightAll(), 0);
       });
@@ -103,10 +122,12 @@ export default function BlogPostPage({ params }: { params: Promise<{ slug: strin
             {loading ? (
               <div className="text-slate-400">Loading...</div>
             ) : (
-              <div 
-                className="prose prose-lg max-w-none prose-invert prose-headings:text-white prose-p:text-slate-300 prose-a:text-blue-400 prose-strong:text-white prose-code:text-blue-300 prose-pre:bg-slate-900 prose-pre:border prose-pre:border-slate-700 prose-code:bg-slate-800 prose-code:px-1 prose-code:py-0.5 prose-code:rounded"
-                dangerouslySetInnerHTML={{ __html: content }}
-              />
+              <>
+                <div 
+                  className="prose prose-lg leading-loose max-w-none prose-invert prose-headings:text-white prose-p:text-slate-300 prose-a:text-blue-400 prose-strong:text-white prose-code:text-blue-300 prose-pre:bg-slate-900 prose-pre:border prose-pre:border-slate-700 prose-code:bg-slate-800 prose-code:px-1 prose-code:py-0.5 prose-code:rounded"
+                  dangerouslySetInnerHTML={{ __html: content }}
+                />
+              </>
             )}
           </div>
         </motion.article>
