@@ -2,8 +2,7 @@ import { marked } from 'marked';
 
 marked.setOptions({
   breaks: true,
-  gfm: true,
-  sanitize: false
+  gfm: true
 });
 
 export async function getBlogContent(slug: string): Promise<string> {
