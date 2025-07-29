@@ -24,16 +24,15 @@ export const metadata: Metadata = {
   description: "michael's portfolio",
   icons: {
     icon: [
-      { url: "/softletterm.png", sizes: "any" },
       { url: "/icon.png", sizes: "any" },
     ],
-    shortcut: "/softletterm.png",
-    apple: "/softletterm.png",
+    shortcut: "/icon.png",
+    apple: "/icon.png",
   },
   openGraph: {
     title: "michaelhandev",
     description: "michael's portfolio",
-    images: ["/softletterm.png"],
+    images: ["/icon.png"],
   },
 };
 
@@ -45,8 +44,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <link rel="icon" type="image/png" href="/softletterm.png" />
-        <link rel="shortcut icon" type="image/png" href="/softletterm.png" />
+        <link rel="icon" type="image/png" href="/icon.png" />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${instrumentSerif.variable} antialiased`}
