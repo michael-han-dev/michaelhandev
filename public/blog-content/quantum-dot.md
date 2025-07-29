@@ -104,3 +104,6 @@ When a photon is absorbed by any semiconductor, including quantum dots, it injec
 - Scarcity: Indium is a relatively rare metal, making ITO expensive (and makes indium phosphide expensive as well).
 
 - Brittleness: ITO can be brittle, which might pose challenges in terms of mechanical stability for windows that need to be durable.
+
+---
+I'm always open to hearing new perspectives. You can reach me on linkedin or twitter.

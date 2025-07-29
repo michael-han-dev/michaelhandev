@@ -10,11 +10,11 @@ export interface Article {
 
 export const articles: Article[] = [
   {
-    id: "my-first-blog-post",
-    title: "My First Blog Post",
-    excerpt: "This is a sample blog post excerpt. Replace with your actual blog content.",
-    date: "2024-01-15",
-    slug: "my-first-blog-post",
+    id: "hyperloop",
+    title: "Socio-Economic Research and Analysis of TransPod and Various Hyperloop Projects Around The World",
+    excerpt: "Research Publication on Hyperloop Technology",
+    date: "2023-07-22",
+    slug: "Hyperloop",
     readTime: 5
   },
   {
@@ -26,6 +26,14 @@ export const articles: Article[] = [
     readTime: 6
   },
   {
+    id: "star",
+    title: "Fusing Futures - Shaping Climate Solutions with Star Power",
+    excerpt: "An Analysis of Fusion Energy and Helion",
+    date: "2023-08-15", 
+    slug: "star",
+    readTime: 4
+  },
+  {
     id: "ultron",
     title: "A 10x Idea Using LLMs: The Age of Ultron",
     excerpt: "Bringing peace? No. Bringing a more sustainable future? Maybe....?",
@@ -35,7 +43,7 @@ export const articles: Article[] = [
   },
 ];
 
-export const getRecentArticles = (count: number = 3): Article[] => {
+export const getRecentArticles = (count: number = 4): Article[] => {
   return articles
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
     .slice(0, count);
