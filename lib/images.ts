@@ -25,3 +25,18 @@ export const getBlogImages = async (relatedId: string): Promise<BlogImage[]> => 
 
   return data || [];
 };
+
+export const getProjectImages = async (relatedId: string): Promise<BlogImage[]> => {
+  const { data, error } = await supabase
+    .from('images')
+    .select('*')
+    .eq('usage', 'project')
+    .eq('related_id', relatedId);
+  
+  if (error){
+    console.error('Error fetching project images:', error);
+    return [];
+  }
+
+  return data || [];
+};

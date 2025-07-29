@@ -1,0 +1,28 @@
+-  how to not die alone - logan ury 
+-  thinking fast and slow - Daniel Kahneman 
+-  the one thing - gary keller (how to focus)
+-  the story of the human body - daniel e lieberman (health)
+-  civilization and its discontents - sigmund freud (happiness)freud (happiness)
+-  read people like a book - patrick king (learn cues and body language)
+-  the courage to be disliked - ichiro kishimi and fumitake koga (teaching you to accept who you are)
+-  The Innovator’s Dilemma by Clay Christensen 
+-  The Lean Startup by Eric Ries 
+-  The Leader’s Guide by Eric Ries
+-  Zero to One by Peter Thiel
+-  Grit: The Power of Passion and Perseverance by Angela Duckworth
+-  The Hard thing about hard things by Ben Horowitz
+-  The Ride of a Lifetime by Bob Iger 
+-  Steve Jobs by Walter Isaacson 
+-  The 7 Habits of Highly Effective People by Stephen Covey 
+-  How to win friends and influence people by Dale Carnegie
+-  The Mom-Test by Rob Fitzpatrick
+-  Everything I know about love by dolly alderton
+-  Impact Players by Liz Wiseman
+-  Inner excellence by Jim Murphy
+-  poor charlie’s almanack 
+-  the lessons of history
+-  fortunes formula
+-  the 4 hour body
+-  the beginning of infinity by david deustch
+-  fundraising by ryan breslow
+-  freakonomics by steven levitt, stephen dubner

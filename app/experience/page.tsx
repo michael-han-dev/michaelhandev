@@ -1,9 +1,9 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Calendar, Clock } from 'lucide-react';
+import { ArrowUpRight, Calendar } from 'lucide-react';
 import Link from 'next/link';
-import { articles } from '@/data/articles';
+import { experiences } from '@/data/experience';
 import Footer from '@/components/Footer';
 
 const fadeInUp = {
@@ -20,7 +20,7 @@ const staggerContainer = {
   }
 };
 
-export default function WritingPage() {
+export default function ExperiencePage() {
   return (
     <div className="min-h-screen" style={{ background: '#000223' }}>
       <motion.div 
@@ -62,11 +62,11 @@ export default function WritingPage() {
               <Link href="/" className="text-sm text-slate-400 hover:text-blue-400 transition-colors">
                 Home
               </Link>
-              <Link href="/experience" className="text-sm text-slate-400 hover:text-blue-400 transition-colors">
-                Experiences
-              </Link>
               <Link href="/projects" className="text-sm text-slate-400 hover:text-blue-400 transition-colors">
                 Projects
+              </Link>
+              <Link href="/writing" className="text-sm text-slate-400 hover:text-blue-400 transition-colors">
+                Writing
               </Link>
             </motion.div>
           </div>
@@ -80,43 +80,57 @@ export default function WritingPage() {
             className="text-2xl font-semibold mb-8 text-white"
             variants={fadeInUp}
           >
-            All Writing
+            Professional Experience
           </motion.h2>
           <motion.div 
             className="space-y-6"
             variants={staggerContainer}
           >
-            {articles.map((article, index) => (
-              <motion.article 
-                key={article.id}
-                className="group bg-slate-800/30 rounded-2xl p-6 border border-slate-700/50 hover:border-blue-500/50 transition-all duration-300"
+            {experiences.map((experience, index) => (
+              <motion.a
+                key={experience.id}
+                href={experience.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group block"
                 variants={fadeInUp}
-                whileHover={{ y: -2 }}
+                whileHover={{ y: -4 }}
                 transition={{ duration: 0.2 }}
               >
-                <Link href={`/blog/${article.slug}`} className="block">
-                  <div className="flex items-center gap-4 text-xs text-slate-500 mb-3">
-                    <div className="flex items-center gap-2">
-                      <Calendar size={12} />
-                      <time>{new Date(article.date).toLocaleDateString('en-US', { 
-                        year: 'numeric', 
-                        month: 'long', 
-                        day: 'numeric' 
-                      })}</time>
-                    </div>
-                    {article.readTime && (
-                      <div className="flex items-center gap-2">
-                        <Clock size={12} />
-                        <span>{article.readTime} min read</span>
-                      </div>
-                    )}
+                <div className="relative bg-slate-800/30 rounded-2xl p-6 border border-slate-700/50 hover:border-blue-500/50 transition-all duration-300">
+                  <div className="absolute top-6 right-6 z-10">
+                    <ArrowUpRight size={16} className="text-slate-400 group-hover:text-blue-400 transition-colors" />
                   </div>
-                  <h3 className="text-xl font-semibold mb-3 text-white group-hover:text-blue-400 transition-colors duration-200">
-                    {article.title}
-                  </h3>
-                  <p className="text-sm text-slate-400 leading-relaxed group-hover:text-slate-300 transition-colors">{article.excerpt}</p>
-                </Link>
-              </motion.article>
+                  
+                  <div className="pr-8">
+                    <div className="flex items-start justify-between mb-3">
+                      <div>
+                        <h3 className="text-xl font-semibold text-white group-hover:text-blue-100 transition-colors mb-1">
+                          {experience.title}
+                        </h3>
+                        <p className="text-blue-400 font-medium group-hover:text-blue-300 transition-colors">
+                          {experience.company}
+                        </p>
+                      </div>
+                      <div className="text-sm text-slate-500 flex items-center gap-1">
+                        <Calendar size={14} />
+                        <span>
+                          {new Date(experience.startDate).toLocaleDateString('en-US', { 
+                            year: 'numeric', 
+                            month: 'short' 
+                          })} - {experience.current ? 'Present' : new Date(experience.endDate!).toLocaleDateString('en-US', { 
+                            year: 'numeric', 
+                            month: 'short' 
+                          })}
+                        </span>
+                      </div>
+                    </div>
+                    <p className="text-slate-300 leading-relaxed group-hover:text-slate-200 transition-colors">
+                      {experience.description}
+                    </p>
+                  </div>
+                </div>
+              </motion.a>
             ))}
           </motion.div>
         </motion.section>

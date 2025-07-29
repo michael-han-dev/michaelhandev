@@ -1,10 +1,12 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Code2, ArrowUpRight, Calendar } from 'lucide-react';
+import { Code2, ArrowUpRight } from 'lucide-react';
 import Link from 'next/link';
 import { projects } from '@/data/projects';
+import { getProjectImages, BlogImage } from '@/lib/images';
 import Footer from '@/components/Footer';
+import { useEffect, useState } from 'react';
 
 const fadeInUp = {
   initial: { opacity: 0, y: 20 },
@@ -21,6 +23,27 @@ const staggerContainer = {
 };
 
 export default function ProjectsPage() {
+  const [projectImages, setProjectImages] = useState<Record<string, BlogImage[]>>({});
+
+  useEffect(() => {
+    const fetchAllProjectImages = async () => {
+      const imagePromises = projects.map(async (project) => {
+        const images = await getProjectImages(project.id);
+        return { projectId: project.id, images };
+      });
+      
+      const results = await Promise.all(imagePromises);
+      const imageMap = results.reduce((acc, { projectId, images }) => {
+        acc[projectId] = images;
+        return acc;
+      }, {} as Record<string, BlogImage[]>);
+      
+      setProjectImages(imageMap);
+    };
+
+    fetchAllProjectImages();
+  }, []);
+
   return (
     <div className="min-h-screen" style={{ background: '#000223' }}>
       <motion.div 
@@ -62,6 +85,9 @@ export default function ProjectsPage() {
               <Link href="/" className="text-sm text-slate-400 hover:text-blue-400 transition-colors">
                 Home
               </Link>
+              <Link href="/experience" className="text-sm text-slate-400 hover:text-blue-400 transition-colors">
+                Experiences
+              </Link>
               <Link href="/writing" className="text-sm text-slate-400 hover:text-blue-400 transition-colors">
                 Writing
               </Link>
@@ -83,7 +109,7 @@ export default function ProjectsPage() {
             className="grid md:grid-cols-2 gap-6"
             variants={staggerContainer}
           >
-            {projects.map((project, index) => (
+            {projects.map((project) => (
               <motion.a
                 key={project.id}
                 href={project.github}
@@ -94,36 +120,29 @@ export default function ProjectsPage() {
                 whileHover={{ y: -4 }}
                 transition={{ duration: 0.2 }}
               >
-                <div className="relative bg-slate-800/30 rounded-2xl overflow-hidden border border-slate-700/50 hover:border-blue-500/50 transition-all duration-300">
+                <div className="relative bg-slate-800/30 rounded-2xl overflow-hidden border border-slate-700/50 hover:border-blue-500/50 transition-all duration-300 h-full flex flex-col">
                   <div className="absolute top-3 right-3 z-10">
                     <ArrowUpRight size={14} className="text-slate-400 group-hover:text-blue-400 transition-colors" />
                   </div>
                   
-                  <div className="aspect-video bg-slate-700/20 flex items-center justify-center p-8 border-b border-slate-700/50">
-                    <img 
-                      src={project.image} 
-                      alt={project.title}
-                      className="max-h-full max-w-full object-contain opacity-70 group-hover:opacity-100 transition-opacity duration-300"
-                    />
+                  <div className="relative h-48 bg-slate-700/20 border-b border-slate-700/50 flex-shrink-0 overflow-hidden">
+                    {projectImages[project.id] && projectImages[project.id].length > 0 && (
+                      <img 
+                        src={projectImages[project.id][0].url} 
+                        alt={projectImages[project.id][0].alt_text || project.title}
+                        className="w-full h-full object-cover opacity-70 group-hover:opacity-100 transition-opacity duration-300"
+                      />
+                    )}
                   </div>
                   
-                  <div className="p-5">
+                  <div className="p-5 flex flex-col flex-grow">
                     <div className="flex items-center gap-2 mb-2">
                       <Code2 size={16} className="text-blue-400" />
                       <h3 className="text-lg font-semibold text-white group-hover:text-blue-100 transition-colors">{project.title}</h3>
                     </div>
-                    <p className="text-sm text-slate-300 leading-relaxed group-hover:text-slate-200 transition-colors mb-3">{project.description}</p>
+                    <p className="text-sm text-slate-300 leading-relaxed group-hover:text-slate-200 transition-colors mb-3 flex-grow">{project.description}</p>
                     
-                    <div className="flex items-center gap-2 text-xs text-slate-500 mb-3">
-                      <Calendar size={12} />
-                      <time>{new Date(project.date).toLocaleDateString('en-US', { 
-                        year: 'numeric', 
-                        month: 'long', 
-                        day: 'numeric' 
-                      })}</time>
-                    </div>
-                    
-                    <div className="flex flex-wrap gap-2">
+                    <div className="flex flex-wrap gap-2 mt-auto">
                       {project.technologies.map((tech, techIndex) => (
                         <span key={techIndex} className="px-2 py-1 bg-slate-700/30 rounded text-xs text-slate-300">
                           {tech}

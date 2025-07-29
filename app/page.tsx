@@ -1,13 +1,15 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Calendar, Code2, ArrowUpRight, ExternalLink, Briefcase } from 'lucide-react';
+import { Calendar, Code2, ArrowUpRight, ExternalLink } from 'lucide-react';
 import Link from 'next/link';
 import GitHubChart from '@/components/GitHubChart';
 import Footer from '@/components/Footer';
-import { getRecentProjects } from '@/data/projects';
 import { getRecentArticles } from '@/data/articles';
 import { getRecentExperiences } from '@/data/experience';
+import { projects } from '@/data/projects';
+import { getProjectImages, BlogImage } from '@/lib/images';
+import { useEffect, useState } from 'react';
 
 const fadeInUp = {
   initial: { opacity: 0, y: 20 },
@@ -24,9 +26,30 @@ const staggerContainer = {
 };
 
 export default function Home() {
-  const recentProjects = getRecentProjects(2);
-  const recentArticles = getRecentArticles(3);
+  const recentArticles = getRecentArticles(4);
   const recentExperiences = getRecentExperiences(2);
+  const [projectImages, setProjectImages] = useState<Record<string, BlogImage[]>>({});
+  
+  const featuredProjects = projects.slice(0, 2);
+
+  useEffect(() => {
+    const fetchFeaturedProjectImages = async () => {
+      const imagePromises = featuredProjects.map(async (project) => {
+        const images = await getProjectImages(project.id);
+        return { projectId: project.id, images };
+      });
+      
+      const results = await Promise.all(imagePromises);
+      const imageMap = results.reduce((acc, { projectId, images }) => {
+        acc[projectId] = images;
+        return acc;
+      }, {} as Record<string, BlogImage[]>);
+      
+      setProjectImages(imageMap);
+    };
+
+    fetchFeaturedProjectImages();
+  }, []);
   return (
     <div className="min-h-screen" style={{ background: '#000223' }}>
       <motion.div 
@@ -147,31 +170,33 @@ export default function Home() {
           className="mb-16"
           variants={fadeInUp}
         >
-          <motion.h2 
-            className="text-xl font-semibold mb-6 text-white"
-            variants={fadeInUp}
-          >
-            Professional Experience
-          </motion.h2>
+          <motion.div className="flex items-center justify-between mb-6" variants={fadeInUp}>
+            <h2 className="text-xl font-semibold text-white">Professional Experience</h2>
+            <Link href="/experience" className="flex items-center gap-1 text-sm text-slate-400 hover:text-blue-400 transition-colors">
+              <span>View all</span>
+              <ExternalLink size={14} />
+            </Link>
+          </motion.div>
           <motion.div 
             className="space-y-6"
             variants={staggerContainer}
           >
-            {recentExperiences.map((experience, index) => (
-              <motion.div
+            {recentExperiences.map((experience) => (
+              <motion.a
                 key={experience.id}
-                className="bg-slate-800/30 rounded-2xl p-6 border border-slate-700/50"
+                href={experience.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group block bg-slate-800/30 rounded-2xl p-6 border border-slate-700/50 hover:border-blue-500/50 transition-all duration-300"
                 variants={fadeInUp}
+                whileHover={{ y: -2 }}
               >
                 <div className="flex items-start gap-4">
-                  <div className="flex-shrink-0 mt-1">
-                    <Briefcase size={20} className="text-blue-400" />
-                  </div>
                   <div className="flex-grow">
                     <div className="flex items-start justify-between mb-2">
                       <div>
-                        <h3 className="text-lg font-semibold text-white">{experience.title}</h3>
-                        <p className="text-blue-400 font-medium">{experience.company}</p>
+                        <h3 className="text-lg font-semibold text-white group-hover:text-blue-100 transition-colors">{experience.title}</h3>
+                        <p className="text-blue-400 font-medium group-hover:text-blue-300 transition-colors">{experience.company}</p>
                       </div>
                       <div className="text-xs text-slate-500">
                         {new Date(experience.startDate).toLocaleDateString('en-US', { 
@@ -183,10 +208,10 @@ export default function Home() {
                         })}
                       </div>
                     </div>
-                    <p className="text-sm text-slate-300 leading-relaxed">{experience.description}</p>
+                    <p className="text-sm text-slate-300 leading-relaxed group-hover:text-slate-200 transition-colors">{experience.description}</p>
                   </div>
                 </div>
-              </motion.div>
+              </motion.a>
             ))}
           </motion.div>
         </motion.section>
@@ -206,9 +231,9 @@ export default function Home() {
             className="grid md:grid-cols-2 gap-6"
             variants={staggerContainer}
           >
-            {recentProjects.map((project, index) => (
+            {featuredProjects.map((project) => (
               <motion.a
-                key={index}
+                key={project.id}
                 href={project.github}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -217,25 +242,35 @@ export default function Home() {
                 whileHover={{ y: -4 }}
                 transition={{ duration: 0.2 }}
               >
-                <div className="relative bg-slate-800/30 rounded-2xl overflow-hidden border border-slate-700/50 hover:border-blue-500/50 transition-all duration-300">
+                <div className="relative bg-slate-800/30 rounded-2xl overflow-hidden border border-slate-700/50 hover:border-blue-500/50 transition-all duration-300 h-full flex flex-col">
                   <div className="absolute top-3 right-3 z-10">
                     <ArrowUpRight size={14} className="text-slate-400 group-hover:text-blue-400 transition-colors" />
                   </div>
                   
-                  <div className="aspect-video bg-slate-700/20 flex items-center justify-center p-8 border-b border-slate-700/50">
-                    <img 
-                      src={project.image} 
-                      alt={project.title}
-                      className="max-h-full max-w-full object-contain opacity-70 group-hover:opacity-100 transition-opacity duration-300"
-                    />
+                  <div className="relative h-48 bg-slate-700/20 border-b border-slate-700/50 flex-shrink-0 overflow-hidden">
+                    {projectImages[project.id] && projectImages[project.id].length > 0 && (
+                      <img 
+                        src={projectImages[project.id][0].url} 
+                        alt={projectImages[project.id][0].alt_text || project.title}
+                        className="w-full h-full object-cover opacity-70 group-hover:opacity-100 transition-opacity duration-300"
+                      />
+                    )}
                   </div>
                   
-                  <div className="p-5">
+                  <div className="p-5 flex flex-col flex-grow">
                     <div className="flex items-center gap-2 mb-2">
                       <Code2 size={16} className="text-blue-400" />
                       <h3 className="text-lg font-semibold text-white group-hover:text-blue-100 transition-colors">{project.title}</h3>
                     </div>
-                    <p className="text-sm text-slate-300 leading-relaxed group-hover:text-slate-200 transition-colors">{project.description}</p>
+                    <p className="text-sm text-slate-300 leading-relaxed group-hover:text-slate-200 transition-colors mb-3 flex-grow">{project.description}</p>
+                    
+                    <div className="flex flex-wrap gap-2 mt-auto">
+                      {project.technologies.map((tech, techIndex) => (
+                        <span key={techIndex} className="px-2 py-1 bg-slate-700/30 rounded text-xs text-slate-300">
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
                   </div>
                 </div>
               </motion.a>
@@ -258,9 +293,9 @@ export default function Home() {
             className="space-y-4"
             variants={staggerContainer}
           >
-            {recentArticles.map((article, index) => (
+            {recentArticles.map((article) => (
               <motion.article 
-                key={index}
+                key={article.slug}
                 className="group border-b border-slate-700/30 pb-4 last:border-b-0"
                 variants={fadeInUp}
               >

@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Github, Home, Code2, PenTool } from 'lucide-react';
+import { Github, Home, Code2, PenTool, Briefcase } from 'lucide-react';
 import Link from 'next/link';
 
 const fadeInUp = {
@@ -31,6 +31,10 @@ export default function Footer() {
           <Link href="/projects" className="flex items-center gap-1 text-slate-500 hover:text-blue-400 transition-colors text-xs">
             <Code2 size={12} />
             <span>Projects</span>
+          </Link>
+          <Link href="/experience" className="flex items-center gap-1 text-slate-500 hover:text-blue-400 transition-colors text-xs">
+            <Briefcase size={12} />
+            <span>Experience</span>
           </Link>
           <Link href="/writing" className="flex items-center gap-1 text-slate-500 hover:text-blue-400 transition-colors text-xs">
             <PenTool size={12} />

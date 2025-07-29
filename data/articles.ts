@@ -10,6 +10,14 @@ export interface Article {
 
 export const articles: Article[] = [
   {
+    id: "living-bookshelf",
+    title: "My Bookshelf",
+    excerpt: "Stuff to Read. Last Updated 2025-07-02",
+    date: "2025-07-22", 
+    slug: "living-bookshelf",
+    readTime: 1
+  },
+  {
     id: "hyperloop",
     title: "Socio-Economic Research and Analysis of TransPod and Various Hyperloop Projects Around The World",
     excerpt: "Research Publication on Hyperloop Technology",
