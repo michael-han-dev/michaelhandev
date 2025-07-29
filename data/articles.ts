@@ -26,14 +26,6 @@ export const articles: Article[] = [
     readTime: 8
   },
   {
-    id: "portfolio-development",
-    title: "Portfolio Development",
-    excerpt: "The process of building this portfolio website from scratch using modern tools.",
-    date: "2024-01-01",
-    slug: "portfolio-development",
-    readTime: 12
-  },
-  {
     id: "transforming",
     title: "Transforming Ancient Technology: Windows",
     excerpt: "Using Quantum Dot Solar Technology to Electrify Windows",
