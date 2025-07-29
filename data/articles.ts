@@ -18,21 +18,21 @@ export const articles: Article[] = [
     readTime: 5
   },
   {
-    id: "learning-nextjs",
-    title: "Learning Next.js",
-    excerpt: "Thoughts and experiences while learning Next.js framework for React development.",
-    date: "2024-01-08", 
-    slug: "learning-nextjs",
-    readTime: 8
-  },
-  {
     id: "transforming",
     title: "Transforming Ancient Technology: Windows",
     excerpt: "Using Quantum Dot Solar Technology to Electrify Windows",
     date: "2023-08-18",
     slug: "quantum-dot",
     readTime: 6
-  }
+  },
+  {
+    id: "ultron",
+    title: "A 10x Idea Using LLMs: The Age of Ultron",
+    excerpt: "Bringing peace? No. Bringing a more sustainable future? Maybe....?",
+    date: "2023-08-13", 
+    slug: "ultron",
+    readTime: 3
+  },
 ];
 
 export const getRecentArticles = (count: number = 3): Article[] => {
