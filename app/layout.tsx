@@ -32,6 +32,19 @@ export const metadata: Metadata = {
   openGraph: {
     title: "michaelhandev",
     description: "michael's portfolio",
+    images: [
+      {
+        url: "/icon.png",
+        width: 1200,
+        height: 630,
+        alt: "Michael Han - Portfolio",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary",
+    title: "michaelhandev",
+    description: "michael's portfolio",
     images: ["/icon.png"],
   },
 };
