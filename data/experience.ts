@@ -11,6 +11,15 @@ export interface Experience {
 
 export const experiences: Experience[] = [
   {
+    id: "rootly",
+    title: "Software Engineering Intern",
+    company: "Rootly (YC 21)",
+    description: "Building end to end AI incident management software serving companies like Nvidia, Dropbox, Figma and 100s more.",
+    startDate: "2025-08-27",
+    current: true,
+    link: "https://rootly.com/"
+  },
+  {
     id: "merin",
     title: "Co-Founder",
     company: "Merin.ai",
@@ -21,7 +30,7 @@ export const experiences: Experience[] = [
   },
   {
     id: "bigpod",
-    title: "Software Developer Intern",
+    title: "Software Engineering Intern",
     company: "BigPod",
     description: "Generating UI configurations and code for embedded devices",
     startDate: "2025-04-15",

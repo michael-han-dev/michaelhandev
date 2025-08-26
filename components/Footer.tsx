@@ -25,19 +25,15 @@ export default function Footer() {
         
         <nav className="flex items-center gap-4">
           <Link href="/" className="flex items-center gap-1 text-slate-500 hover:text-blue-400 transition-colors text-xs">
-            <Home size={12} />
             <span>Home</span>
           </Link>
           <Link href="/projects" className="flex items-center gap-1 text-slate-500 hover:text-blue-400 transition-colors text-xs">
-            <Code2 size={12} />
             <span>Projects</span>
           </Link>
           <Link href="/experience" className="flex items-center gap-1 text-slate-500 hover:text-blue-400 transition-colors text-xs">
-            <Briefcase size={12} />
             <span>Experience</span>
           </Link>
           <Link href="/writing" className="flex items-center gap-1 text-slate-500 hover:text-blue-400 transition-colors text-xs">
-            <PenTool size={12} />
             <span>Writing</span>
           </Link>
         </nav>
