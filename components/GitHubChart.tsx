@@ -31,7 +31,7 @@ export default function GitHubChart() {
             colorScheme="dark"
             fontSize={10}
             blockSize={10}
-            transformData={(data) => selectLastNMonths(data, 11)}
+            transformData={(data) => selectLastNMonths(data, 12)}
             blockMargin={2}
             hideColorLegend={false}
             hideMonthLabels={false}
