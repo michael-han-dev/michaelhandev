@@ -117,7 +117,7 @@ export default function Home() {
                         ease: "easeInOut"
                       }}
                     />
-                    <span className="text-sm text-slate-300">Working on the engineering team at Rootly (YC 21) for Fall 2025.</span>
+                    <span className="text-sm text-slate-300">Working on the engineering team at Rootly (YC S21) for Fall 2025.</span>
                   </div>
                 </div>
               </motion.div>

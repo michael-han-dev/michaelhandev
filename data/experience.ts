@@ -13,7 +13,7 @@ export const experiences: Experience[] = [
   {
     id: "rootly",
     title: "Software Engineering Intern",
-    company: "Rootly (YC 21)",
+    company: "Rootly (YC S21)",
     description: "Building end to end AI incident management software serving companies like Nvidia, Dropbox, Figma and 100s more.",
     startDate: "2025-08-27",
     current: true,
