@@ -117,7 +117,7 @@ export default function Home() {
                         ease: "easeInOut"
                       }}
                     />
-                    <span className="text-sm text-slate-300">Working on the engineering team at Rootly (YC S21)</span>
+                    <span className="text-sm text-slate-300">Working on the engineering team at Rootly (YC S21).</span>
                   </div>
                 </div>
               </motion.div>
