@@ -10,6 +10,7 @@ import { getBlogContent } from '@/lib/blog';
 import { getBlogImages, BlogImage } from '@/lib/images';
 import { useEffect, useState } from 'react';
 import Prism from 'prismjs';
+import { formatDateLong } from '@/utils/date';
 import 'prismjs/themes/prism-tomorrow.css';
 import 'prismjs/components/prism-javascript';
 import 'prismjs/components/prism-typescript';
@@ -98,11 +99,7 @@ export default function BlogPostPage({ params }: { params: Promise<{ slug: strin
               <div className="flex items-center gap-4 text-xs text-slate-500 mb-4">
                 <div className="flex items-center gap-2">
                   <Calendar size={12} />
-                  <time>{new Date(article.date).toLocaleDateString('en-US', { 
-                    year: 'numeric', 
-                    month: 'long', 
-                    day: 'numeric' 
-                  })}</time>
+                  <time>{formatDateLong(article.date)}</time>
                 </div>
                 {article.readTime && (
                   <div className="flex items-center gap-2">

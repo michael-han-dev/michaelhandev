@@ -5,6 +5,7 @@ import { ArrowUpRight, Calendar } from 'lucide-react';
 import Link from 'next/link';
 import { experiences } from '@/data/experience';
 import Footer from '@/components/Footer';
+import { formatDateShort } from '@/utils/date';
 
 const fadeInUp = {
   initial: { opacity: 0, y: 20 },
@@ -115,13 +116,7 @@ export default function ExperiencePage() {
                       <div className="text-sm text-slate-500 flex items-center gap-1">
                         <Calendar size={14} />
                         <span>
-                          {new Date(experience.startDate).toLocaleDateString('en-US', { 
-                            year: 'numeric', 
-                            month: 'short' 
-                          })} - {experience.current ? 'Present' : new Date(experience.endDate!).toLocaleDateString('en-US', { 
-                            year: 'numeric', 
-                            month: 'short' 
-                          })}
+                          {formatDateShort(experience.startDate)} - {experience.current ? 'Present' : formatDateShort(experience.endDate!)}
                         </span>
                       </div>
                     </div>

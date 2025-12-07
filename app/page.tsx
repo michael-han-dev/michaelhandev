@@ -10,6 +10,7 @@ import { getRecentExperiences } from '@/data/experience';
 import { projects } from '@/data/projects';
 import { getProjectImages, BlogImage } from '@/lib/images';
 import { useEffect, useState } from 'react';
+import { formatDateLong, formatDateShort } from '@/utils/date';
 
 const fadeInUp = {
   initial: { opacity: 0, y: 20 },
@@ -199,13 +200,7 @@ export default function Home() {
                         <p className="text-blue-400 font-medium group-hover:text-blue-300 transition-colors">{experience.company}</p>
                       </div>
                       <div className="text-xs text-slate-500">
-                        {new Date(experience.startDate).toLocaleDateString('en-US', { 
-                          year: 'numeric', 
-                          month: 'short' 
-                        })} - {experience.current ? 'Present' : new Date(experience.endDate!).toLocaleDateString('en-US', { 
-                          year: 'numeric', 
-                          month: 'short' 
-                        })}
+                        {formatDateShort(experience.startDate)} - {experience.current ? 'Present' : formatDateShort(experience.endDate!)}
                       </div>
                     </div>
                     <p className="text-sm text-slate-300 leading-relaxed group-hover:text-slate-200 transition-colors">{experience.description}</p>
@@ -302,11 +297,7 @@ export default function Home() {
                 <Link href={`/blog/${article.slug}`} className="block">
                   <div className="flex items-center gap-2 text-xs text-slate-500 mb-2">
                     <Calendar size={12} />
-                    <time>{new Date(article.date).toLocaleDateString('en-US', { 
-                      year: 'numeric', 
-                      month: 'long', 
-                      day: 'numeric' 
-                    })}</time>
+                    <time>{formatDateLong(article.date)}</time>
                   </div>
                   <h3 className="text-base font-medium mb-2 text-white group-hover:text-blue-400 transition-colors duration-200">
                     {article.title}
