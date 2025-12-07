@@ -79,17 +79,50 @@ export default function ProjectsPage() {
             </div>
             
             <motion.div 
-              className="flex flex-col space-y-1 text-right"
+              className="flex flex-col space-y-1 items-end"
               variants={fadeInUp}
             >
-              <Link href="/" className="text-sm text-slate-400 hover:text-blue-400 transition-colors">
-                Home
+              <Link href="/" className="group relative inline-flex items-center text-sm text-slate-400 hover:text-blue-400 transition-colors">
+                <motion.span
+                  className="inline-block hotkey-glow"
+                  initial={false}
+                  animate={{ x: 0 }}
+                  whileHover={{ x: -8 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  Home
+                </motion.span>
+                <span className="absolute left-full ml-2 w-6 h-6 flex items-center justify-center border border-slate-400 group-hover:border-blue-400 rounded text-xs opacity-0 group-hover:opacity-100 transition-all pointer-events-none">
+                  H
+                </span>
               </Link>
-              <Link href="/experience" className="text-sm text-slate-400 hover:text-blue-400 transition-colors">
-                Experiences
+              <Link href="/experience" className="group relative inline-flex items-center text-sm text-slate-400 hover:text-blue-400 transition-colors">
+                <motion.span
+                  className="inline-block hotkey-glow"
+                  initial={false}
+                  animate={{ x: 0 }}
+                  whileHover={{ x: -8 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  Experiences
+                </motion.span>
+                <span className="absolute left-full ml-2 w-6 h-6 flex items-center justify-center border border-slate-400 group-hover:border-blue-400 rounded text-xs opacity-0 group-hover:opacity-100 transition-all pointer-events-none">
+                  E
+                </span>
               </Link>
-              <Link href="/writing" className="text-sm text-slate-400 hover:text-blue-400 transition-colors">
-                Writing
+              <Link href="/writing" className="group relative inline-flex items-center text-sm text-slate-400 hover:text-blue-400 transition-colors">
+                <motion.span
+                  className="inline-block hotkey-glow"
+                  initial={false}
+                  animate={{ x: 0 }}
+                  whileHover={{ x: -8 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  Writing
+                </motion.span>
+                <span className="absolute left-full ml-2 w-6 h-6 flex items-center justify-center border border-slate-400 group-hover:border-blue-400 rounded text-xs opacity-0 group-hover:opacity-100 transition-all pointer-events-none">
+                  W
+                </span>
               </Link>
             </motion.div>
           </div>

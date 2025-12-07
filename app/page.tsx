@@ -125,14 +125,14 @@ export default function Home() {
             </div>
             
             <motion.div 
-              className="flex flex-col space-y-1"
+              className="flex flex-col space-y-1 items-end"
               variants={fadeInUp}
             >
               <a 
                 href="https://www.linkedin.com/in/michael-y-han/" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="group relative flex items-center justify-end gap-2 text-sm text-slate-400 hover:text-blue-400 transition-colors"
+                className="group relative inline-flex items-center text-sm text-slate-400 hover:text-blue-400 transition-colors"
               >
                 <motion.span
                   className="inline-block hotkey-glow"
@@ -143,7 +143,7 @@ export default function Home() {
                 >
                   LinkedIn
                 </motion.span>
-                <span className="w-6 h-6 flex items-center justify-center border border-slate-400 group-hover:border-blue-400 rounded text-xs opacity-0 group-hover:opacity-100 transition-all">
+                <span className="absolute left-full ml-2 w-6 h-6 flex items-center justify-center border border-slate-400 group-hover:border-blue-400 rounded text-xs opacity-0 group-hover:opacity-100 transition-all pointer-events-none">
                   L
                 </span>
               </a>
@@ -151,7 +151,7 @@ export default function Home() {
                 href="https://github.com/michael-han-dev" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="group relative flex items-center justify-end gap-2 text-sm text-slate-400 hover:text-blue-400 transition-colors"
+                className="group relative inline-flex items-center text-sm text-slate-400 hover:text-blue-400 transition-colors"
               >
                 <motion.span
                   className="inline-block hotkey-glow"
@@ -162,7 +162,7 @@ export default function Home() {
                 >
                   GitHub
                 </motion.span>
-                <span className="w-6 h-6 flex items-center justify-center border border-slate-400 group-hover:border-blue-400 rounded text-xs opacity-0 group-hover:opacity-100 transition-all">
+                <span className="absolute left-full ml-2 w-6 h-6 flex items-center justify-center border border-slate-400 group-hover:border-blue-400 rounded text-xs opacity-0 group-hover:opacity-100 transition-all pointer-events-none">
                   G
                 </span>
               </a>
@@ -170,7 +170,7 @@ export default function Home() {
                 href="https://x.com/michaelyhan_" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="group relative flex items-center justify-end gap-2 text-sm text-slate-400 hover:text-blue-400 transition-colors"
+                className="group relative inline-flex items-center text-sm text-slate-400 hover:text-blue-400 transition-colors"
               >
                 <motion.span
                   className="inline-block hotkey-glow"
@@ -181,7 +181,7 @@ export default function Home() {
                 >
                   Twitter
                 </motion.span>
-                <span className="w-6 h-6 flex items-center justify-center border border-slate-400 group-hover:border-blue-400 rounded text-xs opacity-0 group-hover:opacity-100 transition-all">
+                <span className="absolute left-full ml-2 w-6 h-6 flex items-center justify-center border border-slate-400 group-hover:border-blue-400 rounded text-xs opacity-0 group-hover:opacity-100 transition-all pointer-events-none">
                   T
                 </span>
               </a>

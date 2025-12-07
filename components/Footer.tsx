@@ -43,7 +43,7 @@ export default function Footer() {
         href="https://github.com/michael-han-dev/michaelhandev"
         target="_blank"
         rel="noopener noreferrer"
-        className="group relative flex items-center gap-2 text-slate-500 hover:text-blue-400 transition-colors text-xs"
+        className="group relative inline-flex items-center text-slate-500 hover:text-blue-400 transition-colors text-xs"
       >
         <motion.span
           className="inline-flex items-center gap-1 hotkey-glow-dark"
@@ -55,7 +55,7 @@ export default function Footer() {
           <Github size={12} />
           Source
         </motion.span>
-        <span className="w-6 h-6 flex items-center justify-center border border-slate-500 group-hover:border-blue-400 rounded text-xs opacity-0 group-hover:opacity-100 transition-all">
+        <span className="absolute left-full ml-2 w-6 h-6 flex items-center justify-center border border-slate-500 group-hover:border-blue-400 rounded text-xs opacity-0 group-hover:opacity-100 transition-all pointer-events-none">
           S
         </span>
       </a>
