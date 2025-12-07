@@ -80,7 +80,7 @@ export default function Home() {
                 className="text-base text-slate-300"
                 variants={fadeInUp}
               >
-                Mathematics and Computer Engineering at <span className="underline">Queen's University.</span>
+                Mathematics and Computer Engineering at <span className="underline">Queen's University.</span> Expected to graduate in 2027.
               </motion.p>
               
               <motion.div 
@@ -117,7 +117,7 @@ export default function Home() {
                         ease: "easeInOut"
                       }}
                     />
-                    <span className="text-sm text-slate-300">Working on the engineering team at Rootly (YC S21) for Fall 2025.</span>
+                    <span className="text-sm text-slate-300">Working on the engineering team at Rootly (YC S21).</span>
                   </div>
                 </div>
               </motion.div>
