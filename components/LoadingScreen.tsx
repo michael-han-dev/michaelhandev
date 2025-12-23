@@ -4,41 +4,67 @@ import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const fonts = [
-  'Arial',
-  'Helvetica',
-  'Times New Roman',
-  'Georgia',
-  'Courier New',
-  'Verdana',
   'Impact',
+  'Didot',
   'Comic Sans MS',
-  'Trebuchet MS',
+  'Courier New',
+  'Georgia',
+  'Futura',
   'Palatino',
+  'Google Sans',
+  'Rockwell',
+  'Monaco',
   'Garamond',
-  'Bookman',
-  'Avant Garde',
+  'Verdana',
+  'Times New Roman',
+  'Trebuchet MS',
+  'Arial Black',
 ];
+
+const calculateInterval = (index: number, baseInterval: number, increment: number) => {
+  return baseInterval + (increment * index);
+};
 
 export default function LoadingScreen({ onComplete }: { onComplete: () => void }) {
   const [currentFontIndex, setCurrentFontIndex] = useState(0);
   const [isExiting, setIsExiting] = useState(false);
 
   useEffect(() => {
-    const fontInterval = setInterval(() => {
-      setCurrentFontIndex((prev) => (prev + 1) % fonts.length);
-    }, 3000 / fonts.length);
+    const baseInterval = 150;
+    const increment = 200;
+
+    const totalDuration = fonts.reduce((sum, _, index) => {
+      return sum + calculateInterval(index, baseInterval, increment);
+    }, 0);
+
+    let currentIndex = 0;
+
+    const scheduleNext = () => {
+      if (currentIndex >= fonts.length - 1) return;
+
+      const nextInterval = calculateInterval(currentIndex, baseInterval, increment);
+
+      const timer = setTimeout(() => {
+        currentIndex++;
+        setCurrentFontIndex(currentIndex);
+        scheduleNext();
+      }, nextInterval);
+
+      return timer;
+    };
+
+    const firstTimer = scheduleNext();
 
     const exitTimer = setTimeout(() => {
       setIsExiting(true);
-    }, 2700);
+    }, totalDuration - 400);
 
     const completeTimer = setTimeout(() => {
-      clearInterval(fontInterval);
       onComplete();
-    }, 3000);
+    }, totalDuration + 2000);
 
     return () => {
-      clearInterval(fontInterval);
+      if (firstTimer) clearTimeout(firstTimer);
       clearTimeout(exitTimer);
       clearTimeout(completeTimer);
     };
@@ -49,8 +75,8 @@ export default function LoadingScreen({ onComplete }: { onComplete: () => void }
       <motion.div
         initial={{ opacity: 1 }}
         animate={{ opacity: isExiting ? 0 : 1 }}
-        transition={{ duration: 0.3 }}
-        className="fixed inset-0 z-50 flex items-center justify-center"
+        transition={{ duration: 1.7 }}
+        className="fixed inset-0 z-50 flex items-center justify-center px-4"
         style={{ background: '#000223' }}
       >
         <motion.h1
@@ -58,8 +84,12 @@ export default function LoadingScreen({ onComplete }: { onComplete: () => void }
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.05 }}
-          className="text-6xl md:text-8xl font-bold text-white"
-          style={{ fontFamily: fonts[currentFontIndex] }}
+          className="font-bold text-white"
+          style={{
+            fontFamily: fonts[currentFontIndex],
+            fontSize: 'clamp(4rem, 25vw, 20rem)',
+            whiteSpace: 'nowrap'
+          }}
         >
           Michael
         </motion.h1>
