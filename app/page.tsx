@@ -11,6 +11,7 @@ import { projects } from '@/data/projects';
 import { getProjectImages, BlogImage } from '@/lib/images';
 import { useEffect, useState } from 'react';
 import { formatDateLong, formatDateShort } from '@/utils/date';
+import LoadingScreen from '@/components/LoadingScreen';
 
 const fadeInUp = {
   initial: { opacity: 0, y: 20 },
@@ -30,7 +31,8 @@ export default function Home() {
   const recentArticles = getRecentArticles(4);
   const recentExperiences = getRecentExperiences(2);
   const [projectImages, setProjectImages] = useState<Record<string, BlogImage[]>>({});
-  
+  const [loadingComplete, setLoadingComplete] = useState(false);
+
   const featuredProjects = projects.slice(0, 2);
 
   useEffect(() => {
@@ -51,6 +53,11 @@ export default function Home() {
 
     fetchFeaturedProjectImages();
   }, []);
+
+  if (!loadingComplete) {
+    return <LoadingScreen onComplete={() => setLoadingComplete(true)} />;
+  }
+
   return (
     <div className="min-h-screen" style={{ background: '#000223' }}>
       <motion.div 
