@@ -32,8 +32,16 @@ export default function Home() {
   const recentExperiences = getRecentExperiences(2);
   const [projectImages, setProjectImages] = useState<Record<string, BlogImage[]>>({});
   const [loadingComplete, setLoadingComplete] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
 
   const featuredProjects = projects.slice(0, 2);
+
+  useEffect(() => {
+    setIsMounted(true);
+    if (sessionStorage.getItem('loadingScreenShown') === 'true') {
+      setLoadingComplete(true);
+    }
+  }, []);
 
   useEffect(() => {
     const fetchFeaturedProjectImages = async () => {
@@ -54,8 +62,15 @@ export default function Home() {
     fetchFeaturedProjectImages();
   }, []);
 
-  if (!loadingComplete) {
-    return <LoadingScreen onComplete={() => setLoadingComplete(true)} />;
+  if (!isMounted || !loadingComplete) {
+    return (
+      <LoadingScreen
+        onComplete={() => {
+          setLoadingComplete(true);
+          sessionStorage.setItem('loadingScreenShown', 'true');
+        }}
+      />
+    );
   }
 
   return (
