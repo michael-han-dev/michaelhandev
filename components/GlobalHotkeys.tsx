@@ -2,10 +2,12 @@
 
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { useViewMode } from './ViewModeProvider';
 
 export default function GlobalHotkeys() {
   const [isMounted, setIsMounted] = useState(false);
   const router = useRouter();
+  const { toggleViewMode } = useViewMode();
 
   useEffect(() => {
     setIsMounted(true);
@@ -50,6 +52,9 @@ export default function GlobalHotkeys() {
         } else if (event.key === 'W' || event.key === 'w') {
           event.preventDefault();
           router.push('/writing');
+        } else if (event.key === 'M' || event.key === 'm') {
+          event.preventDefault();
+          toggleViewMode();
         }
       }
     };
@@ -59,7 +64,7 @@ export default function GlobalHotkeys() {
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, [isMounted, router]);
+  }, [isMounted, router, toggleViewMode]);
 
   return null;
 }
