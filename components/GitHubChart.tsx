@@ -4,7 +4,7 @@ import GitHubCalendar, { Activity } from 'react-github-calendar';
 
 export default function GitHubChart() {
   return (
-    <div className="w-full bg-slate-800/30 rounded-2xl p-6 border border-slate-700/50">
+    <div className="w-full bg-card-light rounded-2xl p-6 border border-slate-700/50">
       <h3 className="text-base font-medium mb-4 text-white">Recent GitHub Activity</h3>
       <div className="w-full">
         <style jsx>{`

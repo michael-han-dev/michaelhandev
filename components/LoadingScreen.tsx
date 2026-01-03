@@ -76,8 +76,7 @@ export default function LoadingScreen({ onComplete }: { onComplete: () => void }
         initial={{ opacity: 1 }}
         animate={{ opacity: isExiting ? 0 : 1 }}
         transition={{ duration: 1.7 }}
-        className="fixed inset-0 z-50 flex items-center justify-center px-4"
-        style={{ background: '#000223' }}
+        className="fixed inset-0 z-50 flex items-center justify-center px-4 bg-main"
       >
         <motion.h1
           key={currentFontIndex}

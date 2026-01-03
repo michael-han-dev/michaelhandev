@@ -55,7 +55,7 @@ export default function BlogPostPage({ params }: { params: Promise<{ slug: strin
           const imageHtml = `
             <div class="my-8 rounded-lg overflow-hidden border border-slate-700/50">
               <img src="${image.url}" alt="${image.alt_text || ''}" class="w-full h-auto" />
-              ${image.alt_text ? `<div class="p-3 bg-slate-800/50 text-sm text-slate-400 text-center">${image.alt_text}</div>` : ''}
+              ${image.alt_text ? `<div class="p-3 bg-card-medium text-sm text-slate-400 text-center">${image.alt_text}</div>` : ''}
             </div>
           `;
           processedContent = processedContent.replace(placeholder, imageHtml);
@@ -77,7 +77,7 @@ export default function BlogPostPage({ params }: { params: Promise<{ slug: strin
   }
 
   return (
-    <div className="min-h-screen" style={{ background: '#000223' }}>
+    <div className="min-h-screen bg-main">
       <motion.div 
         className="max-w-4xl mx-auto px-4 py-12"
         initial="initial"
@@ -94,7 +94,7 @@ export default function BlogPostPage({ params }: { params: Promise<{ slug: strin
         </motion.div>
 
         <motion.article 
-          className="bg-slate-800/30 rounded-2xl border border-slate-700/50 overflow-hidden mb-16"
+          className="bg-card-light rounded-2xl border border-slate-700/50 overflow-hidden mb-16"
           variants={fadeInUp}
         >
           {article && (
@@ -124,7 +124,7 @@ export default function BlogPostPage({ params }: { params: Promise<{ slug: strin
             ) : (
               <>
                 <div 
-                  className="prose prose-lg leading-loose max-w-none prose-invert prose-headings:text-white prose-p:text-slate-300 prose-a:text-blue-400 prose-strong:text-white prose-code:text-blue-300 prose-pre:bg-slate-900 prose-pre:border prose-pre:border-slate-700 prose-code:bg-slate-800 prose-code:px-1 prose-code:py-0.5 prose-code:rounded"
+                  className="prose prose-lg leading-loose max-w-none prose-invert prose-headings:text-white prose-p:text-slate-300 prose-a:text-blue-400 prose-strong:text-white prose-code:text-blue-300 prose-pre:bg-main prose-pre:border prose-pre:border-slate-700 prose-code:bg-card-medium prose-code:px-1 prose-code:py-0.5 prose-code:rounded"
                   dangerouslySetInnerHTML={{ __html: content }}
                 />
               </>

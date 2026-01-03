@@ -1,9 +1,12 @@
 @import "tailwindcss";
 
 :root {
-  --background: #0f172a;
+  --background: #000000;
+  --background-light: rgba(0, 0, 0, 0.3);
+  --background-lighter: rgba(0, 0, 0, 0.2);
+  --background-medium: rgba(0, 0, 0, 0.5);
+  --background-card: #1a1a1a;
   --foreground: #f8fafc;
-  --card: #1e293b;
   --accent: #3b82f6;
 }
 
@@ -16,10 +19,30 @@
 }
 
 body {
-  background: #0a0f1c;
-  color: #f8fafc;
+  background: var(--background);
+  color: var(--foreground);
   font-family: var(--font-geist-sans), Arial, sans-serif;
   line-height: 1.5;
+}
+
+.bg-main {
+  background: var(--background);
+}
+
+.bg-card {
+  background: var(--background-card);
+}
+
+.bg-card-light {
+  background: var(--background-light);
+}
+
+.bg-card-lighter {
+  background: var(--background-lighter);
+}
+
+.bg-card-medium {
+  background: var(--background-medium);
 }
 
 html {
@@ -49,21 +72,21 @@ html {
 }
 
 .prose code {
-  background: #1e293b;
-  color: #3b82f6;
+  background: var(--background-card);
+  color: var(--accent);
   padding: 0.2em 0.4em;
   border-radius: 0.25rem;
   font-size: 0.875em;
 }
 
 .prose pre {
-  background: #1e293b;
+  background: var(--background-card);
   border: 1px solid #334155;
 }
 
 .prose blockquote {
-  border-left: 4px solid #3b82f6;
-  background: #1e293b;
+  border-left: 4px solid var(--accent);
+  background: var(--background-card);
   padding: 1rem;
   margin: 1.5rem 0;
 }

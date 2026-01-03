@@ -23,7 +23,7 @@ const staggerContainer = {
 
 export default function ExperiencePage() {
   return (
-    <div className="min-h-screen" style={{ background: '#000223' }}>
+    <div className="min-h-screen bg-main">
       <motion.div 
         className="max-w-4xl mx-auto px-4 py-12"
         variants={staggerContainer}
@@ -131,7 +131,7 @@ export default function ExperiencePage() {
                 whileHover={{ y: -4 }}
                 transition={{ duration: 0.2 }}
               >
-                <div className="relative bg-slate-800/30 rounded-2xl p-6 border border-slate-700/50 hover:border-blue-500/50 transition-all duration-300">
+                <div className="relative bg-card-light rounded-2xl p-6 border border-slate-700/50 hover:border-blue-500/50 transition-all duration-300">
                   <div className="absolute top-6 right-6 z-10">
                     <ArrowUpRight size={16} className="text-slate-400 group-hover:text-blue-400 transition-colors" />
                   </div>

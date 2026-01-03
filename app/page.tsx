@@ -74,7 +74,7 @@ export default function Home() {
   }
 
   return (
-    <div className="min-h-screen" style={{ background: '#000223' }}>
+    <div className="min-h-screen bg-main">
       <motion.div 
         className="max-w-4xl mx-auto px-4 py-12"
         variants={staggerContainer}
@@ -232,7 +232,7 @@ export default function Home() {
                 href={experience.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group block bg-slate-800/30 rounded-2xl p-6 border border-slate-700/50 hover:border-blue-500/50 transition-all duration-300"
+                className="group block bg-card-light rounded-2xl p-6 border border-slate-700/50 hover:border-blue-500/50 transition-all duration-300"
                 variants={fadeInUp}
                 whileHover={{ y: -2 }}
               >
@@ -281,12 +281,12 @@ export default function Home() {
                 whileHover={{ y: -4 }}
                 transition={{ duration: 0.2 }}
               >
-                <div className="relative bg-slate-800/30 rounded-2xl overflow-hidden border border-slate-700/50 hover:border-blue-500/50 transition-all duration-300 h-full flex flex-col">
+                <div className="relative bg-card-light rounded-2xl overflow-hidden border border-slate-700/50 hover:border-blue-500/50 transition-all duration-300 h-full flex flex-col">
                   <div className="absolute top-3 right-3 z-10">
                     <ArrowUpRight size={14} className="text-slate-400 group-hover:text-blue-400 transition-colors" />
                   </div>
                   
-                  <div className="relative h-48 bg-slate-700/20 border-b border-slate-700/50 flex-shrink-0 overflow-hidden">
+                  <div className="relative h-48 bg-card-lighter border-b border-slate-700/50 flex-shrink-0 overflow-hidden">
                     {projectImages[project.id] && projectImages[project.id].length > 0 && (
                       <img 
                         src={projectImages[project.id][0].url} 
@@ -305,7 +305,7 @@ export default function Home() {
                     
                     <div className="flex flex-wrap gap-2 mt-auto">
                       {project.technologies.map((tech, techIndex) => (
-                        <span key={techIndex} className="px-2 py-1 bg-slate-700/30 rounded text-xs text-slate-300">
+                        <span key={techIndex} className="px-2 py-1 bg-card-light rounded text-xs text-slate-300">
                           {tech}
                         </span>
                       ))}

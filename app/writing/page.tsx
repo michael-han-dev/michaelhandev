@@ -23,7 +23,7 @@ const staggerContainer = {
 
 export default function WritingPage() {
   return (
-    <div className="min-h-screen" style={{ background: '#000223' }}>
+    <div className="min-h-screen bg-main">
       <motion.div 
         className="max-w-4xl mx-auto px-4 py-12"
         variants={staggerContainer}
@@ -123,7 +123,7 @@ export default function WritingPage() {
             {articles.map((article, index) => (
               <motion.article 
                 key={article.id}
-                className="group bg-slate-800/30 rounded-2xl p-6 border border-slate-700/50 hover:border-blue-500/50 transition-all duration-300"
+                className="group bg-card-light rounded-2xl p-6 border border-slate-700/50 hover:border-blue-500/50 transition-all duration-300"
                 variants={fadeInUp}
                 whileHover={{ y: -2 }}
                 transition={{ duration: 0.2 }}
