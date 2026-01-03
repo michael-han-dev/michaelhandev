@@ -5,6 +5,7 @@ import { ArrowUpRight, Calendar } from 'lucide-react';
 import Link from 'next/link';
 import { experiences } from '@/data/experience';
 import Footer from '@/components/Footer';
+import ViewModeToggle from '@/components/ViewModeToggle';
 import { formatDateShort } from '@/utils/date';
 
 const fadeInUp = {
@@ -102,6 +103,7 @@ export default function ExperiencePage() {
                   W
                 </span>
               </Link>
+              <ViewModeToggle />
             </motion.div>
           </div>
         </motion.header>

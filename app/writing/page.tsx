@@ -5,6 +5,7 @@ import { Calendar, Clock } from 'lucide-react';
 import Link from 'next/link';
 import { articles } from '@/data/articles';
 import Footer from '@/components/Footer';
+import ViewModeToggle from '@/components/ViewModeToggle';
 import { formatDateLong } from '@/utils/date';
 
 const fadeInUp = {
@@ -102,6 +103,7 @@ export default function WritingPage() {
                   P
                 </span>
               </Link>
+              <ViewModeToggle />
             </motion.div>
           </div>
         </motion.header>

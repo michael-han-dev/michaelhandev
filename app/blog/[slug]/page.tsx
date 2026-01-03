@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { articles } from '@/data/articles';
 import Footer from '@/components/Footer';
+import ViewModeToggle from '@/components/ViewModeToggle';
 import { getBlogContent } from '@/lib/blog';
 import { getBlogImages, BlogImage } from '@/lib/images';
 import { useEffect, useState } from 'react';
@@ -129,6 +130,11 @@ export default function BlogPostPage({ params }: { params: Promise<{ slug: strin
                 />
               </>
             )}
+          </div>
+          <div className="p-8 pt-0 border-t border-slate-700/30">
+            <motion.div variants={fadeInUp} className="flex justify-end">
+              <ViewModeToggle />
+            </motion.div>
           </div>
         </motion.article>
 

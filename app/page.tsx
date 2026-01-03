@@ -5,6 +5,7 @@ import { Calendar, Code2, ArrowUpRight, ExternalLink } from 'lucide-react';
 import Link from 'next/link';
 import GitHubChart from '@/components/GitHubChart';
 import Footer from '@/components/Footer';
+import ViewModeToggle from '@/components/ViewModeToggle';
 import { getRecentArticles } from '@/data/articles';
 import { getRecentExperiences } from '@/data/experience';
 import { projects } from '@/data/projects';
@@ -207,6 +208,7 @@ export default function Home() {
                   T
                 </span>
               </a>
+              <ViewModeToggle />
             </motion.div>
           </div>
         </motion.header>

@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { projects } from '@/data/projects';
 import { getProjectImages, BlogImage } from '@/lib/images';
 import Footer from '@/components/Footer';
+import ViewModeToggle from '@/components/ViewModeToggle';
 import { useEffect, useState } from 'react';
 
 const fadeInUp = {
@@ -124,6 +125,7 @@ export default function ProjectsPage() {
                   W
                 </span>
               </Link>
+              <ViewModeToggle />
             </motion.div>
           </div>
         </motion.header>
