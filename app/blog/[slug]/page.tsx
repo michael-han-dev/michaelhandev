@@ -77,7 +77,7 @@ export default function BlogPostPage({ params }: { params: Promise<{ slug: strin
   return (
     <div className="min-h-screen bg-main">
       <motion.div 
-        className="max-w-4xl mx-auto px-4 py-12"
+        className="max-w-4xl mx-auto px-4 py-12 pb-24"
         initial="initial"
         animate="animate"
       >

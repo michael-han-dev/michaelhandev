@@ -160,3 +160,10 @@ html {
 .icon-glow {
   animation: iconGlow 3.5s ease-in-out infinite;
 }
+
+sup {
+  font-size: 0.7em;
+  vertical-align: super;
+  line-height: 0;
+  color: #94a3b8;
+}

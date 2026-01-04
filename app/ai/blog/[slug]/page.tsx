@@ -24,11 +24,15 @@ const staggerContainer = {
   }
 };
 
-function MdLine({ children }: { children: React.ReactNode }) {
+function MdLine({ children, isHtml }: { children: React.ReactNode; isHtml?: boolean }) {
   return (
     <motion.div className="flex" variants={fadeIn}>
       <span className="text-slate-600 select-none mr-4 flex-shrink-0">│</span>
-      <span className="whitespace-pre-wrap">{children}</span>
+      {isHtml ? (
+        <span className="whitespace-pre-wrap" dangerouslySetInnerHTML={{ __html: String(children) }} />
+      ) : (
+        <span className="whitespace-pre-wrap">{children}</span>
+      )}
     </motion.div>
   );
 }
@@ -61,9 +65,33 @@ async function getRawMarkdown(slug: string): Promise<string> {
   }
 }
 
+function processMarkdownLinks(markdown: string): { processedMarkdown: string; references: Array<{ number: number; url: string }> } {
+  const linkRegex = /\[([^\]]+)\]\(([^)]+)\)/g;
+  const references: Array<{ number: number; url: string }> = [];
+  const urlMap = new Map<string, number>();
+  let referenceNumber = 1;
+
+  const processedMarkdown = markdown.replace(linkRegex, (match, text, url) => {
+    let number: number;
+    if (urlMap.has(url)) {
+      number = urlMap.get(url)!;
+    } else {
+      number = referenceNumber++;
+      urlMap.set(url, number);
+      references.push({ number, url });
+    }
+    return `${text}<sup>${number}</sup>`;
+  });
+
+  references.sort((a, b) => a.number - b.number);
+
+  return { processedMarkdown, references };
+}
+
 export default function AiBlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
   const contentRef = useRef<HTMLDivElement>(null);
   const [markdown, setMarkdown] = useState<string>('');
+  const [references, setReferences] = useState<Array<{ number: number; url: string }>>([]);
   const [loading, setLoading] = useState(true);
   const [slug, setSlug] = useState<string>('');
   const [article, setArticle] = useState<any>(null);
@@ -79,7 +107,9 @@ export default function AiBlogPostPage({ params }: { params: Promise<{ slug: str
   useEffect(() => {
     if (article) {
       getRawMarkdown(article.slug).then((content) => {
-        setMarkdown(content);
+        const { processedMarkdown, references: refs } = processMarkdownLinks(content);
+        setMarkdown(processedMarkdown);
+        setReferences(refs);
         setLoading(false);
       });
     } else if (slug && !article) {
@@ -124,8 +154,23 @@ export default function AiBlogPostPage({ params }: { params: Promise<{ slug: str
               <MdLine>Loading...</MdLine>
             ) : (
               lines.map((line, index) => (
-                <MdLine key={index}>{line || '\u00A0'}</MdLine>
+                <MdLine key={index} isHtml={true}>{line || '\u00A0'}</MdLine>
               ))
+            )}
+
+            {references.length > 0 && (
+              <>
+                <MdLine>&nbsp;</MdLine>
+                <MdLine>---</MdLine>
+                <MdLine>&nbsp;</MdLine>
+                <MdLine>## References</MdLine>
+                <MdLine>&nbsp;</MdLine>
+                {references.map((ref) => (
+                  <MdLine key={ref.number}>
+                    <sup>{ref.number}</sup>. <a href={ref.url} target="_blank" rel="noopener noreferrer" className="hover:text-blue-400 transition-colors">{ref.url}</a>
+                  </MdLine>
+                ))}
+              </>
             )}
 
             <MdLine>&nbsp;</MdLine>
