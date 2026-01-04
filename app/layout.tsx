@@ -3,7 +3,6 @@ import { Analytics } from "@vercel/analytics/next"
 import { Geist, Geist_Mono, Instrument_Serif } from "next/font/google";
 import "./globals.css";
 import GlobalHotkeys from "@/components/GlobalHotkeys";
-import { ViewModeProvider } from "@/components/ViewModeProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -65,11 +64,9 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} ${instrumentSerif.variable} antialiased`}
         suppressHydrationWarning
       >
-        <ViewModeProvider>
-          <GlobalHotkeys />
-          {children}
-          <Analytics />
-        </ViewModeProvider>
+        <GlobalHotkeys />
+        {children}
+        <Analytics />
       </body>
     </html>
   );

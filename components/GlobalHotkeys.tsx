@@ -1,13 +1,12 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation';
-import { useViewMode } from './ViewModeProvider';
+import { useRouter, usePathname } from 'next/navigation';
 
 export default function GlobalHotkeys() {
   const [isMounted, setIsMounted] = useState(false);
   const router = useRouter();
-  const { toggleViewMode } = useViewMode();
+  const pathname = usePathname();
 
   useEffect(() => {
     setIsMounted(true);
@@ -42,19 +41,36 @@ export default function GlobalHotkeys() {
           window.open('https://github.com/michael-han-dev/michaelhandev', '_blank', 'noopener,noreferrer');
         } else if (event.key === 'H' || event.key === 'h') {
           event.preventDefault();
-          router.push('/');
+          const isAiMode = pathname.startsWith('/ai');
+          router.push(isAiMode ? '/ai' : '/');
         } else if (event.key === 'P' || event.key === 'p') {
           event.preventDefault();
-          router.push('/projects');
+          const isAiMode = pathname.startsWith('/ai');
+          router.push(isAiMode ? '/ai/projects' : '/projects');
         } else if (event.key === 'E' || event.key === 'e') {
           event.preventDefault();
-          router.push('/experience');
+          const isAiMode = pathname.startsWith('/ai');
+          router.push(isAiMode ? '/ai/experience' : '/experience');
         } else if (event.key === 'W' || event.key === 'w') {
           event.preventDefault();
-          router.push('/writing');
+          const isAiMode = pathname.startsWith('/ai');
+          router.push(isAiMode ? '/ai/writing' : '/writing');
         } else if (event.key === 'M' || event.key === 'm') {
           event.preventDefault();
-          toggleViewMode();
+          const isAiMode = pathname.startsWith('/ai');
+          if (isAiMode) {
+            if (pathname === '/ai') {
+              router.push('/');
+            } else {
+              router.push(pathname.replace('/ai', ''));
+            }
+          } else {
+            if (pathname === '/') {
+              router.push('/ai');
+            } else {
+              router.push(`/ai${pathname}`);
+            }
+          }
         }
       }
     };
@@ -64,7 +80,7 @@ export default function GlobalHotkeys() {
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, [isMounted, router, toggleViewMode]);
+  }, [isMounted, router, pathname]);
 
   return null;
 }

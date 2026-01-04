@@ -75,143 +75,143 @@ export default function Home() {
   }
 
   return (
-    <div className="min-h-screen bg-main">
-      <motion.div 
-        className="max-w-4xl mx-auto px-4 py-12"
-        variants={staggerContainer}
-        initial="initial"
-        animate="animate"
-      >
-        <motion.header 
-          className="mb-16"
-          variants={fadeInUp}
+    <>
+      <div className="min-h-screen bg-main">
+        <motion.div 
+          className="max-w-4xl mx-auto px-4 py-12 pb-24"
+          variants={staggerContainer}
+          initial="initial"
+          animate="animate"
         >
-          <div className="flex items-start justify-between">
-            <div>
-              <motion.h1 
-                className="md:text-2xl font-bold mb-3 text-white"
-                variants={fadeInUp}
-              >
-                Michael Han
-              </motion.h1>
-              <motion.p 
-                className="text-base text-slate-300 mb-1"
-                variants={fadeInUp}
-              >
-                Technology optimist, chilli maker, athletics enjoyer, on a quest to maximize surface area for luck.
-              </motion.p>
-              <motion.p 
-                className="text-base text-slate-300"
-                variants={fadeInUp}
-              >
-                Mathematics and Computer Engineering at <span className="underline">Queen's University.</span> Expected to graduate in 2027.
-              </motion.p>
+          <motion.header 
+            className="mb-16"
+            variants={fadeInUp}
+          >
+            <div className="flex items-start justify-between">
+              <div>
+                <motion.h1 
+                  className="md:text-2xl font-bold mb-3 text-white"
+                  variants={fadeInUp}
+                >
+                  Michael Han
+                </motion.h1>
+                <motion.p 
+                  className="text-base text-slate-300 mb-1"
+                  variants={fadeInUp}
+                >
+                  Technology optimist, chilli maker, athletics enjoyer, on a quest to maximize surface area for luck.
+                </motion.p>
+                <motion.p 
+                  className="text-base text-slate-300"
+                  variants={fadeInUp}
+                >
+                  Mathematics and Computer Engineering at <span className="underline">Queen's University.</span> Expected to graduate in 2027.
+                </motion.p>
+                
+                <motion.div 
+                  className="mt-6"
+                  variants={fadeInUp}
+                >
+                  <div className="text-xs text-slate-500 mb-2">As of late:</div>
+                  <div className="space-y-2">
+                    <div className="flex items-center gap-2">
+                      <motion.div 
+                        className="w-2 h-2 bg-green-400 rounded-full"
+                        animate={{ 
+                          opacity: [1, 0.4, 1],
+                          scale: [1, 0.9, 1]
+                        }}
+                        transition={{ 
+                          duration: 2,
+                          repeat: Infinity,
+                          ease: "easeInOut"
+                        }}
+                      />
+                      <span className="text-sm text-slate-300">Co-Founded <span className="underline decoration-green-400">Merin.ai</span>.</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <motion.div 
+                        className="w-2 h-2 bg-blue-400 rounded-full"
+                        animate={{ 
+                          opacity: [1, 0.4, 1],
+                          scale: [1, 0.9, 1]
+                        }}
+                        transition={{ 
+                          duration: 2,
+                          repeat: Infinity,
+                          ease: "easeInOut"
+                        }}
+                      />
+                      <span className="text-sm text-slate-300">Working on the engineering team at Rootly (YC S21).</span>
+                    </div>
+                  </div>
+                </motion.div>
+              </div>
               
               <motion.div 
-                className="mt-6"
+                className="flex flex-col space-y-1 items-end"
                 variants={fadeInUp}
               >
-                <div className="text-xs text-slate-500 mb-2">As of late:</div>
-                <div className="space-y-2">
-                  <div className="flex items-center gap-2">
-                    <motion.div 
-                      className="w-2 h-2 bg-green-400 rounded-full"
-                      animate={{ 
-                        opacity: [1, 0.4, 1],
-                        scale: [1, 0.9, 1]
-                      }}
-                      transition={{ 
-                        duration: 2,
-                        repeat: Infinity,
-                        ease: "easeInOut"
-                      }}
-                    />
-                    <span className="text-sm text-slate-300">Co-Founded <span className="underline decoration-green-400">Merin.ai</span>.</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <motion.div 
-                      className="w-2 h-2 bg-blue-400 rounded-full"
-                      animate={{ 
-                        opacity: [1, 0.4, 1],
-                        scale: [1, 0.9, 1]
-                      }}
-                      transition={{ 
-                        duration: 2,
-                        repeat: Infinity,
-                        ease: "easeInOut"
-                      }}
-                    />
-                    <span className="text-sm text-slate-300">Working on the engineering team at Rootly (YC S21).</span>
-                  </div>
-                </div>
+                <a 
+                  href="https://www.linkedin.com/in/michael-y-han/" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="group relative inline-flex items-center text-sm text-slate-400 hover:text-blue-400 transition-colors"
+                >
+                  <motion.span
+                    className="inline-block hotkey-glow"
+                    initial={false}
+                    animate={{ x: 0 }}
+                    whileHover={{ x: -8 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    LinkedIn
+                  </motion.span>
+                  <span className="absolute left-full ml-2 w-6 h-6 flex items-center justify-center border border-slate-400 group-hover:border-blue-400 rounded text-xs opacity-0 group-hover:opacity-100 transition-all pointer-events-none">
+                    L
+                  </span>
+                </a>
+                <a 
+                  href="https://github.com/michael-han-dev" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="group relative inline-flex items-center text-sm text-slate-400 hover:text-blue-400 transition-colors"
+                >
+                  <motion.span
+                    className="inline-block hotkey-glow"
+                    initial={false}
+                    animate={{ x: 0 }}
+                    whileHover={{ x: -8 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    GitHub
+                  </motion.span>
+                  <span className="absolute left-full ml-2 w-6 h-6 flex items-center justify-center border border-slate-400 group-hover:border-blue-400 rounded text-xs opacity-0 group-hover:opacity-100 transition-all pointer-events-none">
+                    G
+                  </span>
+                </a>
+                <a 
+                  href="https://x.com/michaelyhan_" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="group relative inline-flex items-center text-sm text-slate-400 hover:text-blue-400 transition-colors"
+                >
+                  <motion.span
+                    className="inline-block hotkey-glow"
+                    initial={false}
+                    animate={{ x: 0 }}
+                    whileHover={{ x: -8 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    Twitter
+                  </motion.span>
+                  <span className="absolute left-full ml-2 w-6 h-6 flex items-center justify-center border border-slate-400 group-hover:border-blue-400 rounded text-xs opacity-0 group-hover:opacity-100 transition-all pointer-events-none">
+                    T
+                  </span>
+                </a>
               </motion.div>
             </div>
-            
-            <motion.div 
-              className="flex flex-col space-y-1 items-end"
-              variants={fadeInUp}
-            >
-              <a 
-                href="https://www.linkedin.com/in/michael-y-han/" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="group relative inline-flex items-center text-sm text-slate-400 hover:text-blue-400 transition-colors"
-              >
-                <motion.span
-                  className="inline-block hotkey-glow"
-                  initial={false}
-                  animate={{ x: 0 }}
-                  whileHover={{ x: -8 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  LinkedIn
-                </motion.span>
-                <span className="absolute left-full ml-2 w-6 h-6 flex items-center justify-center border border-slate-400 group-hover:border-blue-400 rounded text-xs opacity-0 group-hover:opacity-100 transition-all pointer-events-none">
-                  L
-                </span>
-              </a>
-              <a 
-                href="https://github.com/michael-han-dev" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="group relative inline-flex items-center text-sm text-slate-400 hover:text-blue-400 transition-colors"
-              >
-                <motion.span
-                  className="inline-block hotkey-glow"
-                  initial={false}
-                  animate={{ x: 0 }}
-                  whileHover={{ x: -8 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  GitHub
-                </motion.span>
-                <span className="absolute left-full ml-2 w-6 h-6 flex items-center justify-center border border-slate-400 group-hover:border-blue-400 rounded text-xs opacity-0 group-hover:opacity-100 transition-all pointer-events-none">
-                  G
-                </span>
-              </a>
-              <a 
-                href="https://x.com/michaelyhan_" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="group relative inline-flex items-center text-sm text-slate-400 hover:text-blue-400 transition-colors"
-              >
-                <motion.span
-                  className="inline-block hotkey-glow"
-                  initial={false}
-                  animate={{ x: 0 }}
-                  whileHover={{ x: -8 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  Twitter
-                </motion.span>
-                <span className="absolute left-full ml-2 w-6 h-6 flex items-center justify-center border border-slate-400 group-hover:border-blue-400 rounded text-xs opacity-0 group-hover:opacity-100 transition-all pointer-events-none">
-                  T
-                </span>
-              </a>
-              <ViewModeToggle />
-            </motion.div>
-          </div>
-        </motion.header>
+          </motion.header>
 
         <motion.section 
           className="mb-16"
@@ -220,7 +220,6 @@ export default function Home() {
           <motion.div className="flex items-center justify-between mb-6" variants={fadeInUp}>
             <h2 className="text-xl font-semibold text-white">Professional Experience</h2>
             <Link href="/experience" className="flex items-center gap-1 text-sm text-slate-400 hover:text-blue-400 transition-colors">
-              <span>View all</span>
               <ExternalLink size={14} />
             </Link>
           </motion.div>
@@ -264,7 +263,6 @@ export default function Home() {
           <motion.div className="flex items-center justify-between mb-6" variants={fadeInUp}>
             <h2 className="text-xl font-semibold text-white">Featured Projects</h2>
             <Link href="/projects" className="flex items-center gap-1 text-sm text-slate-400 hover:text-blue-400 transition-colors">
-              <span>View all</span>
               <ExternalLink size={14} />
             </Link>
           </motion.div>
@@ -323,7 +321,6 @@ export default function Home() {
           <motion.div className="flex items-center justify-between mb-6" variants={fadeInUp}>
             <h2 className="text-xl font-semibold text-white">Latest Thoughts</h2>
             <Link href="/writing" className="flex items-center gap-1 text-sm text-slate-400 hover:text-blue-400 transition-colors">
-              <span>View all</span>
               <ExternalLink size={14} />
             </Link>
           </motion.div>
@@ -368,6 +365,8 @@ export default function Home() {
 
         <Footer />
       </motion.div>
+      <ViewModeToggle />
     </div>
+    </>
   );
 }

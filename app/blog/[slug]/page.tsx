@@ -11,7 +11,6 @@ import { getBlogImages, BlogImage } from '@/lib/images';
 import { useEffect, useState } from 'react';
 import Prism from 'prismjs';
 import { formatDateLong } from '@/utils/date';
-import { useViewMode } from '@/components/ViewModeProvider';
 import 'prismjs/themes/prism-tomorrow.css';
 import 'prismjs/components/prism-javascript';
 import 'prismjs/components/prism-typescript';
@@ -32,7 +31,6 @@ export default function BlogPostPage({ params }: { params: Promise<{ slug: strin
   const [slug, setSlug] = useState<string>('');
   const [article, setArticle] = useState<any>(null);
   const [images, setImages] = useState<BlogImage[]>([]);
-  const { viewMode } = useViewMode();
 
   useEffect(() => {
     params.then(({ slug }) => {
@@ -48,7 +46,6 @@ export default function BlogPostPage({ params }: { params: Promise<{ slug: strin
         getBlogContent(article.slug),
         getBlogImages(article.id)
       ]).then(([content, blogImages]) => {
-        // Replace image placeholders with actual images
         let processedContent = content;
         blogImages.forEach((image) => {
           const placeholder = `{{image:${image.display_order}}}`;
