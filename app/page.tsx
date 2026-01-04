@@ -105,7 +105,7 @@ export default function Home() {
                   className="text-base text-slate-300"
                   variants={fadeInUp}
                 >
-                  Mathematics and Computer Engineering at <span className="underline">Queen's University.</span> Expected to graduate in 2027.
+                  Mathematics and Computer Engineering at <a href="https://www.queensu.ca/" target="_blank" rel="noopener noreferrer" className="underline hover:text-blue-400 transition-colors">Queen's University.</a> Expected to graduate in 2027.
                 </motion.p>
                 
                 <motion.div 

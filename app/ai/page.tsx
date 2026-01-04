@@ -70,7 +70,7 @@ export default function AiHomePage() {
             <MdLine>&nbsp;</MdLine>
             <MdLine>Technology optimist, chilli maker, athletics enjoyer, on a quest to maximize surface area for luck.</MdLine>
             <MdLine>&nbsp;</MdLine>
-            <MdLine>Mathematics and Computer Engineering at Queen's University. Expected to graduate in 2027.</MdLine>
+            <MdLine>Mathematics and Computer Engineering at <MdLink text="Queen's University" url="https://www.queensu.ca/" />. Expected to graduate in 2027.</MdLine>
             <MdLine>&nbsp;</MdLine>
             <MdLine><MdLink text="LinkedIn" url="https://www.linkedin.com/in/michael-y-han/" /></MdLine>
             <MdLine><MdLink text="GitHub" url="https://github.com/michael-han-dev" /></MdLine>
