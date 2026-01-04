@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Calendar, ArrowUpRight, ExternalLink } from 'lucide-react';
+import { Calendar, ArrowUpRight } from 'lucide-react';
 import Link from 'next/link';
 import GitHubChart from '@/components/GitHubChart';
 import Footer from '@/components/Footer';
@@ -217,10 +217,12 @@ export default function Home() {
           className="mb-16"
           variants={fadeInUp}
         >
-          <motion.div className="flex items-center justify-between mb-6" variants={fadeInUp}>
+          <motion.div className="group flex items-center justify-between mb-6" variants={fadeInUp}>
             <h2 className="text-xl font-semibold text-white">Professional Experience</h2>
-            <Link href="/experience" className="flex items-center gap-1 text-sm text-slate-400 hover:text-blue-400 transition-colors">
-              <ExternalLink size={14} />
+            <Link href="/experience" className="relative inline-flex items-center text-sm text-slate-400 hover:text-blue-400 transition-colors">
+              <span className="w-6 h-6 flex items-center justify-center border border-slate-400 group-hover:border-blue-400 rounded text-xs opacity-0 group-hover:opacity-100 transition-all">
+                E
+              </span>
             </Link>
           </motion.div>
           <motion.div 
@@ -260,10 +262,12 @@ export default function Home() {
           className="mb-16"
           variants={fadeInUp}
         >
-          <motion.div className="flex items-center justify-between mb-6" variants={fadeInUp}>
+          <motion.div className="group flex items-center justify-between mb-6" variants={fadeInUp}>
             <h2 className="text-xl font-semibold text-white">Featured Projects</h2>
-            <Link href="/projects" className="flex items-center gap-1 text-sm text-slate-400 hover:text-blue-400 transition-colors">
-              <ExternalLink size={14} />
+            <Link href="/projects" className="relative inline-flex items-center text-sm text-slate-400 hover:text-blue-400 transition-colors">
+              <span className="w-6 h-6 flex items-center justify-center border border-slate-400 group-hover:border-blue-400 rounded text-xs opacity-0 group-hover:opacity-100 transition-all">
+                P
+              </span>
             </Link>
           </motion.div>
           <motion.div 
@@ -318,10 +322,12 @@ export default function Home() {
           className="mb-16"
           variants={fadeInUp}
         >
-          <motion.div className="flex items-center justify-between mb-6" variants={fadeInUp}>
+          <motion.div className="group flex items-center justify-between mb-6" variants={fadeInUp}>
             <h2 className="text-xl font-semibold text-white">Latest Thoughts</h2>
-            <Link href="/writing" className="flex items-center gap-1 text-sm text-slate-400 hover:text-blue-400 transition-colors">
-              <ExternalLink size={14} />
+            <Link href="/writing" className="relative inline-flex items-center text-sm text-slate-400 hover:text-blue-400 transition-colors">
+              <span className="w-6 h-6 flex items-center justify-center border border-slate-400 group-hover:border-blue-400 rounded text-xs opacity-0 group-hover:opacity-100 transition-all">
+                W
+              </span>
             </Link>
           </motion.div>
           <motion.div 
