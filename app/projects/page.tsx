@@ -1,7 +1,6 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { ArrowUpRight } from 'lucide-react';
 import Link from 'next/link';
 import { projects } from '@/data/projects';
 import { getProjectImages, BlogImage } from '@/lib/images';
@@ -155,10 +154,6 @@ export default function ProjectsPage() {
                 transition={{ duration: 0.2 }}
               >
                 <div className="relative bg-card-light rounded-2xl overflow-hidden border border-slate-700/50 hover:border-blue-500/50 transition-all duration-300 h-full flex flex-col">
-                  <div className="absolute top-3 right-3 z-10">
-                    <ArrowUpRight size={14} className="text-slate-400 group-hover:text-blue-400 transition-colors" />
-                  </div>
-                  
                   <div className="relative h-48 bg-card-lighter border-b border-slate-700/50 flex-shrink-0 overflow-hidden">
                     {projectImages[project.id] && projectImages[project.id].length > 0 && (
                       <img 

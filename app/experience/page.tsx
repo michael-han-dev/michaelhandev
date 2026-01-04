@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { ArrowUpRight, Calendar } from 'lucide-react';
+import { Calendar } from 'lucide-react';
 import Link from 'next/link';
 import { experiences } from '@/data/experience';
 import Footer from '@/components/Footer';
@@ -133,11 +133,7 @@ export default function ExperiencePage() {
                 transition={{ duration: 0.2 }}
               >
                 <div className="relative bg-card-light rounded-2xl p-6 border border-slate-700/50 hover:border-blue-500/50 transition-all duration-300">
-                  <div className="absolute top-6 right-6 z-10">
-                    <ArrowUpRight size={16} className="text-slate-400 group-hover:text-blue-400 transition-colors" />
-                  </div>
-                  
-                  <div className="pr-8">
+                  <div>
                     <div className="flex items-start justify-between mb-3">
                       <div>
                         <h3 className="text-xl font-semibold text-white group-hover:text-blue-100 transition-colors mb-1">
