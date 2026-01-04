@@ -125,7 +125,6 @@ export default function ProjectsPage() {
                   W
                 </span>
               </Link>
-              <ViewModeToggle />
             </motion.div>
           </div>
         </motion.header>
@@ -190,6 +189,7 @@ export default function ProjectsPage() {
 
         <Footer />
       </motion.div>
+      <ViewModeToggle />
     </div>
   );
 }

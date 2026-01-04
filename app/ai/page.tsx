@@ -1,8 +1,10 @@
 'use client';
 
+import { useRef } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import ViewModeToggle from '@/components/ViewModeToggle';
+import CopyPageButton from '@/components/CopyPageButton';
 import { getRecentArticles } from '@/data/articles';
 import { getRecentExperiences } from '@/data/experience';
 import { projects } from '@/data/projects';
@@ -48,12 +50,14 @@ function MdLink({ text, url }: { text: string; url: string }) {
 }
 
 export default function AiHomePage() {
+  const contentRef = useRef<HTMLDivElement>(null);
   const recentArticles = getRecentArticles(4);
   const recentExperiences = getRecentExperiences(2);
   const featuredProjects = projects.slice(0, 2);
 
   return (
     <>
+      <CopyPageButton contentRef={contentRef} />
       <motion.div
         className="min-h-screen bg-black font-mono text-slate-300 text-sm leading-relaxed"
         variants={staggerContainer}
@@ -61,7 +65,7 @@ export default function AiHomePage() {
         animate="animate"
       >
         <div className="max-w-4xl mx-auto px-4 py-12 pb-24">
-          <motion.div className="space-y-1" variants={staggerContainer}>
+          <motion.div ref={contentRef} className="space-y-1" variants={staggerContainer}>
             <MdLine># Michael Han</MdLine>
             <MdLine>&nbsp;</MdLine>
             <MdLine>Technology optimist, chilli maker, athletics enjoyer, on a quest to maximize surface area for luck.</MdLine>

@@ -103,7 +103,6 @@ export default function WritingPage() {
                   P
                 </span>
               </Link>
-              <ViewModeToggle />
             </motion.div>
           </div>
         </motion.header>
@@ -155,6 +154,7 @@ export default function WritingPage() {
 
         <Footer />
       </motion.div>
+      <ViewModeToggle />
     </div>
   );
 }

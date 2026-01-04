@@ -8,6 +8,7 @@ import { articles } from '@/data/articles';
 import Footer from '@/components/Footer';
 import { getBlogContent } from '@/lib/blog';
 import { getBlogImages, BlogImage } from '@/lib/images';
+import ViewModeToggle from '@/components/ViewModeToggle';
 import { useEffect, useState } from 'react';
 import Prism from 'prismjs';
 import { formatDateLong } from '@/utils/date';
@@ -131,6 +132,7 @@ export default function BlogPostPage({ params }: { params: Promise<{ slug: strin
 
         <Footer />
       </motion.div>
+      <ViewModeToggle />
     </div>
   );
 }

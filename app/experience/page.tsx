@@ -103,7 +103,6 @@ export default function ExperiencePage() {
                   W
                 </span>
               </Link>
-              <ViewModeToggle />
             </motion.div>
           </div>
         </motion.header>
@@ -167,6 +166,7 @@ export default function ExperiencePage() {
 
         <Footer />
       </motion.div>
+      <ViewModeToggle />
     </div>
   );
 }
