@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Code2, ArrowUpRight } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
 import Link from 'next/link';
 import { projects } from '@/data/projects';
 import { getProjectImages, BlogImage } from '@/lib/images';
@@ -171,10 +171,7 @@ export default function ProjectsPage() {
                   </div>
                   
                   <div className="p-5 flex flex-col flex-grow">
-                    <div className="flex items-center gap-2 mb-2">
-                      <Code2 size={16} className="text-blue-400" />
-                      <h3 className="text-lg font-semibold text-white group-hover:text-blue-100 transition-colors">{project.title}</h3>
-                    </div>
+                    <h3 className="text-lg font-semibold text-white group-hover:text-blue-100 transition-colors mb-2">{project.title}</h3>
                     <p className="text-sm text-slate-300 leading-relaxed group-hover:text-slate-200 transition-colors mb-3 flex-grow">{project.description}</p>
                     
                     <div className="flex flex-wrap gap-2 mt-auto">
