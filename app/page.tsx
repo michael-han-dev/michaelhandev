@@ -105,7 +105,7 @@ export default function Home() {
                   className="text-base text-slate-300"
                   variants={fadeInUp}
                 >
-                  Mathematics and Computer Engineering at <a href="https://www.queensu.ca/" target="_blank" rel="noopener noreferrer" className="underline hover:text-blue-400 transition-colors">Queen's University.</a> Expected to graduate in 2027.
+                  Mathematics and Computer Engineering at <a href="https://www.queensu.ca/" target="_blank" rel="noopener noreferrer" className="underline hover:text-primary transition-colors">Queen's University.</a> Expected to graduate in 2027.
                 </motion.p>
                 
                 <motion.div 
@@ -116,7 +116,7 @@ export default function Home() {
                   <div className="space-y-2">
                     <div className="flex items-center gap-2">
                       <motion.div 
-                        className="w-2 h-2 bg-green-400 rounded-full"
+                        className="w-2 h-2 bg-primary rounded-full"
                         animate={{ 
                           opacity: [1, 0.4, 1],
                           scale: [1, 0.9, 1]
@@ -127,11 +127,11 @@ export default function Home() {
                           ease: "easeInOut"
                         }}
                       />
-                      <span className="text-sm text-slate-300">Co-Founded <span className="underline decoration-green-400">Merin.ai</span>.</span>
+                      <span className="text-sm text-slate-300">Co-Founded <span className="underline decoration-primary">Merin.ai</span>.</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <motion.div 
-                        className="w-2 h-2 bg-blue-400 rounded-full"
+                        className="w-2 h-2 bg-primary rounded-full"
                         animate={{ 
                           opacity: [1, 0.4, 1],
                           scale: [1, 0.9, 1]
@@ -156,7 +156,7 @@ export default function Home() {
                   href="https://www.linkedin.com/in/michael-y-han/" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="group relative inline-flex items-center text-sm text-slate-400 hover:text-blue-400 transition-colors"
+                  className="group relative inline-flex items-center text-sm text-slate-400 hover:text-primary transition-colors"
                 >
                   <motion.span
                     className="inline-block hotkey-glow"
@@ -167,7 +167,7 @@ export default function Home() {
                   >
                     LinkedIn
                   </motion.span>
-                  <span className="absolute left-full ml-2 w-6 h-6 flex items-center justify-center border border-slate-400 group-hover:border-blue-400 rounded text-xs opacity-0 group-hover:opacity-100 transition-all pointer-events-none">
+                  <span className="absolute left-full ml-2 w-6 h-6 flex items-center justify-center border border-slate-400 group-hover:border-primary rounded text-xs opacity-0 group-hover:opacity-100 transition-all pointer-events-none">
                     L
                   </span>
                 </a>
@@ -175,7 +175,7 @@ export default function Home() {
                   href="https://github.com/michael-han-dev" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="group relative inline-flex items-center text-sm text-slate-400 hover:text-blue-400 transition-colors"
+                  className="group relative inline-flex items-center text-sm text-slate-400 hover:text-primary transition-colors"
                 >
                   <motion.span
                     className="inline-block hotkey-glow"
@@ -186,7 +186,7 @@ export default function Home() {
                   >
                     GitHub
                   </motion.span>
-                  <span className="absolute left-full ml-2 w-6 h-6 flex items-center justify-center border border-slate-400 group-hover:border-blue-400 rounded text-xs opacity-0 group-hover:opacity-100 transition-all pointer-events-none">
+                  <span className="absolute left-full ml-2 w-6 h-6 flex items-center justify-center border border-slate-400 group-hover:border-primary rounded text-xs opacity-0 group-hover:opacity-100 transition-all pointer-events-none">
                     G
                   </span>
                 </a>
@@ -194,7 +194,7 @@ export default function Home() {
                   href="https://x.com/michaelyhan_" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="group relative inline-flex items-center text-sm text-slate-400 hover:text-blue-400 transition-colors"
+                  className="group relative inline-flex items-center text-sm text-slate-400 hover:text-primary transition-colors"
                 >
                   <motion.span
                     className="inline-block hotkey-glow"
@@ -205,7 +205,7 @@ export default function Home() {
                   >
                     Twitter
                   </motion.span>
-                  <span className="absolute left-full ml-2 w-6 h-6 flex items-center justify-center border border-slate-400 group-hover:border-blue-400 rounded text-xs opacity-0 group-hover:opacity-100 transition-all pointer-events-none">
+                  <span className="absolute left-full ml-2 w-6 h-6 flex items-center justify-center border border-slate-400 group-hover:border-primary rounded text-xs opacity-0 group-hover:opacity-100 transition-all pointer-events-none">
                     T
                   </span>
                 </a>
@@ -219,8 +219,8 @@ export default function Home() {
         >
           <motion.div className="group flex items-center justify-between mb-6" variants={fadeInUp}>
             <h2 className="text-xl font-semibold text-white">Professional Experience</h2>
-            <Link href="/experience" className="relative inline-flex items-center text-sm text-slate-400 hover:text-blue-400 transition-colors">
-              <span className="w-6 h-6 flex items-center justify-center border border-slate-400 group-hover:border-blue-400 rounded text-xs opacity-0 group-hover:opacity-100 transition-all">
+            <Link href="/experience" className="relative inline-flex items-center text-sm text-slate-400 hover:text-primary transition-colors">
+              <span className="w-6 h-6 flex items-center justify-center border border-slate-400 group-hover:border-primary rounded text-xs opacity-0 group-hover:opacity-100 transition-all">
                 E
               </span>
             </Link>
@@ -235,7 +235,7 @@ export default function Home() {
                 href={experience.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group block bg-card-light rounded-2xl p-6 border border-slate-700/50 hover:border-blue-500/50 transition-all duration-300"
+                className="group block bg-card-light rounded-2xl p-6 border border-slate-700/50 hover:border-primary/50 transition-all duration-300"
                 variants={fadeInUp}
                 whileHover={{ y: -2 }}
               >
@@ -243,8 +243,8 @@ export default function Home() {
                   <div className="flex-grow">
                     <div className="flex items-start justify-between mb-2">
                       <div>
-                        <h3 className="text-lg font-semibold text-white group-hover:text-blue-100 transition-colors">{experience.title}</h3>
-                        <p className="text-blue-400 font-medium group-hover:text-blue-300 transition-colors">{experience.company}</p>
+                        <h3 className="text-lg font-semibold text-white group-hover:text-primary transition-colors">{experience.title}</h3>
+                        <p className="text-primary font-medium group-hover:text-primary transition-colors">{experience.company}</p>
                       </div>
                       <div className="text-xs text-slate-500">
                         {formatDateShort(experience.startDate)} - {experience.current ? 'Present' : formatDateShort(experience.endDate!)}
@@ -264,8 +264,8 @@ export default function Home() {
         >
           <motion.div className="group flex items-center justify-between mb-6" variants={fadeInUp}>
             <h2 className="text-xl font-semibold text-white">Featured Projects</h2>
-            <Link href="/projects" className="relative inline-flex items-center text-sm text-slate-400 hover:text-blue-400 transition-colors">
-              <span className="w-6 h-6 flex items-center justify-center border border-slate-400 group-hover:border-blue-400 rounded text-xs opacity-0 group-hover:opacity-100 transition-all">
+            <Link href="/projects" className="relative inline-flex items-center text-sm text-slate-400 hover:text-primary transition-colors">
+              <span className="w-6 h-6 flex items-center justify-center border border-slate-400 group-hover:border-primary rounded text-xs opacity-0 group-hover:opacity-100 transition-all">
                 P
               </span>
             </Link>
@@ -285,9 +285,9 @@ export default function Home() {
                 whileHover={{ y: -4 }}
                 transition={{ duration: 0.2 }}
               >
-                <div className="relative bg-card-light rounded-2xl overflow-hidden border border-slate-700/50 hover:border-blue-500/50 transition-all duration-300 h-full flex flex-col">
+                <div className="relative bg-card-light rounded-2xl overflow-hidden border border-slate-700/50 hover:border-primary/50 transition-all duration-300 h-full flex flex-col">
                   <div className="absolute top-3 right-3 z-10">
-                    <ArrowUpRight size={14} className="text-slate-400 group-hover:text-blue-400 transition-colors" />
+                    <ArrowUpRight size={14} className="text-slate-400 group-hover:text-primary transition-colors" />
                   </div>
                   
                   <div className="relative h-48 bg-card-lighter border-b border-slate-700/50 flex-shrink-0 overflow-hidden">
@@ -301,7 +301,7 @@ export default function Home() {
                   </div>
                   
                   <div className="p-5 flex flex-col flex-grow">
-                    <h3 className="text-lg font-semibold text-white group-hover:text-blue-100 transition-colors mb-2">{project.title}</h3>
+                    <h3 className="text-lg font-semibold text-white group-hover:text-primary transition-colors mb-2">{project.title}</h3>
                     <p className="text-sm text-slate-300 leading-relaxed group-hover:text-slate-200 transition-colors mb-3 flex-grow">{project.description}</p>
                     
                     <div className="flex flex-wrap gap-2 mt-auto">
@@ -324,8 +324,8 @@ export default function Home() {
         >
           <motion.div className="group flex items-center justify-between mb-6" variants={fadeInUp}>
             <h2 className="text-xl font-semibold text-white">Latest Thoughts</h2>
-            <Link href="/writing" className="relative inline-flex items-center text-sm text-slate-400 hover:text-blue-400 transition-colors">
-              <span className="w-6 h-6 flex items-center justify-center border border-slate-400 group-hover:border-blue-400 rounded text-xs opacity-0 group-hover:opacity-100 transition-all">
+            <Link href="/writing" className="relative inline-flex items-center text-sm text-slate-400 hover:text-primary transition-colors">
+              <span className="w-6 h-6 flex items-center justify-center border border-slate-400 group-hover:border-primary rounded text-xs opacity-0 group-hover:opacity-100 transition-all">
                 W
               </span>
             </Link>
@@ -345,7 +345,7 @@ export default function Home() {
                     <Calendar size={12} />
                     <time>{formatDateLong(article.date)}</time>
                   </div>
-                  <h3 className="text-base font-medium mb-2 text-white group-hover:text-blue-400 transition-colors duration-200">
+                  <h3 className="text-base font-medium mb-2 text-white group-hover:text-primary transition-colors duration-200">
                     {article.title}
                   </h3>
                   <p className="text-sm text-slate-400 leading-relaxed group-hover:text-slate-300 transition-colors">{article.excerpt}</p>

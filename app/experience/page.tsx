@@ -61,7 +61,7 @@ export default function ExperiencePage() {
               className="flex flex-col space-y-1 items-end"
               variants={fadeInUp}
             >
-              <Link href="/" className="group relative inline-flex items-center text-sm text-slate-400 hover:text-blue-400 transition-colors">
+              <Link href="/" className="group relative inline-flex items-center text-sm text-slate-400 hover:text-primary transition-colors">
                 <motion.span
                   className="inline-block hotkey-glow"
                   initial={false}
@@ -71,11 +71,11 @@ export default function ExperiencePage() {
                 >
                   Home
                 </motion.span>
-                <span className="absolute left-full ml-2 w-6 h-6 flex items-center justify-center border border-slate-400 group-hover:border-blue-400 rounded text-xs opacity-0 group-hover:opacity-100 transition-all pointer-events-none">
+                <span className="absolute left-full ml-2 w-6 h-6 flex items-center justify-center border border-slate-400 group-hover:border-primary rounded text-xs opacity-0 group-hover:opacity-100 transition-all pointer-events-none">
                   H
                 </span>
               </Link>
-              <Link href="/projects" className="group relative inline-flex items-center text-sm text-slate-400 hover:text-blue-400 transition-colors">
+              <Link href="/projects" className="group relative inline-flex items-center text-sm text-slate-400 hover:text-primary transition-colors">
                 <motion.span
                   className="inline-block hotkey-glow"
                   initial={false}
@@ -85,11 +85,11 @@ export default function ExperiencePage() {
                 >
                   Projects
                 </motion.span>
-                <span className="absolute left-full ml-2 w-6 h-6 flex items-center justify-center border border-slate-400 group-hover:border-blue-400 rounded text-xs opacity-0 group-hover:opacity-100 transition-all pointer-events-none">
+                <span className="absolute left-full ml-2 w-6 h-6 flex items-center justify-center border border-slate-400 group-hover:border-primary rounded text-xs opacity-0 group-hover:opacity-100 transition-all pointer-events-none">
                   P
                 </span>
               </Link>
-              <Link href="/writing" className="group relative inline-flex items-center text-sm text-slate-400 hover:text-blue-400 transition-colors">
+              <Link href="/writing" className="group relative inline-flex items-center text-sm text-slate-400 hover:text-primary transition-colors">
                 <motion.span
                   className="inline-block hotkey-glow"
                   initial={false}
@@ -99,7 +99,7 @@ export default function ExperiencePage() {
                 >
                   Writing
                 </motion.span>
-                <span className="absolute left-full ml-2 w-6 h-6 flex items-center justify-center border border-slate-400 group-hover:border-blue-400 rounded text-xs opacity-0 group-hover:opacity-100 transition-all pointer-events-none">
+                <span className="absolute left-full ml-2 w-6 h-6 flex items-center justify-center border border-slate-400 group-hover:border-primary rounded text-xs opacity-0 group-hover:opacity-100 transition-all pointer-events-none">
                   W
                 </span>
               </Link>
@@ -132,14 +132,14 @@ export default function ExperiencePage() {
                 whileHover={{ y: -4 }}
                 transition={{ duration: 0.2 }}
               >
-                <div className="relative bg-card-light rounded-2xl p-6 border border-slate-700/50 hover:border-blue-500/50 transition-all duration-300">
+                <div className="relative bg-card-light rounded-2xl p-6 border border-slate-700/50 hover:border-primary/50 transition-all duration-300">
                   <div>
                     <div className="flex items-start justify-between mb-3">
                       <div>
-                        <h3 className="text-xl font-semibold text-white group-hover:text-blue-100 transition-colors mb-1">
+                        <h3 className="text-xl font-semibold text-white group-hover:text-primary transition-colors mb-1">
                           {experience.title}
                         </h3>
-                        <p className="text-blue-400 font-medium group-hover:text-blue-300 transition-colors">
+                        <p className="text-primary font-medium group-hover:text-primary transition-colors">
                           {experience.company}
                         </p>
                       </div>

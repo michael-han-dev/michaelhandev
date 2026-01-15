@@ -10,10 +10,14 @@ export default function GitHubChart() {
         <style jsx>{`
           .github-calendar-container :global(.react-activity-calendar) {
             width: 100% !important;
+            color: #cbd5e1 !important;
           }
           .github-calendar-container :global(.react-activity-calendar svg) {
             width: 100% !important;
             height: auto !important;
+          }
+          .github-calendar-container :global(.react-activity-calendar text) {
+            fill: #94a3b8 !important;
           }
         `}</style>
         <div className="github-calendar-container">
@@ -21,11 +25,11 @@ export default function GitHubChart() {
             username="michael-han-dev"
             theme={{
               dark: [
-                '#0d1117',
-                '#0e4429',
-                '#006d32',
-                '#26a641',
-                '#39d353',
+                '#191919',
+                '#3a3a3a',
+                '#5a5a5a',
+                '#7a7a7a',
+                '#9a9a9a',
               ]
             }}
             colorScheme="dark"

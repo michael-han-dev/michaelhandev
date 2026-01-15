@@ -84,7 +84,7 @@ export default function BlogPostPage({ params }: { params: Promise<{ slug: strin
         <motion.div variants={fadeInUp}>
           <Link 
             href="/"
-            className="inline-flex items-center gap-2 text-slate-400 hover:text-blue-400 transition-colors duration-200 mb-8 text-sm"
+            className="inline-flex items-center gap-2 text-slate-400 hover:text-primary transition-colors duration-200 mb-8 text-sm"
           >
             <ArrowLeft size={16} />
             <span>Back to home</span>
@@ -122,7 +122,7 @@ export default function BlogPostPage({ params }: { params: Promise<{ slug: strin
             ) : (
               <>
                 <div 
-                  className="prose prose-lg leading-loose max-w-none prose-invert prose-headings:text-white prose-p:text-slate-300 prose-a:text-blue-400 prose-strong:text-white prose-code:text-blue-300 prose-pre:bg-main prose-pre:border prose-pre:border-slate-700 prose-code:bg-card-medium prose-code:px-1 prose-code:py-0.5 prose-code:rounded"
+                  className="prose prose-lg leading-loose max-w-none prose-invert prose-headings:text-white prose-p:text-slate-300 prose-a:text-primary prose-strong:text-white prose-code:text-primary prose-pre:bg-main prose-pre:border prose-pre:border-slate-700 prose-code:bg-card-medium prose-code:px-1 prose-code:py-0.5 prose-code:rounded"
                   dangerouslySetInnerHTML={{ __html: content }}
                 />
               </>

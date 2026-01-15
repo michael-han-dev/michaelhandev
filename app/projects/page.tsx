@@ -82,7 +82,7 @@ export default function ProjectsPage() {
               className="flex flex-col space-y-1 items-end"
               variants={fadeInUp}
             >
-              <Link href="/" className="group relative inline-flex items-center text-sm text-slate-400 hover:text-blue-400 transition-colors">
+              <Link href="/" className="group relative inline-flex items-center text-sm text-slate-400 hover:text-primary transition-colors">
                 <motion.span
                   className="inline-block hotkey-glow"
                   initial={false}
@@ -92,11 +92,11 @@ export default function ProjectsPage() {
                 >
                   Home
                 </motion.span>
-                <span className="absolute left-full ml-2 w-6 h-6 flex items-center justify-center border border-slate-400 group-hover:border-blue-400 rounded text-xs opacity-0 group-hover:opacity-100 transition-all pointer-events-none">
+                <span className="absolute left-full ml-2 w-6 h-6 flex items-center justify-center border border-slate-400 group-hover:border-primary rounded text-xs opacity-0 group-hover:opacity-100 transition-all pointer-events-none">
                   H
                 </span>
               </Link>
-              <Link href="/experience" className="group relative inline-flex items-center text-sm text-slate-400 hover:text-blue-400 transition-colors">
+              <Link href="/experience" className="group relative inline-flex items-center text-sm text-slate-400 hover:text-primary transition-colors">
                 <motion.span
                   className="inline-block hotkey-glow"
                   initial={false}
@@ -106,11 +106,11 @@ export default function ProjectsPage() {
                 >
                   Experiences
                 </motion.span>
-                <span className="absolute left-full ml-2 w-6 h-6 flex items-center justify-center border border-slate-400 group-hover:border-blue-400 rounded text-xs opacity-0 group-hover:opacity-100 transition-all pointer-events-none">
+                <span className="absolute left-full ml-2 w-6 h-6 flex items-center justify-center border border-slate-400 group-hover:border-primary rounded text-xs opacity-0 group-hover:opacity-100 transition-all pointer-events-none">
                   E
                 </span>
               </Link>
-              <Link href="/writing" className="group relative inline-flex items-center text-sm text-slate-400 hover:text-blue-400 transition-colors">
+              <Link href="/writing" className="group relative inline-flex items-center text-sm text-slate-400 hover:text-primary transition-colors">
                 <motion.span
                   className="inline-block hotkey-glow"
                   initial={false}
@@ -120,7 +120,7 @@ export default function ProjectsPage() {
                 >
                   Writing
                 </motion.span>
-                <span className="absolute left-full ml-2 w-6 h-6 flex items-center justify-center border border-slate-400 group-hover:border-blue-400 rounded text-xs opacity-0 group-hover:opacity-100 transition-all pointer-events-none">
+                <span className="absolute left-full ml-2 w-6 h-6 flex items-center justify-center border border-slate-400 group-hover:border-primary rounded text-xs opacity-0 group-hover:opacity-100 transition-all pointer-events-none">
                   W
                 </span>
               </Link>
@@ -153,7 +153,7 @@ export default function ProjectsPage() {
                 whileHover={{ y: -4 }}
                 transition={{ duration: 0.2 }}
               >
-                <div className="relative bg-card-light rounded-2xl overflow-hidden border border-slate-700/50 hover:border-blue-500/50 transition-all duration-300 h-full flex flex-col">
+                <div className="relative bg-card-light rounded-2xl overflow-hidden border border-slate-700/50 hover:border-primary/50 transition-all duration-300 h-full flex flex-col">
                   <div className="relative h-48 bg-card-lighter border-b border-slate-700/50 flex-shrink-0 overflow-hidden">
                     {projectImages[project.id] && projectImages[project.id].length > 0 && (
                       <img 
@@ -165,7 +165,7 @@ export default function ProjectsPage() {
                   </div>
                   
                   <div className="p-5 flex flex-col flex-grow">
-                    <h3 className="text-lg font-semibold text-white group-hover:text-blue-100 transition-colors mb-2">{project.title}</h3>
+                    <h3 className="text-lg font-semibold text-white group-hover:text-primary transition-colors mb-2">{project.title}</h3>
                     <p className="text-sm text-slate-300 leading-relaxed group-hover:text-slate-200 transition-colors mb-3 flex-grow">{project.description}</p>
                     
                     <div className="flex flex-wrap gap-2 mt-auto">
