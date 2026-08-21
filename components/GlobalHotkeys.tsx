@@ -42,7 +42,13 @@ export default function GlobalHotkeys() {
         } else if (event.key === 'H' || event.key === 'h') {
           event.preventDefault();
           const isAiMode = pathname.startsWith('/ai');
-          router.push(isAiMode ? '/ai' : '/');
+          const humanPath =
+            pathname === '/ai'
+              ? '/'
+              : pathname.startsWith('/ai/')
+                ? pathname.replace('/ai', '')
+                : '/';
+          router.push(isAiMode ? humanPath : '/');
         } else if (event.key === 'P' || event.key === 'p') {
           event.preventDefault();
           const isAiMode = pathname.startsWith('/ai');
