@@ -1,357 +1,141 @@
 'use client';
 
-import { motion } from 'framer-motion';
-import { Calendar, ArrowUpRight } from 'lucide-react';
 import Link from 'next/link';
-import GitHubChart from '@/components/GitHubChart';
-import Footer from '@/components/Footer';
+import Masthead from '@/components/Masthead';
+import { LedgerSection, LedgerRow } from '@/components/Ledger';
+import ContributionsLine from '@/components/ContributionsLine';
 import ViewModeToggle from '@/components/ViewModeToggle';
 import { getRecentArticles } from '@/data/articles';
 import { getRecentExperiences } from '@/data/experience';
 import { projects } from '@/data/projects';
-import { getProjectImages, BlogImage } from '@/lib/images';
-import { useEffect, useState } from 'react';
 import { formatDateLong, formatDateShort } from '@/utils/date';
 
-const fadeInUp = {
-  initial: { opacity: 0, y: 20 },
-  animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.5 }
-};
-
-const staggerContainer = {
-  animate: {
-    transition: {
-      staggerChildren: 0.1
-    }
-  }
-};
+const SOCIALS = [
+  { label: 'linkedin', href: 'https://www.linkedin.com/in/michael-y-han/' },
+  { label: 'github', href: 'https://github.com/michael-han-dev' },
+  { label: '@michaelyhan_', href: 'https://x.com/michaelyhan_' },
+];
 
 export default function Home() {
   const recentArticles = getRecentArticles(4);
   const recentExperiences = getRecentExperiences(2);
-  const [projectImages, setProjectImages] = useState<Record<string, BlogImage[]>>({});
-
   const featuredProjects = projects.slice(0, 2);
 
-  useEffect(() => {
-    const fetchFeaturedProjectImages = async () => {
-      const imagePromises = featuredProjects.map(async (project) => {
-        const images = await getProjectImages(project.id);
-        return { projectId: project.id, images };
-      });
-      
-      const results = await Promise.all(imagePromises);
-      const imageMap = results.reduce((acc, { projectId, images }) => {
-        acc[projectId] = images;
-        return acc;
-      }, {} as Record<string, BlogImage[]>);
-      
-      setProjectImages(imageMap);
-    };
-
-    fetchFeaturedProjectImages();
-  }, []);
-
   return (
-    <>
-      <div className="min-h-screen bg-main">
-        <motion.div 
-          className="max-w-4xl mx-auto px-4 py-12 pb-24"
-          variants={staggerContainer}
-          initial="initial"
-          animate="animate"
-        >
-          <motion.header 
-            className="mb-16"
-            variants={fadeInUp}
+    <div className="bg-main min-h-screen">
+      <main className="page-enter mx-auto max-w-2xl px-6 pb-32 pt-16 md:pt-20">
+        <Masthead />
+
+        <section className="mt-16">
+          <h1
+            className="font-display leading-snug text-[var(--ink)]"
+            style={{ fontSize: 'var(--text-title)' }}
           >
-            <div className="flex items-start justify-between">
-              <div>
-                <motion.h1 
-                  className="md:text-2xl font-bold mb-3 text-white"
-                  variants={fadeInUp}
-                >
-                  Michael Han
-                </motion.h1>
-                <motion.p 
-                  className="text-base text-slate-300 mb-1"
-                  variants={fadeInUp}
-                >
-                  Technology optimist, chilli maker, athletics enjoyer, on a quest to maximize surface area for luck.
-                </motion.p>
-                <motion.p 
-                  className="text-base text-slate-300"
-                  variants={fadeInUp}
-                >
-                  Mathematics and Computer Engineering at <a href="https://www.queensu.ca/" target="_blank" rel="noopener noreferrer" className="underline hover:text-primary transition-colors">Queen's University.</a> Expected to graduate in 2027.
-                </motion.p>
-                
-                <motion.div 
-                  className="mt-6"
-                  variants={fadeInUp}
-                >
-                  <div className="text-xs text-slate-500 mb-2">As of late:</div>
-                  <div className="space-y-2">
-                    <div className="flex items-center gap-2">
-                      <motion.div 
-                        className="w-2 h-2 bg-primary rounded-full"
-                        animate={{ 
-                          opacity: [1, 0.4, 1],
-                          scale: [1, 0.9, 1]
-                        }}
-                        transition={{ 
-                          duration: 2,
-                          repeat: Infinity,
-                          ease: "easeInOut"
-                        }}
-                      />
-                      <span className="text-sm text-slate-300">Co-Founded <span className="underline decoration-primary">Merin.ai</span>.</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <motion.div 
-                        className="w-2 h-2 bg-primary rounded-full"
-                        animate={{ 
-                          opacity: [1, 0.4, 1],
-                          scale: [1, 0.9, 1]
-                        }}
-                        transition={{ 
-                          duration: 2,
-                          repeat: Infinity,
-                          ease: "easeInOut"
-                        }}
-                      />
-                      <span className="text-sm text-slate-300">Working on the engineering team at Rootly (YC S21).</span>
-                    </div>
-                  </div>
-                </motion.div>
+            Software engineer, occasional chilli chef, lifelong baseball guy.
+          </h1>
+          <p className="mt-6 leading-relaxed text-[var(--ink-2)]">
+            On a quest to maximize surface area for luck. Mathematics and
+            Computer Engineering at{' '}
+            <a
+              href="https://www.queensu.ca/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="link-inline"
+            >
+              Queen&apos;s University.
+            </a>{' '}
+            Expected to graduate in 2027.
+          </p>
+
+          <div className="mt-10">
+            <div className="eyebrow">As of late</div>
+            <div className="mt-3 space-y-2 font-mono text-[13px] text-[var(--ink-2)]">
+              <div className="flex items-center gap-2.5">
+                <span className="pulse-dot" />
+                <span>
+                  Co-Founded{' '}
+                  <span className="underline decoration-[var(--accent)] underline-offset-2">
+                    Merin.ai
+                  </span>
+                  .
+                </span>
               </div>
-              
-              <motion.div 
-                className="flex flex-col space-y-1 items-end"
-                variants={fadeInUp}
-              >
-                <a 
-                  href="https://www.linkedin.com/in/michael-y-han/" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="group relative inline-flex items-center text-sm text-slate-400 hover:text-primary transition-colors"
-                >
-                  <motion.span
-                    className="inline-block hotkey-glow"
-                    initial={false}
-                    animate={{ x: 0 }}
-                    whileHover={{ x: -8 }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    LinkedIn
-                  </motion.span>
-                  <span className="absolute left-full ml-2 w-6 h-6 flex items-center justify-center border border-slate-400 group-hover:border-primary rounded text-xs opacity-0 group-hover:opacity-100 transition-all pointer-events-none">
-                    L
-                  </span>
-                </a>
-                <a 
-                  href="https://github.com/michael-han-dev" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="group relative inline-flex items-center text-sm text-slate-400 hover:text-primary transition-colors"
-                >
-                  <motion.span
-                    className="inline-block hotkey-glow"
-                    initial={false}
-                    animate={{ x: 0 }}
-                    whileHover={{ x: -8 }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    GitHub
-                  </motion.span>
-                  <span className="absolute left-full ml-2 w-6 h-6 flex items-center justify-center border border-slate-400 group-hover:border-primary rounded text-xs opacity-0 group-hover:opacity-100 transition-all pointer-events-none">
-                    G
-                  </span>
-                </a>
-                <a 
-                  href="https://x.com/michaelyhan_" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="group relative inline-flex items-center text-sm text-slate-400 hover:text-primary transition-colors"
-                >
-                  <motion.span
-                    className="inline-block hotkey-glow"
-                    initial={false}
-                    animate={{ x: 0 }}
-                    whileHover={{ x: -8 }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    Twitter
-                  </motion.span>
-                  <span className="absolute left-full ml-2 w-6 h-6 flex items-center justify-center border border-slate-400 group-hover:border-primary rounded text-xs opacity-0 group-hover:opacity-100 transition-all pointer-events-none">
-                    T
-                  </span>
-                </a>
-              </motion.div>
+              <div className="flex items-center gap-2.5">
+                <span className="pulse-dot" />
+                <span>Working on the engineering team at Rootly (YC S21).</span>
+              </div>
             </div>
-          </motion.header>
+          </div>
+        </section>
 
-        <motion.section 
-          className="mb-16"
-          variants={fadeInUp}
-        >
-          <motion.div className="group flex items-center justify-between mb-6" variants={fadeInUp}>
-            <h2 className="text-xl font-semibold text-white">Professional Experience</h2>
-            <Link href="/experience" className="relative inline-flex items-center text-sm text-slate-400 hover:text-primary transition-colors">
-              <span className="w-6 h-6 flex items-center justify-center border border-slate-400 group-hover:border-primary rounded text-xs opacity-0 group-hover:opacity-100 transition-all">
-                E
-              </span>
-            </Link>
-          </motion.div>
-          <motion.div 
-            className="space-y-6"
-            variants={staggerContainer}
-          >
-            {recentExperiences.map((experience) => (
-              <motion.a
-                key={experience.id}
-                href={experience.link}
+        <LedgerSection label="Selected work">
+          {featuredProjects.map((project, i) => (
+            <LedgerRow
+              key={project.id}
+              href={project.github}
+              gutter={String(i + 1).padStart(2, '0')}
+              title={project.title}
+              description={project.description}
+              meta={project.technologies.join(' · ')}
+            />
+          ))}
+        </LedgerSection>
+
+        <LedgerSection label="Experience">
+          {recentExperiences.map((experience) => (
+            <LedgerRow
+              key={experience.id}
+              href={experience.link}
+              gutter={`${formatDateShort(experience.startDate)} – ${
+                experience.current ? 'Present' : formatDateShort(experience.endDate!)
+              }`}
+              title={experience.title}
+              description={experience.description}
+              meta={experience.company}
+            />
+          ))}
+        </LedgerSection>
+
+        <LedgerSection label="Writing">
+          {recentArticles.map((article) => (
+            <LedgerRow
+              key={article.slug}
+              href={`/blog/${article.slug}`}
+              gutter={article.date.slice(0, 4)}
+              title={article.title}
+              description={article.excerpt}
+              meta={formatDateLong(article.date)}
+            />
+          ))}
+        </LedgerSection>
+
+        <footer className="hairline-t mt-24 flex flex-wrap items-center justify-between gap-x-6 gap-y-3 pt-6">
+          <ContributionsLine />
+          <nav className="flex flex-wrap items-center gap-x-5 gap-y-2 font-mono text-[13px]">
+            {SOCIALS.map((social) => (
+              <a
+                key={social.label}
+                href={social.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group block bg-card-light rounded-2xl p-6 border border-slate-700/50 hover:border-primary/50 transition-all duration-300"
-                variants={fadeInUp}
-                whileHover={{ y: -2 }}
+                className="text-[var(--ink-3)] transition-colors duration-150 hover:text-[var(--accent)]"
               >
-                <div className="flex items-start gap-4">
-                  <div className="flex-grow">
-                    <div className="flex items-start justify-between mb-2">
-                      <div>
-                        <h3 className="text-lg font-semibold text-white group-hover:text-primary transition-colors">{experience.title}</h3>
-                        <p className="text-primary font-medium group-hover:text-primary transition-colors">{experience.company}</p>
-                      </div>
-                      <div className="text-xs text-slate-500">
-                        {formatDateShort(experience.startDate)} - {experience.current ? 'Present' : formatDateShort(experience.endDate!)}
-                      </div>
-                    </div>
-                    <p className="text-sm text-slate-300 leading-relaxed group-hover:text-slate-200 transition-colors">{experience.description}</p>
-                  </div>
-                </div>
-              </motion.a>
+                {social.label}
+              </a>
             ))}
-          </motion.div>
-        </motion.section>
+            <a
+              href="https://github.com/michael-han-dev/michaelhandev"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[var(--ink-3)] transition-colors duration-150 hover:text-[var(--accent)]"
+            >
+              source
+            </a>
+          </nav>
+        </footer>
+      </main>
 
-        <motion.section 
-          className="mb-16"
-          variants={fadeInUp}
-        >
-          <motion.div className="group flex items-center justify-between mb-6" variants={fadeInUp}>
-            <h2 className="text-xl font-semibold text-white">Featured Projects</h2>
-            <Link href="/projects" className="relative inline-flex items-center text-sm text-slate-400 hover:text-primary transition-colors">
-              <span className="w-6 h-6 flex items-center justify-center border border-slate-400 group-hover:border-primary rounded text-xs opacity-0 group-hover:opacity-100 transition-all">
-                P
-              </span>
-            </Link>
-          </motion.div>
-          <motion.div 
-            className="grid md:grid-cols-2 gap-6"
-            variants={staggerContainer}
-          >
-            {featuredProjects.map((project) => (
-              <motion.a
-                key={project.id}
-                href={project.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group block"
-                variants={fadeInUp}
-                whileHover={{ y: -4 }}
-                transition={{ duration: 0.2 }}
-              >
-                <div className="relative bg-card-light rounded-2xl overflow-hidden border border-slate-700/50 hover:border-primary/50 transition-all duration-300 h-full flex flex-col">
-                  <div className="absolute top-3 right-3 z-10">
-                    <ArrowUpRight size={14} className="text-slate-400 group-hover:text-primary transition-colors" />
-                  </div>
-                  
-                  <div className="relative h-48 bg-card-lighter border-b border-slate-700/50 flex-shrink-0 overflow-hidden">
-                    {projectImages[project.id] && projectImages[project.id].length > 0 && (
-                      <img 
-                        src={projectImages[project.id][0].url} 
-                        alt={projectImages[project.id][0].alt_text || project.title}
-                        className="w-full h-full object-cover opacity-70 group-hover:opacity-100 transition-opacity duration-300"
-                      />
-                    )}
-                  </div>
-                  
-                  <div className="p-5 flex flex-col flex-grow">
-                    <h3 className="text-lg font-semibold text-white group-hover:text-primary transition-colors mb-2">{project.title}</h3>
-                    <p className="text-sm text-slate-300 leading-relaxed group-hover:text-slate-200 transition-colors mb-3 flex-grow">{project.description}</p>
-                    
-                    <div className="flex flex-wrap gap-2 mt-auto">
-                      {project.technologies.map((tech, techIndex) => (
-                        <span key={techIndex} className="px-2 py-1 bg-card-light rounded text-xs text-slate-300">
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </motion.a>
-            ))}
-          </motion.div>
-        </motion.section>
-
-        <motion.section 
-          className="mb-16"
-          variants={fadeInUp}
-        >
-          <motion.div className="group flex items-center justify-between mb-6" variants={fadeInUp}>
-            <h2 className="text-xl font-semibold text-white">Latest Thoughts</h2>
-            <Link href="/writing" className="relative inline-flex items-center text-sm text-slate-400 hover:text-primary transition-colors">
-              <span className="w-6 h-6 flex items-center justify-center border border-slate-400 group-hover:border-primary rounded text-xs opacity-0 group-hover:opacity-100 transition-all">
-                W
-              </span>
-            </Link>
-          </motion.div>
-          <motion.div 
-            className="space-y-4"
-            variants={staggerContainer}
-          >
-            {recentArticles.map((article) => (
-              <motion.article 
-                key={article.slug}
-                className="group border-b border-slate-700/30 pb-4 last:border-b-0"
-                variants={fadeInUp}
-              >
-                <Link href={`/blog/${article.slug}`} className="block">
-                  <div className="flex items-center gap-2 text-xs text-slate-500 mb-2">
-                    <Calendar size={12} />
-                    <time>{formatDateLong(article.date)}</time>
-                  </div>
-                  <h3 className="text-base font-medium mb-2 text-white group-hover:text-primary transition-colors duration-200">
-                    {article.title}
-                  </h3>
-                  <p className="text-sm text-slate-400 leading-relaxed group-hover:text-slate-300 transition-colors">{article.excerpt}</p>
-                </Link>
-              </motion.article>
-            ))}
-          </motion.div>
-        </motion.section>
-
-        <motion.section 
-          className="mb-20"
-          variants={fadeInUp}
-        >
-          <motion.div className="flex items-center justify-between mb-6" variants={fadeInUp}>
-            <h2 className="text-xl font-semibold text-white">You made it this far? Here's some grass I'm growing.</h2>
-          </motion.div>
-          <motion.div 
-            variants={fadeInUp}
-          >
-            <GitHubChart />
-          </motion.div>
-        </motion.section>
-
-        <Footer />
-      </motion.div>
       <ViewModeToggle />
     </div>
-    </>
   );
 }

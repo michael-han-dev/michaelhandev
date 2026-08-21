@@ -1,6 +1,5 @@
 'use client';
 
-import { motion } from 'framer-motion';
 import { usePathname, useRouter } from 'next/navigation';
 
 export default function ViewModeToggle() {
@@ -28,41 +27,32 @@ export default function ViewModeToggle() {
     router.push(getAiPath());
   };
 
+  const activeClass = 'text-[var(--ink)]';
+  const inactiveClass =
+    'text-[var(--ink-3)] hover:text-[var(--ink-2)] transition-colors duration-150';
+
   return (
-    <motion.div
-      className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50"
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.3, delay: 0.5 }}
-    >
-      <div className="flex items-center bg-black/80 backdrop-blur-sm border border-slate-700/50 rounded-full px-1 py-1">
+    <div className="pointer-events-none fixed inset-x-0 bottom-6 z-50 flex justify-center">
+      <nav
+        aria-label="View mode"
+        className="pointer-events-auto flex items-center gap-2 font-mono text-[13px]"
+      >
         <button
           onClick={handleHumanClick}
-          className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
-            !isAiMode
-              ? 'bg-transparent text-white'
-              : 'text-slate-500 hover:text-slate-300'
-          }`}
+          aria-current={!isAiMode ? 'true' : undefined}
+          className={!isAiMode ? activeClass : inactiveClass}
         >
-          <span className={`w-2 h-2 rounded-full border transition-all duration-300 ${
-            !isAiMode ? 'bg-white border-white' : 'border-slate-500'
-          }`} />
-          HUMAN
+          human
         </button>
+        <span className="text-[var(--line)]">/</span>
         <button
           onClick={handleMachineClick}
-          className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
-            isAiMode
-              ? 'bg-transparent text-white'
-              : 'text-slate-500 hover:text-slate-300'
-          }`}
+          aria-current={isAiMode ? 'true' : undefined}
+          className={isAiMode ? activeClass : inactiveClass}
         >
-          <span className={`w-2 h-2 rounded-full border transition-all duration-300 ${
-            isAiMode ? 'bg-white border-white' : 'border-slate-500'
-          }`} />
-          MACHINE
+          machine
         </button>
-      </div>
-    </motion.div>
+      </nav>
+    </div>
   );
 }

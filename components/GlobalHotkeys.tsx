@@ -2,9 +2,11 @@
 
 import { useEffect, useState } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
+import ShortcutSheet from '@/components/ShortcutSheet';
 
 export default function GlobalHotkeys() {
   const [isMounted, setIsMounted] = useState(false);
+  const [showShortcuts, setShowShortcuts] = useState(false);
   const router = useRouter();
   const pathname = usePathname();
 
@@ -17,12 +19,23 @@ export default function GlobalHotkeys() {
 
     const handleKeyDown = (event: KeyboardEvent) => {
       const target = event.target as HTMLElement;
-      const isInputFocused = 
+      const isInputFocused =
         target.tagName === 'INPUT' ||
         target.tagName === 'TEXTAREA' ||
         target.isContentEditable;
 
       if (isInputFocused) {
+        return;
+      }
+
+      if (event.key === '?') {
+        event.preventDefault();
+        setShowShortcuts((open) => !open);
+        return;
+      }
+
+      if (event.key === 'Escape') {
+        setShowShortcuts((open) => (open ? false : open));
         return;
       }
 
@@ -88,5 +101,9 @@ export default function GlobalHotkeys() {
     };
   }, [isMounted, router, pathname]);
 
-  return null;
+  return (
+    <>
+      <ShortcutSheet open={showShortcuts} onClose={() => setShowShortcuts(false)} />
+    </>
+  );
 }
