@@ -12,7 +12,6 @@ import { projects } from '@/data/projects';
 import { getProjectImages, BlogImage } from '@/lib/images';
 import { useEffect, useState } from 'react';
 import { formatDateLong, formatDateShort } from '@/utils/date';
-import LoadingScreen from '@/components/LoadingScreen';
 
 const fadeInUp = {
   initial: { opacity: 0, y: 20 },
@@ -32,17 +31,8 @@ export default function Home() {
   const recentArticles = getRecentArticles(4);
   const recentExperiences = getRecentExperiences(2);
   const [projectImages, setProjectImages] = useState<Record<string, BlogImage[]>>({});
-  const [loadingComplete, setLoadingComplete] = useState(false);
-  const [isMounted, setIsMounted] = useState(false);
 
   const featuredProjects = projects.slice(0, 2);
-
-  useEffect(() => {
-    setIsMounted(true);
-    if (sessionStorage.getItem('loadingScreenShown') === 'true') {
-      setLoadingComplete(true);
-    }
-  }, []);
 
   useEffect(() => {
     const fetchFeaturedProjectImages = async () => {
@@ -62,17 +52,6 @@ export default function Home() {
 
     fetchFeaturedProjectImages();
   }, []);
-
-  if (!isMounted || !loadingComplete) {
-    return (
-      <LoadingScreen
-        onComplete={() => {
-          setLoadingComplete(true);
-          sessionStorage.setItem('loadingScreenShown', 'true');
-        }}
-      />
-    );
-  }
 
   return (
     <>
