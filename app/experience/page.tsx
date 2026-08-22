@@ -1,167 +1,36 @@
 'use client';
 
-import { motion } from 'framer-motion';
-import { Calendar } from 'lucide-react';
-import Link from 'next/link';
-import { experiences } from '@/data/experience';
+import Masthead from '@/components/Masthead';
+import { LedgerSection, LedgerRow } from '@/components/Ledger';
 import Footer from '@/components/Footer';
 import ViewModeToggle from '@/components/ViewModeToggle';
+import { experiences } from '@/data/experience';
 import { formatDateShort } from '@/utils/date';
-
-const fadeInUp = {
-  initial: { opacity: 0, y: 20 },
-  animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.5 }
-};
-
-const staggerContainer = {
-  animate: {
-    transition: {
-      staggerChildren: 0.1
-    }
-  }
-};
 
 export default function ExperiencePage() {
   return (
-    <div className="min-h-screen bg-main">
-      <motion.div 
-        className="max-w-4xl mx-auto px-4 py-12 pb-24"
-        variants={staggerContainer}
-        initial="initial"
-        animate="animate"
-      >
-        <motion.header 
-          className="mb-16"
-          variants={fadeInUp}
-        >
-          <div className="flex items-start justify-between">
-            <div>
-              <motion.h1 
-                className="text-4xl md:text-3xl font-bold mb-3 text-white"
-                variants={fadeInUp}
-              >
-                Michael Han
-              </motion.h1>
-              <motion.p 
-                className="text-base text-slate-300 mb-1"
-                variants={fadeInUp}
-              >
-                Technology optimist, chilli maker, athletics enjoyer, on a quest to maximize surface area for luck.
-              </motion.p>
-              <motion.p 
-                className="text-base text-slate-300"
-                variants={fadeInUp}
-              >
-                Mathematics and Computer Engineering at <span className="underline">Queen's University.</span>
-              </motion.p>
-            </div>
-            
-            <motion.div 
-              className="flex flex-col space-y-1 items-end"
-              variants={fadeInUp}
-            >
-              <Link href="/" className="group relative inline-flex items-center text-sm text-slate-400 hover:text-primary transition-colors">
-                <motion.span
-                  className="inline-block hotkey-glow"
-                  initial={false}
-                  animate={{ x: 0 }}
-                  whileHover={{ x: -8 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  Home
-                </motion.span>
-                <span className="absolute left-full ml-2 w-6 h-6 flex items-center justify-center border border-slate-400 group-hover:border-primary rounded text-xs opacity-0 group-hover:opacity-100 transition-all pointer-events-none">
-                  H
-                </span>
-              </Link>
-              <Link href="/projects" className="group relative inline-flex items-center text-sm text-slate-400 hover:text-primary transition-colors">
-                <motion.span
-                  className="inline-block hotkey-glow"
-                  initial={false}
-                  animate={{ x: 0 }}
-                  whileHover={{ x: -8 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  Projects
-                </motion.span>
-                <span className="absolute left-full ml-2 w-6 h-6 flex items-center justify-center border border-slate-400 group-hover:border-primary rounded text-xs opacity-0 group-hover:opacity-100 transition-all pointer-events-none">
-                  P
-                </span>
-              </Link>
-              <Link href="/writing" className="group relative inline-flex items-center text-sm text-slate-400 hover:text-primary transition-colors">
-                <motion.span
-                  className="inline-block hotkey-glow"
-                  initial={false}
-                  animate={{ x: 0 }}
-                  whileHover={{ x: -8 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  Writing
-                </motion.span>
-                <span className="absolute left-full ml-2 w-6 h-6 flex items-center justify-center border border-slate-400 group-hover:border-primary rounded text-xs opacity-0 group-hover:opacity-100 transition-all pointer-events-none">
-                  W
-                </span>
-              </Link>
-            </motion.div>
-          </div>
-        </motion.header>
+    <div className="bg-main min-h-screen">
+      <main className="page-enter mx-auto max-w-2xl px-6 pb-32 pt-16 md:pt-20">
+        <Masthead />
 
-        <motion.section 
-          className="mb-16"
-          variants={fadeInUp}
-        >
-          <motion.h2 
-            className="text-2xl font-semibold mb-8 text-white"
-            variants={fadeInUp}
-          >
-            Professional Experience
-          </motion.h2>
-          <motion.div 
-            className="space-y-6"
-            variants={staggerContainer}
-          >
-            {experiences.map((experience, index) => (
-              <motion.a
-                key={experience.id}
-                href={experience.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group block"
-                variants={fadeInUp}
-                whileHover={{ y: -4 }}
-                transition={{ duration: 0.2 }}
-              >
-                <div className="relative bg-card-light rounded-2xl p-6 border border-slate-700/50 hover:border-primary/50 transition-all duration-300">
-                  <div>
-                    <div className="flex items-start justify-between mb-3">
-                      <div>
-                        <h3 className="text-xl font-semibold text-white group-hover:text-primary transition-colors mb-1">
-                          {experience.title}
-                        </h3>
-                        <p className="text-primary font-medium group-hover:text-primary transition-colors">
-                          {experience.company}
-                        </p>
-                      </div>
-                      <div className="text-sm text-slate-500 flex items-center gap-1">
-                        <Calendar size={14} />
-                        <span>
-                          {formatDateShort(experience.startDate)} - {experience.current ? 'Present' : formatDateShort(experience.endDate!)}
-                        </span>
-                      </div>
-                    </div>
-                    <p className="text-slate-300 leading-relaxed group-hover:text-slate-200 transition-colors">
-                      {experience.description}
-                    </p>
-                  </div>
-                </div>
-              </motion.a>
-            ))}
-          </motion.div>
-        </motion.section>
+        <LedgerSection label="Professional Experience">
+          {experiences.map((experience) => (
+            <LedgerRow
+              key={experience.id}
+              href={experience.link}
+              gutter={`${formatDateShort(experience.startDate)} – ${
+                experience.current ? 'Present' : formatDateShort(experience.endDate!)
+              }`}
+              title={experience.title}
+              description={experience.description}
+              meta={experience.company}
+            />
+          ))}
+        </LedgerSection>
 
         <Footer />
-      </motion.div>
+      </main>
+
       <ViewModeToggle />
     </div>
   );

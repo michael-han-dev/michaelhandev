@@ -16,7 +16,7 @@ export default function Masthead() {
     <header className="flex items-baseline justify-between gap-6">
       <Link
         href="/"
-        className="font-display text-xl text-[var(--ink)]"
+        className="font-display text-lg text-[var(--ink)]"
       >
         Michael Han
       </Link>

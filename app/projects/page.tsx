@@ -1,189 +1,33 @@
 'use client';
 
-import { motion } from 'framer-motion';
-import Link from 'next/link';
-import { projects } from '@/data/projects';
-import { getProjectImages, BlogImage } from '@/lib/images';
+import Masthead from '@/components/Masthead';
+import { LedgerSection, LedgerRow } from '@/components/Ledger';
 import Footer from '@/components/Footer';
 import ViewModeToggle from '@/components/ViewModeToggle';
-import { useEffect, useState } from 'react';
-
-const fadeInUp = {
-  initial: { opacity: 0, y: 20 },
-  animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.5 }
-};
-
-const staggerContainer = {
-  animate: {
-    transition: {
-      staggerChildren: 0.1
-    }
-  }
-};
+import { projects } from '@/data/projects';
 
 export default function ProjectsPage() {
-  const [projectImages, setProjectImages] = useState<Record<string, BlogImage[]>>({});
-
-  useEffect(() => {
-    const fetchAllProjectImages = async () => {
-      const imagePromises = projects.map(async (project) => {
-        const images = await getProjectImages(project.id);
-        return { projectId: project.id, images };
-      });
-      
-      const results = await Promise.all(imagePromises);
-      const imageMap = results.reduce((acc, { projectId, images }) => {
-        acc[projectId] = images;
-        return acc;
-      }, {} as Record<string, BlogImage[]>);
-      
-      setProjectImages(imageMap);
-    };
-
-    fetchAllProjectImages();
-  }, []);
-
   return (
-    <div className="min-h-screen bg-main">
-      <motion.div 
-        className="max-w-4xl mx-auto px-4 py-12 pb-24"
-        variants={staggerContainer}
-        initial="initial"
-        animate="animate"
-      >
-        <motion.header 
-          className="mb-16"
-          variants={fadeInUp}
-        >
-          <div className="flex items-start justify-between">
-            <div>
-              <motion.h1 
-                className="text-4xl md:text-3xl font-bold mb-3 text-white"
-                variants={fadeInUp}
-              >
-                Michael Han
-              </motion.h1>
-              <motion.p 
-                className="text-base text-slate-300 mb-1"
-                variants={fadeInUp}
-              >
-                Technology optimist, chilli maker, athletics enjoyer, on a quest to maximize surface area for luck.
-              </motion.p>
-              <motion.p 
-                className="text-base text-slate-300"
-                variants={fadeInUp}
-              >
-                Mathematics and Computer Engineering at <span className="underline">Queen's University.</span>
-              </motion.p>
-            </div>
-            
-            <motion.div 
-              className="flex flex-col space-y-1 items-end"
-              variants={fadeInUp}
-            >
-              <Link href="/" className="group relative inline-flex items-center text-sm text-slate-400 hover:text-primary transition-colors">
-                <motion.span
-                  className="inline-block hotkey-glow"
-                  initial={false}
-                  animate={{ x: 0 }}
-                  whileHover={{ x: -8 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  Home
-                </motion.span>
-                <span className="absolute left-full ml-2 w-6 h-6 flex items-center justify-center border border-slate-400 group-hover:border-primary rounded text-xs opacity-0 group-hover:opacity-100 transition-all pointer-events-none">
-                  H
-                </span>
-              </Link>
-              <Link href="/experience" className="group relative inline-flex items-center text-sm text-slate-400 hover:text-primary transition-colors">
-                <motion.span
-                  className="inline-block hotkey-glow"
-                  initial={false}
-                  animate={{ x: 0 }}
-                  whileHover={{ x: -8 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  Experiences
-                </motion.span>
-                <span className="absolute left-full ml-2 w-6 h-6 flex items-center justify-center border border-slate-400 group-hover:border-primary rounded text-xs opacity-0 group-hover:opacity-100 transition-all pointer-events-none">
-                  E
-                </span>
-              </Link>
-              <Link href="/writing" className="group relative inline-flex items-center text-sm text-slate-400 hover:text-primary transition-colors">
-                <motion.span
-                  className="inline-block hotkey-glow"
-                  initial={false}
-                  animate={{ x: 0 }}
-                  whileHover={{ x: -8 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  Writing
-                </motion.span>
-                <span className="absolute left-full ml-2 w-6 h-6 flex items-center justify-center border border-slate-400 group-hover:border-primary rounded text-xs opacity-0 group-hover:opacity-100 transition-all pointer-events-none">
-                  W
-                </span>
-              </Link>
-            </motion.div>
-          </div>
-        </motion.header>
+    <div className="bg-main min-h-screen">
+      <main className="page-enter mx-auto max-w-2xl px-6 pb-32 pt-16 md:pt-20">
+        <Masthead />
 
-        <motion.section 
-          className="mb-16"
-          variants={fadeInUp}
-        >
-          <motion.h2 
-            className="text-2xl font-semibold mb-8 text-white"
-            variants={fadeInUp}
-          >
-            All Projects
-          </motion.h2>
-          <motion.div 
-            className="grid md:grid-cols-2 gap-6"
-            variants={staggerContainer}
-          >
-            {projects.map((project) => (
-              <motion.a
-                key={project.id}
-                href={project.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group block"
-                variants={fadeInUp}
-                whileHover={{ y: -4 }}
-                transition={{ duration: 0.2 }}
-              >
-                <div className="relative bg-card-light rounded-2xl overflow-hidden border border-slate-700/50 hover:border-primary/50 transition-all duration-300 h-full flex flex-col">
-                  <div className="relative h-48 bg-card-lighter border-b border-slate-700/50 flex-shrink-0 overflow-hidden">
-                    {projectImages[project.id] && projectImages[project.id].length > 0 && (
-                      <img 
-                        src={projectImages[project.id][0].url} 
-                        alt={projectImages[project.id][0].alt_text || project.title}
-                        className="w-full h-full object-cover opacity-70 group-hover:opacity-100 transition-opacity duration-300"
-                      />
-                    )}
-                  </div>
-                  
-                  <div className="p-5 flex flex-col flex-grow">
-                    <h3 className="text-lg font-semibold text-white group-hover:text-primary transition-colors mb-2">{project.title}</h3>
-                    <p className="text-sm text-slate-300 leading-relaxed group-hover:text-slate-200 transition-colors mb-3 flex-grow">{project.description}</p>
-                    
-                    <div className="flex flex-wrap gap-2 mt-auto">
-                      {project.technologies.map((tech, techIndex) => (
-                        <span key={techIndex} className="px-2 py-1 bg-card-light rounded text-xs text-slate-300">
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </motion.a>
-            ))}
-          </motion.div>
-        </motion.section>
+        <LedgerSection label="All Projects">
+          {projects.map((project, i) => (
+            <LedgerRow
+              key={project.id}
+              href={project.github}
+              gutter={String(i + 1).padStart(2, '0')}
+              title={project.title}
+              description={project.description}
+              meta={project.technologies.join(' · ')}
+            />
+          ))}
+        </LedgerSection>
 
         <Footer />
-      </motion.div>
+      </main>
+
       <ViewModeToggle />
     </div>
   );

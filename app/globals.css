@@ -3,8 +3,7 @@
 /* ============================================================
    DESIGN SYSTEM — michaelhandev v2
    Voice: warm paper editorial.
-   Type:  Instrument Serif display / Geist Sans body /
-          Geist Mono metadata. No italics.
+   Type:  Outfit display / Geist Sans body / Geist Mono metadata.
    Shape: radius 0, hairlines instead of cards, no shadows,
           no glows.
    Color: one muted-blue accent, links and active states only.
@@ -110,9 +109,9 @@ html {
    Primitives
    ------------------------------------------------------------ */
 
-/* Serif italic display voice */
+/* Display face (Outfit — closest open stand-in for Google Sans) */
 .font-display {
-  font-family: var(--font-serif), Georgia, "Times New Roman", serif;
+  font-family: var(--font-display), ui-sans-serif, system-ui, sans-serif;
 }
 
 /* Small uppercase mono section marker */

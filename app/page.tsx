@@ -3,18 +3,12 @@
 import Link from 'next/link';
 import Masthead from '@/components/Masthead';
 import { LedgerSection, LedgerRow } from '@/components/Ledger';
-import ContributionsLine from '@/components/ContributionsLine';
+import Footer from '@/components/Footer';
 import ViewModeToggle from '@/components/ViewModeToggle';
 import { getRecentArticles } from '@/data/articles';
 import { getRecentExperiences } from '@/data/experience';
 import { projects } from '@/data/projects';
 import { formatDateLong, formatDateShort } from '@/utils/date';
-
-const SOCIALS = [
-  { label: 'linkedin', href: 'https://www.linkedin.com/in/michael-y-han/' },
-  { label: 'github', href: 'https://github.com/michael-han-dev' },
-  { label: '@michaelyhan_', href: 'https://x.com/michaelyhan_' },
-];
 
 export default function Home() {
   const recentArticles = getRecentArticles(4);
@@ -27,10 +21,7 @@ export default function Home() {
         <Masthead />
 
         <section className="mt-16">
-          <h1
-            className="font-display leading-snug text-[var(--ink)]"
-            style={{ fontSize: 'var(--text-title)' }}
-          >
+          <h1 className="text-lg leading-snug text-[var(--ink)]">
             Software engineer, occasional chilli chef, lifelong baseball guy.
           </h1>
           <p className="mt-6 leading-relaxed text-[var(--ink-2)]">
@@ -109,30 +100,7 @@ export default function Home() {
           ))}
         </LedgerSection>
 
-        <footer className="hairline-t mt-24 flex flex-wrap items-center justify-between gap-x-6 gap-y-3 pt-6">
-          <ContributionsLine />
-          <nav className="flex flex-wrap items-center gap-x-5 gap-y-2 font-mono text-[13px]">
-            {SOCIALS.map((social) => (
-              <a
-                key={social.label}
-                href={social.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-[var(--ink-3)] transition-colors duration-150 hover:text-[var(--accent)]"
-              >
-                {social.label}
-              </a>
-            ))}
-            <a
-              href="https://github.com/michael-han-dev/michaelhandev"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-[var(--ink-3)] transition-colors duration-150 hover:text-[var(--accent)]"
-            >
-              source
-            </a>
-          </nav>
-        </footer>
+        <Footer />
       </main>
 
       <ViewModeToggle />

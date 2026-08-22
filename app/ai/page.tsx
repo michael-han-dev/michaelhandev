@@ -143,7 +143,7 @@ export default function AiHomePage() {
 
             <MdLine>---</MdLine>
             <MdLine>&nbsp;</MdLine>
-            <MdLine>Michael Han <MdLink text="@michaelyhan_" url="https://x.com/michaelyhan_" /></MdLine>
+            <MdLine>Michael Han <MdLink text="X" url="https://x.com/michaelyhan_" /></MdLine>
             <MdLine>&nbsp;</MdLine>
             <MdLine><MdLink text="Home" url="/ai" /> | <MdLink text="Projects" url="/ai/projects" /> | <MdLink text="Experience" url="/ai/experience" /> | <MdLink text="Writing" url="/ai/writing" /></MdLine>
             <MdLine>&nbsp;</MdLine>
