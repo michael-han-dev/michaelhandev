@@ -20,6 +20,15 @@ export const experiences: Experience[] = [
     link: "https://rootly.com/"
   },
   {
+    id: "questrade",
+    title: "Software Engineering Intern",
+    company: "Questrade",
+    description: "Worked on news analysis features on the core trading platforms serving millions of customers.",
+    startDate: "2026-05-01",
+    endDate: "2026-08-31",
+    link: "https://www.questrade.com/"
+  },
+  {
     id: "merin",
     title: "Co-Founder",
     company: "Merin.ai",

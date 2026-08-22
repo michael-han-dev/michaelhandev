@@ -1,19 +1,14 @@
 'use client';
 
-import Link from 'next/link';
 import Masthead from '@/components/Masthead';
 import { LedgerSection, LedgerRow } from '@/components/Ledger';
 import Footer from '@/components/Footer';
 import ViewModeToggle from '@/components/ViewModeToggle';
 import { getRecentArticles } from '@/data/articles';
-import { getRecentExperiences } from '@/data/experience';
-import { projects } from '@/data/projects';
-import { formatDateLong, formatDateShort } from '@/utils/date';
+import { formatDateLong } from '@/utils/date';
 
 export default function Home() {
   const recentArticles = getRecentArticles(4);
-  const recentExperiences = getRecentExperiences(2);
-  const featuredProjects = projects.slice(0, 2);
 
   return (
     <div className="bg-main min-h-screen">
@@ -25,7 +20,7 @@ export default function Home() {
             Software engineer, occasional chilli chef, lifelong baseball guy.
           </h1>
           <p className="mt-6 leading-relaxed text-[var(--ink-2)]">
-            On a quest to maximize surface area for luck. Mathematics and
+            Currently spending my time exploring the mountains, backend development, content creation, and prediction markets. I study Mathematics and
             Computer Engineering at{' '}
             <a
               href="https://www.queensu.ca/"
@@ -44,48 +39,38 @@ export default function Home() {
               <div className="flex items-center gap-2.5">
                 <span className="pulse-dot" />
                 <span>
-                  Co-Founded{' '}
-                  <span className="underline decoration-[var(--accent)] underline-offset-2">
-                    Merin.ai
-                  </span>
-                  .
+                  Working on the engineering team at{' '}
+                  <a
+                    href="https://rootly.com/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="underline decoration-[var(--accent)] underline-offset-2 transition-colors hover:text-[var(--accent)]"
+                  >
+                    Rootly (YC S21)
+                  </a>
                 </span>
               </div>
               <div className="flex items-center gap-2.5">
                 <span className="pulse-dot" />
-                <span>Working on the engineering team at Rootly (YC S21).</span>
+                <span>
+                  Worked on the engineering team at{' '}
+                  <a
+                    href="https://www.questrade.com/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="underline decoration-[var(--accent)] underline-offset-2 transition-colors hover:text-[var(--accent)]"
+                  >
+                    Questrade
+                  </a>
+                </span>
+              </div>
+              <div className="flex items-center gap-2.5">
+                <span className="pulse-dot" />
+                <span>Climbed Kilimanjaro and hiked Everest Base Camp.</span>
               </div>
             </div>
           </div>
         </section>
-
-        <LedgerSection label="Selected work">
-          {featuredProjects.map((project, i) => (
-            <LedgerRow
-              key={project.id}
-              href={project.github}
-              gutter={String(i + 1).padStart(2, '0')}
-              title={project.title}
-              description={project.description}
-              meta={project.technologies.join(' · ')}
-            />
-          ))}
-        </LedgerSection>
-
-        <LedgerSection label="Experience">
-          {recentExperiences.map((experience) => (
-            <LedgerRow
-              key={experience.id}
-              href={experience.link}
-              gutter={`${formatDateShort(experience.startDate)} – ${
-                experience.current ? 'Present' : formatDateShort(experience.endDate!)
-              }`}
-              title={experience.title}
-              description={experience.description}
-              meta={experience.company}
-            />
-          ))}
-        </LedgerSection>
 
         <LedgerSection label="Writing">
           {recentArticles.map((article) => (

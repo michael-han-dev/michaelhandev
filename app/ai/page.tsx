@@ -6,9 +6,6 @@ import Link from 'next/link';
 import ViewModeToggle from '@/components/ViewModeToggle';
 import CopyPageButton from '@/components/CopyPageButton';
 import { getRecentArticles } from '@/data/articles';
-import { getRecentExperiences } from '@/data/experience';
-import { projects } from '@/data/projects';
-import { formatDateShort } from '@/utils/date';
 
 const fadeIn = {
   initial: { opacity: 0 },
@@ -52,8 +49,6 @@ function MdLink({ text, url }: { text: string; url: string }) {
 export default function AiHomePage() {
   const contentRef = useRef<HTMLDivElement>(null);
   const recentArticles = getRecentArticles(4);
-  const recentExperiences = getRecentExperiences(2);
-  const featuredProjects = projects.slice(0, 2);
 
   return (
     <>
@@ -81,41 +76,6 @@ export default function AiHomePage() {
             <MdLine>- Co-Founded <MdLink text="Merin.ai" url="https://merin.ai" />.</MdLine>
             <MdLine>- Working on the engineering team at Rootly (YC S21).</MdLine>
             <MdLine>&nbsp;</MdLine>
-            <MdLine>&nbsp;</MdLine>
-
-            <MdLine>## Professional Experience</MdLine>
-            <MdLine>&nbsp;</MdLine>
-            <MdLine><MdLink text="View all" url="/ai/experience" /></MdLine>
-            <MdLine>&nbsp;</MdLine>
-            {recentExperiences.map((experience) => (
-              <motion.div key={experience.id} variants={fadeIn}>
-                <MdLine>### {experience.title}</MdLine>
-                <MdLine>**{experience.company}** | {formatDateShort(experience.startDate)} - {experience.current ? 'Present' : formatDateShort(experience.endDate!)}</MdLine>
-                <MdLine>&nbsp;</MdLine>
-                <MdLine>{experience.description}</MdLine>
-                <MdLine>&nbsp;</MdLine>
-                {experience.link && <MdLine><MdLink text="Learn more" url={experience.link} /></MdLine>}
-                <MdLine>&nbsp;</MdLine>
-              </motion.div>
-            ))}
-            <MdLine>&nbsp;</MdLine>
-
-            <MdLine>## Featured Projects</MdLine>
-            <MdLine>&nbsp;</MdLine>
-            <MdLine><MdLink text="View all" url="/ai/projects" /></MdLine>
-            <MdLine>&nbsp;</MdLine>
-            {featuredProjects.map((project) => (
-              <motion.div key={project.id} variants={fadeIn}>
-                <MdLine>### {project.title}</MdLine>
-                <MdLine>&nbsp;</MdLine>
-                <MdLine>{project.description}</MdLine>
-                <MdLine>&nbsp;</MdLine>
-                <MdLine>Technologies: {project.technologies.join(', ')}</MdLine>
-                <MdLine>&nbsp;</MdLine>
-                <MdLine><MdLink text="GitHub" url={project.github} /></MdLine>
-                <MdLine>&nbsp;</MdLine>
-              </motion.div>
-            ))}
             <MdLine>&nbsp;</MdLine>
 
             <MdLine>## Latest Thoughts</MdLine>
