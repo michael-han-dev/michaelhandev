@@ -1,30 +1,23 @@
 'use client';
 
-import { motion } from 'framer-motion';
-import { ArrowLeft, Calendar, Clock } from 'lucide-react';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { articles } from '@/data/articles';
 import Footer from '@/components/Footer';
+import Masthead from '@/components/Masthead';
+import ViewModeToggle from '@/components/ViewModeToggle';
 import { getBlogContent } from '@/lib/blog';
 import { getBlogImages, BlogImage } from '@/lib/images';
-import ViewModeToggle from '@/components/ViewModeToggle';
 import { useEffect, useState } from 'react';
 import Prism from 'prismjs';
 import { formatDateLong } from '@/utils/date';
-import 'prismjs/themes/prism-tomorrow.css';
+import 'prismjs/themes/prism.css';
 import 'prismjs/components/prism-javascript';
 import 'prismjs/components/prism-typescript';
 import 'prismjs/components/prism-jsx';
 import 'prismjs/components/prism-tsx';
 import 'prismjs/components/prism-css';
 import 'prismjs/components/prism-json';
-
-const fadeInUp = {
-  initial: { opacity: 0, y: 20 },
-  animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.5 }
-};
 
 export default function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
   const [content, setContent] = useState<string>('');
@@ -51,14 +44,14 @@ export default function BlogPostPage({ params }: { params: Promise<{ slug: strin
         blogImages.forEach((image) => {
           const placeholder = `{{image:${image.display_order}}}`;
           const imageHtml = `
-            <div class="my-8 rounded-lg overflow-hidden border border-slate-700/50">
-              <img src="${image.url}" alt="${image.alt_text || ''}" class="w-full h-auto" />
-              ${image.alt_text ? `<div class="p-3 bg-card-medium text-sm text-slate-400 text-center">${image.alt_text}</div>` : ''}
-            </div>
+            <figure>
+              <img src="${image.url}" alt="${image.alt_text || ''}" loading="lazy" />
+              ${image.alt_text ? `<figcaption>${image.alt_text}</figcaption>` : ''}
+            </figure>
           `;
           processedContent = processedContent.replace(placeholder, imageHtml);
         });
-        
+
         setContent(processedContent);
         setImages(blogImages);
         setLoading(false);
@@ -75,63 +68,51 @@ export default function BlogPostPage({ params }: { params: Promise<{ slug: strin
   }
 
   return (
-    <div className="min-h-screen bg-main">
-      <motion.div 
-        className="max-w-4xl mx-auto px-4 py-12 pb-24"
-        initial="initial"
-        animate="animate"
-      >
-        <motion.div variants={fadeInUp}>
-          <Link 
-            href="/"
-            className="inline-flex items-center gap-2 text-slate-400 hover:text-primary transition-colors duration-200 mb-8 text-sm"
-          >
-            <ArrowLeft size={16} />
-            <span>Back to home</span>
-          </Link>
-        </motion.div>
+    <div className="bg-main min-h-screen">
+      <main className="page-enter mx-auto max-w-2xl px-6 pb-32 pt-16 md:pt-20">
+        <Masthead />
 
-        <motion.article 
-          className="bg-card-light rounded-2xl border border-slate-700/50 overflow-hidden mb-16"
-          variants={fadeInUp}
-        >
+        <div className="mt-14">
+          <Link
+            href="/"
+            className="meta transition-colors duration-150 hover:text-[var(--ink)]"
+          >
+            &larr; home
+          </Link>
+
           {article && (
-            <header className="p-8 border-b border-slate-700/30">
-              <div className="flex items-center gap-4 text-xs text-slate-500 mb-4">
-                <div className="flex items-center gap-2">
-                  <Calendar size={12} />
-                  <time>{formatDateLong(article.date)}</time>
-                </div>
-                {article.readTime && (
-                  <div className="flex items-center gap-2">
-                    <Clock size={12} />
-                    <span>{article.readTime} min read</span>
-                  </div>
-                )}
+            <header className="mt-8">
+              <div className="eyebrow">
+                {formatDateLong(article.date)}
+                {article.readTime ? ` · ${article.readTime} min read` : ''}
               </div>
-              <h1 className="text-3xl md:text-4xl font-bold text-white leading-tight mb-3">
+              <h1
+                className="mt-3 font-medium leading-tight text-[var(--ink)]"
+                style={{ fontSize: 'var(--text-title)' }}
+              >
                 {article.title}
               </h1>
-              <p className="text-lg text-slate-300">{article.excerpt}</p>
+              <p className="mt-4 leading-relaxed text-[var(--ink-2)]">
+                {article.excerpt}
+              </p>
             </header>
           )}
 
-          <div className="p-8">
+          <div className="hairline-t mt-10 pt-8">
             {loading ? (
-              <div className="text-slate-400">Loading...</div>
+              <div className="meta">Loading...</div>
             ) : (
-              <>
-                <div 
-                  className="prose prose-lg leading-loose max-w-none prose-invert prose-headings:text-white prose-p:text-slate-300 prose-a:text-primary prose-strong:text-white prose-code:text-primary prose-pre:bg-main prose-pre:border prose-pre:border-slate-700 prose-code:bg-card-medium prose-code:px-1 prose-code:py-0.5 prose-code:rounded"
-                  dangerouslySetInnerHTML={{ __html: content }}
-                />
-              </>
+              <div
+                className="prose max-w-none"
+                dangerouslySetInnerHTML={{ __html: content }}
+              />
             )}
           </div>
-        </motion.article>
+        </div>
 
         <Footer />
-      </motion.div>
+      </main>
+
       <ViewModeToggle />
     </div>
   );
