@@ -2,6 +2,17 @@
 
 Personal portfolio for michaelhandev. Next.js 15 App Router + TypeScript + Tailwind v4 + framer-motion, deployed on Vercel.
 
+> **This is a living document.** It must stay truthful, not exhaustive. Update it in the same change as any work that:
+>
+> - adds/removes dependencies, npm scripts, or environment variables
+> - changes commands or the verification workflow
+> - changes the design system: tokens, primitives, fonts, or component conventions (`globals.css`, `Ledger`, `Masthead`, `Footer`)
+> - changes the content model (data files, blog markdown flow, Supabase image schema)
+> - adds/retires routes or structural patterns (e.g. the `/ai/*` mirrors)
+> - uncovers a non-obvious gotcha that cost time and isn't already written here
+>
+> When a claim becomes false, delete or rewrite it — never leave stale guidance behind.
+
 ## Commands
 
 ```bash
@@ -27,9 +38,11 @@ npm run build        # production build
 
 ## Structure quirks
 
-- **Design system** lives in `app/globals.css` (token block + primitives: `.font-display`, `.eyebrow`, `.meta`, `.link-inline`, `.hairline-t`, `.page-enter`). Light paper theme, radius 0, no shadows/glows; muted blue accent for links/active only. Fonts load via `next/font` in `app/layout.tsx`: Geist Sans (body), Geist Mono (metadata), Outfit (`--font-display`, used by the masthead wordmark; chosen as the closest open stand-in for Google Sans). Build pages from `components/Ledger.tsx` (`LedgerSection`/`LedgerRow`) and `components/Masthead.tsx`. The `text-slate-*` override block in globals.css is a TEMPORARY migration shim — delete it once every page is rebuilt on the system.
+- **Design system** lives in `app/globals.css` (token block + primitives: `.font-display`, `.eyebrow`, `.meta`, `.link-inline`, `.hairline-t`, `.page-enter`). Light paper theme, radius 0, no shadows/glows; muted blue accent for links/active only. Fonts load via `next/font` in `app/layout.tsx`: Geist Sans (body), Geist Mono (metadata), Outfit (`--font-display`, used by the masthead wordmark; chosen as the closest open stand-in for Google Sans). Build pages from `components/Ledger.tsx` (`LedgerSection`/`LedgerRow`) and `components/Masthead.tsx`. The `/ai/*` pages intentionally stay dark (`bg-black`) with native Tailwind slate colors — don't apply light-theme overrides there.
 - `app/ai/*` mirrors every main page (`writing`, `projects`, `experience`, `blog/[slug]`) as a plain-text/terminal-styled version meant for copy-paste and LLM consumption. When changing page content, check whether the `/ai/` twin needs the same update.
 - All pages are `'use client'` components doing client-side fetching; don't assume server components or SSG data loading.
-- Tailwind v4 CSS-first setup: theme tokens and custom utility classes (`bg-main`, `bg-card-light`, `bg-card-lighter`) are defined in `app/globals.css` via `@theme`/plain CSS, not in `tailwind.config.js`.
+- **Caching layers on the contributions count**: `/api/github-contributions` wraps the GitHub GraphQL call in `unstable_cache` (key `github-contributions`, 1h revalidation; errors are not cached), and `components/ContributionsLine.tsx` renders stale-while-revalidate from a module-level var plus `sessionStorage` (`gh-contributions-total`). A fresh total can lag reality by up to an hour; restart the dev server or redeploy to bust the server cache.
+- **Global hotkeys** (`components/GlobalHotkeys.tsx`, mounted in root layout): `g/t/l/s` open external profiles, `p/e/w` jump to projects/experience/writing, `m` toggles between human and machine views, `h` exits machine view (strips the `/ai` prefix, so `/ai/projects` → `/projects`). When adding a section, wire both modes there and keep the `/ai/` twin's inline footer/nav content in sync.
+- Tailwind v4 CSS-first setup: theme tokens and custom utility classes (`bg-main`) are defined in `app/globals.css` via `@theme`/plain CSS, not in `tailwind.config.js`.
 - MDX is configured in `next.config.ts` (`pageExtensions`) but currently unused — no `.mdx` pages exist.
 - Path alias `@/*` maps to the repo root (`@/components/...`, `@/lib/...`, `@/data/...`).

@@ -5,7 +5,7 @@ import ContributionsLine from '@/components/ContributionsLine';
 const SOCIALS = [
   { label: 'linkedin', href: 'https://www.linkedin.com/in/michael-y-han/' },
   { label: 'github', href: 'https://github.com/michael-han-dev' },
-  { label: '@michaelyhan_', href: 'https://x.com/michaelyhan_' },
+  { label: 'x', href: 'https://x.com/michaelyhan_' },
 ];
 
 export default function Footer() {

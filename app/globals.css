@@ -1,88 +1,25 @@
 @import "tailwindcss";
 
-/* ============================================================
-   DESIGN SYSTEM — michaelhandev v2
-   Voice: warm paper editorial.
-   Type:  Outfit display / Geist Sans body / Geist Mono metadata.
-   Shape: radius 0, hairlines instead of cards, no shadows,
-          no glows.
-   Color: one muted-blue accent, links and active states only.
-   Motion: <=200ms ease-out; ambient effects kept to a minimum;
-          prefers-reduced-motion disables everything.
-   ============================================================ */
-
-:root {
-  /* surfaces */
-  --paper: #faf9f7;
-  --paper-raised: #f2efe9;
-
-  /* ink scale */
-  --ink: #211d1a;
-  --ink-2: #5c564f;
-  --ink-3: #a09a91;
-
-  /* hairline + accent */
-  --line: #e7e3dc;
-  --accent: oklch(0.5 0.11 262);
-  --accent-deep: oklch(0.42 0.11 262);
-
-  /* type */
-  --text-display: clamp(2.25rem, 5vw, 3.25rem);
-  --text-title: clamp(1.375rem, 3vw, 1.75rem);
-  --text-meta: 0.8125rem;
-
-  /* motion */
-  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
-  --dur-fast: 150ms;
-  --dur-page: 200ms;
-}
-
-/* Legacy token names mapped onto system tokens so pages that
-   have not migrated yet stay coherent. */
-:root {
-  --background: var(--paper);
-  --foreground: var(--ink);
-  --background-light: var(--paper-raised);
-  --background-lighter: var(--paper-raised);
-  --background-medium: #ebe7e0;
-  --background-card: var(--paper-raised);
-  --card: var(--paper-raised);
-  --card-foreground: var(--ink);
-  --popover: var(--paper);
-  --primary: var(--accent);
-  --primary-foreground: var(--paper);
-  --secondary: var(--paper-raised);
-  --muted: var(--paper-raised);
-  --muted-foreground: var(--ink-2);
-  --accent-foreground: var(--ink);
-  --border: var(--line);
-  --input: var(--line);
-  --ring: var(--accent);
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-primary: var(--primary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-secondary: var(--secondary);
-  --color-muted: var(--muted);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-accent: var(--accent);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-card: var(--card);
-  --color-card-foreground: var(--card-foreground);
-  --color-border: var(--border);
-  --color-input: var(--input);
-  --color-ring: var(--ring);
-
   --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
 }
 
-/* ------------------------------------------------------------
-   Base
-   ------------------------------------------------------------ */
+:root {
+  --paper: #faf9f7;
+  --paper-raised: #f2efe9;
+  --ink: #211d1a;
+  --ink-2: #5c564f;
+  --ink-3: #a09a91;
+  --line: #e7e3dc;
+  --accent: oklch(0.5 0.11 262);
+  --accent-deep: oklch(0.42 0.11 262);
+  --text-title: clamp(1.375rem, 3vw, 1.75rem);
+  --text-meta: 0.8125rem;
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --dur-fast: 150ms;
+  --dur-page: 200ms;
+}
 
 body {
   font-family: var(--font-geist-sans), Arial, sans-serif;
@@ -105,16 +42,10 @@ html {
   outline-offset: 2px;
 }
 
-/* ------------------------------------------------------------
-   Primitives
-   ------------------------------------------------------------ */
-
-/* Display face (Outfit — closest open stand-in for Google Sans) */
 .font-display {
   font-family: var(--font-display), ui-sans-serif, system-ui, sans-serif;
 }
 
-/* Small uppercase mono section marker */
 .eyebrow {
   font-family: var(--font-geist-mono), monospace;
   font-size: 0.6875rem;
@@ -123,7 +54,6 @@ html {
   color: var(--ink-3);
 }
 
-/* Mono metadata line (dates, tech lists, footnotes) */
 .meta {
   font-family: var(--font-geist-mono), monospace;
   font-size: var(--text-meta);
@@ -131,7 +61,6 @@ html {
   color: var(--ink-3);
 }
 
-/* Inline link: quiet underline that warms to accent on hover */
 .link-inline {
   color: inherit;
   text-decoration: underline;
@@ -146,15 +75,10 @@ html {
   text-decoration-color: var(--accent);
 }
 
-/* Hairline rules */
 .hairline-t {
   border-top: 1px solid var(--line);
 }
-.hairline-b {
-  border-bottom: 1px solid var(--line);
-}
 
-/* Ambient status dot (the only looping animation allowed) */
 .pulse-dot {
   width: 6px;
   height: 6px;
@@ -167,7 +91,6 @@ html {
   50% { opacity: 0.35; }
 }
 
-/* Single quiet page entrance */
 .page-enter {
   animation: page-enter var(--dur-page) var(--ease-out) both;
 }
@@ -189,44 +112,9 @@ html {
   }
 }
 
-/* ------------------------------------------------------------
-   Legacy surface classes (pre-migration pages)
-   ------------------------------------------------------------ */
-
 .bg-main {
   background: var(--paper);
 }
-.bg-card-light {
-  background: var(--paper-raised);
-}
-.bg-card-lighter {
-  background: var(--paper-raised);
-}
-.bg-card-medium {
-  background: var(--background-medium);
-}
-
-/* TEMPORARY MIGRATION SHIMS — map dark-theme text utilities to
-   the light palette until every page is rebuilt on the system.
-   Unlayered rules win over Tailwind's layered utilities. Delete
-   this block when migration completes. */
-.text-white {
-  color: var(--ink);
-}
-.text-slate-100,
-.text-slate-200,
-.text-slate-300 {
-  color: var(--ink-2);
-}
-.text-slate-400,
-.text-slate-500,
-.text-slate-600 {
-  color: var(--ink-3);
-}
-
-/* ------------------------------------------------------------
-   Prose (blog bodies)
-   ------------------------------------------------------------ */
 
 .prose {
   color: var(--ink);

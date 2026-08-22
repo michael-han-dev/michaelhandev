@@ -27,9 +27,11 @@ export default function ViewModeToggle() {
     router.push(getAiPath());
   };
 
-  const activeClass = 'text-[var(--ink)]';
-  const inactiveClass =
-    'text-[var(--ink-3)] hover:text-[var(--ink-2)] transition-colors duration-150';
+  const activeClass = 'text-[var(--accent)]';
+  const inactiveClass = isAiMode
+    ? 'text-zinc-400 hover:text-zinc-200 transition-colors duration-150'
+    : 'text-[var(--ink-2)] hover:text-[var(--ink)] transition-colors duration-150';
+  const slashClass = isAiMode ? 'text-zinc-600' : 'text-[var(--line)]';
 
   return (
     <div className="pointer-events-none fixed inset-x-0 bottom-6 z-50 flex justify-center">
@@ -44,7 +46,7 @@ export default function ViewModeToggle() {
         >
           human
         </button>
-        <span className="text-[var(--line)]">/</span>
+        <span className={slashClass}>/</span>
         <button
           onClick={handleMachineClick}
           aria-current={isAiMode ? 'true' : undefined}
