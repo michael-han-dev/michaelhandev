@@ -7,7 +7,7 @@ export function LedgerSection({
   label,
   children,
 }: {
-  label: string;
+  label: React.ReactNode;
   children: React.ReactNode;
 }) {
   return (
@@ -63,7 +63,9 @@ export function LedgerRow({ href, gutter, title, description, meta }: LedgerRowP
     </>
   );
 
-  const layoutClass = 'block py-5 sm:grid sm:grid-cols-[7rem_minmax(0,1fr)] sm:gap-x-8';
+  const layoutClass = gutter
+    ? 'block py-5 sm:grid sm:grid-cols-[7rem_minmax(0,1fr)] sm:gap-x-8'
+    : 'block py-5';
 
   if (!href) {
     return <div className={layoutClass}>{body}</div>;

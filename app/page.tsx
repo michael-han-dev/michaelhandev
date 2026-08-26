@@ -77,7 +77,6 @@ export default function Home() {
             <LedgerRow
               key={article.slug}
               href={`/blog/${article.slug}`}
-              gutter={article.date.slice(0, 4)}
               title={article.title}
               description={article.excerpt}
               meta={formatDateLong(article.date)}

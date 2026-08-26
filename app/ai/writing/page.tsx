@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 import ViewModeToggle from '@/components/ViewModeToggle';
 import CopyPageButton from '@/components/CopyPageButton';
-import { articles } from '@/data/articles';
+import { articles, isArchived, type Article } from '@/data/articles';
 import { formatDateLong } from '@/utils/date';
 
 const fadeIn = {
@@ -47,8 +47,27 @@ function MdLink({ text, url }: { text: string; url: string }) {
   );
 }
 
+function ArticleEntry({ article }: { article: Article }) {
+  return (
+    <motion.div variants={fadeIn}>
+      <MdLine>### <MdLink text={article.title} url={`/ai/blog/${article.slug}`} /></MdLine>
+      <MdLine>&nbsp;</MdLine>
+      <MdLine>*{formatDateLong(article.date)}*{article.readTime && ` | ${article.readTime} min read`}</MdLine>
+      <MdLine>&nbsp;</MdLine>
+      <MdLine>{article.excerpt}</MdLine>
+      <MdLine>&nbsp;</MdLine>
+      <MdLine><MdLink text="Read more" url={`/ai/blog/${article.slug}`} /></MdLine>
+      <MdLine>&nbsp;</MdLine>
+      <MdLine>---</MdLine>
+      <MdLine>&nbsp;</MdLine>
+    </motion.div>
+  );
+}
+
 export default function AiWritingPage() {
   const contentRef = useRef<HTMLDivElement>(null);
+  const current = articles.filter((article) => !isArchived(article));
+  const archived = articles.filter(isArchived);
 
   return (
     <>
@@ -70,19 +89,15 @@ export default function AiWritingPage() {
             <MdLine>## All Articles</MdLine>
             <MdLine>&nbsp;</MdLine>
 
-            {articles.map((article) => (
-              <motion.div key={article.id} variants={fadeIn}>
-                <MdLine>### <MdLink text={article.title} url={`/ai/blog/${article.slug}`} /></MdLine>
-                <MdLine>&nbsp;</MdLine>
-                <MdLine>*{formatDateLong(article.date)}*{article.readTime && ` | ${article.readTime} min read`}</MdLine>
-                <MdLine>&nbsp;</MdLine>
-                <MdLine>{article.excerpt}</MdLine>
-                <MdLine>&nbsp;</MdLine>
-                <MdLine><MdLink text="Read more" url={`/ai/blog/${article.slug}`} /></MdLine>
-                <MdLine>&nbsp;</MdLine>
-                <MdLine>---</MdLine>
-                <MdLine>&nbsp;</MdLine>
-              </motion.div>
+            {current.map((article) => (
+              <ArticleEntry key={article.id} article={article} />
+            ))}
+
+            <MdLine>## Archive</MdLine>
+            <MdLine>&nbsp;</MdLine>
+
+            {archived.map((article) => (
+              <ArticleEntry key={article.id} article={article} />
             ))}
 
             <MdLine>&nbsp;</MdLine>

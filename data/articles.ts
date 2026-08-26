@@ -51,8 +51,16 @@ export const articles: Article[] = [
   },
 ];
 
+// Anything published before this year lives in the /writing "Archive" tab.
+export const ARCHIVE_BEFORE_YEAR = 2024;
+
+export const isArchived = (article: Article): boolean =>
+  Number(article.date.slice(0, 4)) < ARCHIVE_BEFORE_YEAR;
+
+// Home lists recent writing only; archived pieces live on /writing's Archive tab.
 export const getRecentArticles = (count: number = 4): Article[] => {
   return articles
+    .filter((article) => !isArchived(article))
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
     .slice(0, count);
 };
