@@ -52,7 +52,7 @@ export default function ContributionsLine() {
 
   return (
     <p className="meta">
-      {total.toLocaleString('en-US')} contributions this year
+      {total.toLocaleString('en-US')} github contributions this year
     </p>
   );
 }
