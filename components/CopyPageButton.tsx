@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
-import { Copy, Check } from 'lucide-react';
+import Icon from '@/components/Icon';
 
 interface CopyPageButtonProps {
   contentRef: React.RefObject<HTMLDivElement | null>;
@@ -47,9 +47,9 @@ export default function CopyPageButton({ contentRef }: CopyPageButtonProps) {
       title="Copy page content"
     >
       {copied ? (
-        <Check size={16} className="text-green-400" />
+        <Icon name="check-square" size={16} className="text-green-400" />
       ) : (
-        <Copy size={16} className="icon-glow" />
+        <Icon name="copy" size={16} className="icon-glow" />
       )}
     </button>
   );
