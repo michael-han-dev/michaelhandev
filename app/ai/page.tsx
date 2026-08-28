@@ -67,6 +67,8 @@ export default function AiHomePage() {
             <MdLine>&nbsp;</MdLine>
             <MdLine>Mathematics and Computer Engineering at <MdLink text="Queen's University" url="https://www.queensu.ca/" />. Expected to graduate in 2027.</MdLine>
             <MdLine>&nbsp;</MdLine>
+            <MdLine>I previously was the #10 ranked player globally in <MdLink text="Brawl Stars" url="https://supercell.com/en/games/brawlstars/" />, played Baseball at the national level in Canada, and did mathematical modelling for a pharmacokinetics researcher.</MdLine>
+            <MdLine>&nbsp;</MdLine>
             <MdLine><MdLink text="LinkedIn" url="https://www.linkedin.com/in/michael-y-han/" /></MdLine>
             <MdLine><MdLink text="GitHub" url="https://github.com/michael-han-dev" /></MdLine>
             <MdLine><MdLink text="Twitter" url="https://x.com/michaelyhan_" /></MdLine>

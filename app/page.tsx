@@ -32,6 +32,19 @@ export default function Home() {
             </a>{' '}
             Expected to graduate in 2027.
           </p>
+          <p className="mt-4 leading-relaxed text-[var(--ink-2)]">
+            I previously was the #10 ranked player globally in{' '}
+            <a
+              href="https://supercell.com/en/games/brawlstars/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="link-inline"
+            >
+              Brawl Stars,
+            </a>{' '}
+            played Baseball at the national level in Canada, and did mathematical modelling for a
+            pharmacokinetics researcher.
+          </p>
 
           <div className="mt-10">
             <div className="eyebrow">As of late</div>
