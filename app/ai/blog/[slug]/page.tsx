@@ -176,7 +176,7 @@ export default function AiBlogPostPage({ params }: { params: Promise<{ slug: str
             <MdLine>&nbsp;</MdLine>
             <MdLine>---</MdLine>
             <MdLine>&nbsp;</MdLine>
-            <MdLine><MdLink text="Home" url="/ai" /> | <MdLink text="Projects" url="/ai/projects" /> | <MdLink text="Experience" url="/ai/experience" /> | <MdLink text="Writing" url="/ai/writing" /></MdLine>
+            <MdLine><MdLink text="Home" url="/ai" /> | <MdLink text="Projects" url="/ai/projects" /> | <MdLink text="Experience" url="/ai/experience" /> | <MdLink text="Writing" url="/ai/writing" /> | <MdLink text="Resume" url="https://drive.google.com/file/d/1ZFW5fRLvqyCL8EXznTIbUMOWPd9z4VF1/view?usp=sharing" /></MdLine>
             <MdLine>&nbsp;</MdLine>
             <MdLine><MdLink text="Source" url="https://github.com/michael-han-dev/michaelhandev" /></MdLine>
           </motion.div>

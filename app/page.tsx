@@ -42,7 +42,16 @@ export default function Home() {
             >
               Brawl Stars,
             </a>{' '}
-            played Baseball at the national level in Canada, and did mathematical modelling for a
+            top 200 in{' '}
+            <a
+              href="https://supercell.com/en/games/clashroyale/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="link-inline"
+            >
+              Clash Royale
+            </a>{' '}
+            (in beta), played Baseball at the national level in Canada, and did mathematical modelling for a
             pharmacokinetics researcher.
           </p>
 

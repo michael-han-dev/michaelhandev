@@ -67,7 +67,7 @@ export default function AiHomePage() {
             <MdLine>&nbsp;</MdLine>
             <MdLine>Mathematics and Computer Engineering at <MdLink text="Queen's University" url="https://www.queensu.ca/" />. Expected to graduate in 2027.</MdLine>
             <MdLine>&nbsp;</MdLine>
-            <MdLine>I previously was the #10 ranked player globally in <MdLink text="Brawl Stars" url="https://supercell.com/en/games/brawlstars/" />, played Baseball at the national level in Canada, and did mathematical modelling for a pharmacokinetics researcher.</MdLine>
+            <MdLine>I previously was the #10 ranked player globally in <MdLink text="Brawl Stars" url="https://supercell.com/en/games/brawlstars/" />, top 200 in <MdLink text="Clash Royale" url="https://supercell.com/en/games/clashroyale/" /> (in beta), played Baseball at the national level in Canada, and did mathematical modelling for a pharmacokinetics researcher.</MdLine>
             <MdLine>&nbsp;</MdLine>
             <MdLine><MdLink text="LinkedIn" url="https://www.linkedin.com/in/michael-y-han/" /></MdLine>
             <MdLine><MdLink text="GitHub" url="https://github.com/michael-han-dev" /></MdLine>
@@ -107,7 +107,7 @@ export default function AiHomePage() {
             <MdLine>&nbsp;</MdLine>
             <MdLine>Michael Han <MdLink text="X" url="https://x.com/michaelyhan_" /></MdLine>
             <MdLine>&nbsp;</MdLine>
-            <MdLine><MdLink text="Home" url="/ai" /> | <MdLink text="Projects" url="/ai/projects" /> | <MdLink text="Experience" url="/ai/experience" /> | <MdLink text="Writing" url="/ai/writing" /></MdLine>
+            <MdLine><MdLink text="Home" url="/ai" /> | <MdLink text="Projects" url="/ai/projects" /> | <MdLink text="Experience" url="/ai/experience" /> | <MdLink text="Writing" url="/ai/writing" /> | <MdLink text="Resume" url="https://drive.google.com/file/d/1ZFW5fRLvqyCL8EXznTIbUMOWPd9z4VF1/view?usp=sharing" /></MdLine>
             <MdLine>&nbsp;</MdLine>
             <MdLine><MdLink text="Source" url="https://github.com/michael-han-dev/michaelhandev" /></MdLine>
           </motion.div>

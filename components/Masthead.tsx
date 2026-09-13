@@ -38,6 +38,14 @@ export default function Masthead() {
             </Link>
           );
         })}
+        <a
+          href="https://drive.google.com/file/d/1ZFW5fRLvqyCL8EXznTIbUMOWPd9z4VF1/view?usp=sharing"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-[var(--ink-3)] transition-colors duration-150 hover:text-[var(--ink-2)]"
+        >
+          resume
+        </a>
       </nav>
     </header>
   );
