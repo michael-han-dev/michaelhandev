@@ -36,10 +36,10 @@ export default function BlogPostPage({ params }: { params: Promise<{ slug: strin
 
   useEffect(() => {
     if (article) {
-      Promise.all([
-        getBlogContent(article.slug),
-        getBlogImages(article.id)
-      ]).then(([content, blogImages]) => {
+      getBlogContent(article.slug).then(async (content) => {
+        const blogImages = content.includes('{{image:')
+          ? await getBlogImages(article.id)
+          : [];
         let processedContent = content;
         blogImages.forEach((image) => {
           const placeholder = `{{image:${image.display_order}}}`;

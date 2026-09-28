@@ -10,6 +10,14 @@ export interface Article {
 
 export const articles: Article[] = [
   {
+    id: "articles-worth-reading",
+    title: "Articles worth reading",
+    excerpt: "articles on the web I've derived value from",
+    date: "2026-09-27",
+    slug: "articles-worth-reading",
+    readTime: 1
+  },
+  {
     id: "living-bookshelf",
     title: "My Bookshelf",
     excerpt: "Stuff to Read. Last Updated 2025-07-02",
