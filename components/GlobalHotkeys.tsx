@@ -85,7 +85,7 @@ export default function GlobalHotkeys() {
             }
           } else {
             if (pathname === '/') {
-              router.push('/ai');
+              window.location.assign('/llms.txt');
             } else {
               router.push(`/ai${pathname}`);
             }

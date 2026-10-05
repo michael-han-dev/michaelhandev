@@ -14,7 +14,7 @@ export default function ViewModeToggle() {
   };
 
   const getAiPath = () => {
-    if (pathname === '/') return '/ai';
+    if (pathname === '/') return '/llms.txt';
     if (pathname.startsWith('/ai')) return pathname;
     return `/ai${pathname}`;
   };
@@ -24,7 +24,12 @@ export default function ViewModeToggle() {
   };
 
   const handleMachineClick = () => {
-    router.push(getAiPath());
+    const path = getAiPath();
+    if (path === '/llms.txt') {
+      window.location.assign(path);
+    } else {
+      router.push(path);
+    }
   };
 
   const activeClass = 'text-[var(--accent)]';

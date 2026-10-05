@@ -32,6 +32,13 @@ function MdLine({ children }: { children: React.ReactNode }) {
 }
 
 function MdLink({ text, url }: { text: string; url: string }) {
+  if (url === '/llms.txt') {
+    return (
+      <a href={url} className="hover:text-blue-400 transition-colors">
+        [{text}]({url})
+      </a>
+    );
+  }
   const isInternal = url.startsWith('/');
   if (isInternal) {
     return (
@@ -63,7 +70,7 @@ export default function AiExperiencePage() {
           <motion.div ref={contentRef} className="space-y-1" variants={staggerContainer}>
             <MdLine># Michael Han - Professional Experience</MdLine>
             <MdLine>&nbsp;</MdLine>
-            <MdLine><MdLink text="Home" url="/ai" /> | <MdLink text="Projects" url="/ai/projects" /> | <MdLink text="Writing" url="/ai/writing" /> | <MdLink text="Resume" url="https://drive.google.com/file/d/1ZFW5fRLvqyCL8EXznTIbUMOWPd9z4VF1/view?usp=sharing" /></MdLine>
+            <MdLine><MdLink text="Home" url="/llms.txt" /> | <MdLink text="Projects" url="/ai/projects" /> | <MdLink text="Writing" url="/ai/writing" /> | <MdLink text="Resume" url="https://drive.google.com/file/d/1ZFW5fRLvqyCL8EXznTIbUMOWPd9z4VF1/view?usp=sharing" /></MdLine>
             <MdLine>&nbsp;</MdLine>
             <MdLine>&nbsp;</MdLine>
 
@@ -87,7 +94,7 @@ export default function AiExperiencePage() {
             ))}
 
             <MdLine>&nbsp;</MdLine>
-            <MdLine><MdLink text="Home" url="/ai" /> | <MdLink text="Projects" url="/ai/projects" /> | <MdLink text="Writing" url="/ai/writing" /> | <MdLink text="Resume" url="https://drive.google.com/file/d/1ZFW5fRLvqyCL8EXznTIbUMOWPd9z4VF1/view?usp=sharing" /></MdLine>
+            <MdLine><MdLink text="Home" url="/llms.txt" /> | <MdLink text="Projects" url="/ai/projects" /> | <MdLink text="Writing" url="/ai/writing" /> | <MdLink text="Resume" url="https://drive.google.com/file/d/1ZFW5fRLvqyCL8EXznTIbUMOWPd9z4VF1/view?usp=sharing" /></MdLine>
             <MdLine>&nbsp;</MdLine>
             <MdLine><MdLink text="Source" url="https://github.com/michael-han-dev/michaelhandev" /></MdLine>
           </motion.div>
