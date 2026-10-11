@@ -12,7 +12,7 @@ export const articles: Article[] = [
   {
     id: "articles-worth-reading",
     title: "Articles worth reading",
-    excerpt: "articles on the web I've derived value from",
+    excerpt: "articles on the web I've derived value from. in no particular order. constantly being updated.",
     date: "2026-09-27",
     slug: "articles-worth-reading",
     readTime: 1
