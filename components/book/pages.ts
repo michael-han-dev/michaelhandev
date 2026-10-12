@@ -1,6 +1,8 @@
 import { COVER_H, COVER_W, DOG_EAR, PAGE_H, PAGE_W } from "./geometry";
 
-export type Font = "sans" | "display" | "mono";
+import type { Font, Measure } from "../intro/fonts";
+
+export type { Font, Measure };
 export type Ink = "rule" | "ink" | "soft" | "faint" | "pencil" | "marbleA" | "marbleB" | "marbleC" | "foil" | "deboss" | "weave" | "flap" | "plate";
 export type At = [number, number];
 
@@ -13,12 +15,6 @@ export type Mark =
 export interface FaceArt {
   marks: Mark[];
 }
-
-export type Measure = (text: string, font: Font, size: number, spacing?: number) => number;
-
-const PER_EM: Record<Font, number> = { sans: 0.52, display: 0.5, mono: 0.6 };
-
-export const estimate: Measure = (text, font, size, spacing = 0) => text.length * (size * PER_EM[font] + spacing);
 
 export interface Library {
   titles: string[];

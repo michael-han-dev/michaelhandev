@@ -10,6 +10,8 @@ import { getBlogContent } from '@/lib/blog';
 import { getBlogImages, BlogImage } from '@/lib/images';
 import { useEffect, useMemo, useState } from 'react';
 import BookIntro, { BOOK_INTRO_SLUG, titlesFrom } from '@/components/book/BookIntro';
+import ShelfIntro, { SHELF_INTRO_SLUG } from '@/components/shelf/ShelfIntro';
+import { entriesFrom } from '@/components/shelf/titles';
 import Prism from 'prismjs';
 import { formatDateLong } from '@/utils/date';
 import 'prismjs/themes/prism.css';
@@ -28,12 +30,17 @@ export default function BlogPostPage({ params }: { params: Promise<{ slug: strin
   const [images, setImages] = useState<BlogImage[]>([]);
   const routeSlug = useParams<{ slug: string }>()?.slug;
   const [intro, setIntro] = useState<'playing' | 'revealing' | 'off'>(
-    routeSlug === BOOK_INTRO_SLUG ? 'playing' : 'off'
+    routeSlug === BOOK_INTRO_SLUG || routeSlug === SHELF_INTRO_SLUG ? 'playing' : 'off'
   );
 
   const introTitles = useMemo(
-    () => (intro !== 'off' && !loading && content ? titlesFrom(content) : null),
-    [intro, loading, content]
+    () => (intro !== 'off' && routeSlug === BOOK_INTRO_SLUG && !loading && content ? titlesFrom(content) : null),
+    [intro, routeSlug, loading, content]
+  );
+
+  const shelfEntries = useMemo(
+    () => (intro !== 'off' && routeSlug === SHELF_INTRO_SLUG && !loading && content ? entriesFrom(content) : null),
+    [intro, routeSlug, loading, content]
   );
 
   useEffect(() => {
@@ -128,7 +135,15 @@ export default function BlogPostPage({ params }: { params: Promise<{ slug: strin
 
       <ViewModeToggle />
 
-      {intro !== 'off' && (
+      {intro !== 'off' && routeSlug === SHELF_INTRO_SLUG && (
+        <ShelfIntro
+          entries={shelfEntries}
+          onReveal={() => setIntro('revealing')}
+          onDone={() => setIntro('off')}
+        />
+      )}
+
+      {intro !== 'off' && routeSlug === BOOK_INTRO_SLUG && (
         <BookIntro
           titles={introTitles}
           excerpt={article?.excerpt ?? ''}

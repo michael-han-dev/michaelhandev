@@ -1,6 +1,7 @@
 import { LEAVES } from "./geometry";
 import { BookModel, T_END, T_ENDPAPER, type Frame } from "./model";
-import { estimate, type Font, type Library, type Measure } from "./pages";
+import { canvasMeasure, fontsFor } from "../intro/fonts";
+import { type Library } from "./pages";
 import { baseScale, buildArt, cameraAt, renderScene, type BookArt, type Stage } from "./scene";
 
 export interface Source {
@@ -17,44 +18,8 @@ export interface Player {
   resize: () => void;
 }
 
-const FAMILIES: Record<Font, string> = {
-  sans: "--font-geist-sans",
-  display: "--font-display",
-  mono: "--font-geist-mono",
-};
-
-export function canvasMeasure(host: Element): Measure {
-  if (typeof document === "undefined") return estimate;
-  const canvas = document.createElement("canvas");
-  const context = canvas.getContext("2d");
-  if (!context) return estimate;
-  const style = getComputedStyle(host);
-  const familyOf = (font: Font) => style.getPropertyValue(FAMILIES[font]).trim() || (font === "mono" ? "monospace" : "sans-serif");
-  const cache = new Map<string, number>();
-  return (text, font, size, spacing = 0) => {
-    const key = `${font}|${text}`;
-    let width = cache.get(key);
-    if (width === undefined) {
-      context.font = `${font === "display" ? 500 : 400} 100px ${familyOf(font)}`;
-      width = context.measureText(text).width / 100;
-      cache.set(key, width);
-    }
-    return width * size + spacing * text.length;
-  };
-}
-
 const COVER_FROZEN = 0.15;
 const IDLE_AFTER = 0.5;
-
-export function fontsFor(host: Element) {
-  if (typeof document === "undefined" || !document.fonts?.load) return Promise.resolve();
-  const style = getComputedStyle(host);
-  const loads = (Object.keys(FAMILIES) as Font[]).map((font) => {
-    const family = style.getPropertyValue(FAMILIES[font]).trim();
-    return family ? document.fonts.load(`${font === "display" ? 500 : 400} 16px ${family}`).catch(() => []) : Promise.resolve([]);
-  });
-  return Promise.all(loads).then(() => undefined);
-}
 
 export function createPlayer(svg: SVGSVGElement, layer: SVGGElement, initial: Source): Player {
   const model = new BookModel();

@@ -1,0 +1,47 @@
+.sh {
+  --anatomy-halo: #6f675b;
+  --sh-dark: #1c1714;
+  --sh-edge: #221d19;
+}
+
+.sh-f {
+  --fill: color-mix(in oklab, color-mix(in oklab, var(--sh-dark) calc(var(--s) * 100%), var(--c)), #fffaf0 calc(var(--h) * 100%));
+  fill: var(--fill);
+  stroke: var(--fill);
+  stroke-width: 0.5px;
+  stroke-linejoin: round;
+}
+
+.sh-edge {
+  fill: none;
+  stroke: var(--sh-edge);
+  stroke-width: 0.7px;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+
+.sh-edge.sh-thin {
+  stroke-width: 0.45px;
+}
+
+.sh-crease {
+  fill: none;
+  stroke: #1c1612;
+  stroke-opacity: 0.4;
+  stroke-width: 0.5px;
+  stroke-linecap: round;
+}
+
+.sh-l {
+  fill: none;
+  stroke-linecap: butt;
+  stroke-width: max(0.3px, calc(var(--k) * var(--w) * 1px));
+}
+
+.sh-t {
+  stroke: none;
+  text-rendering: geometricPrecision;
+}
+.sh-t[data-font="sans"] { font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif; }
+.sh-t[data-font="display"] { font-family: var(--font-display), ui-sans-serif, system-ui, sans-serif; font-weight: 500; }
+.sh-t[data-font="mono"] { font-family: var(--font-geist-mono), ui-monospace, monospace; }
