@@ -1,14 +1,15 @@
 'use client';
 
 import Link from 'next/link';
-import { notFound } from 'next/navigation';
+import { notFound, useParams } from 'next/navigation';
 import { articles } from '@/data/articles';
 import Footer from '@/components/Footer';
 import Masthead from '@/components/Masthead';
 import ViewModeToggle from '@/components/ViewModeToggle';
 import { getBlogContent } from '@/lib/blog';
 import { getBlogImages, BlogImage } from '@/lib/images';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
+import BookIntro, { BOOK_INTRO_SLUG, titlesFrom } from '@/components/book/BookIntro';
 import Prism from 'prismjs';
 import { formatDateLong } from '@/utils/date';
 import 'prismjs/themes/prism.css';
@@ -25,6 +26,15 @@ export default function BlogPostPage({ params }: { params: Promise<{ slug: strin
   const [slug, setSlug] = useState<string>('');
   const [article, setArticle] = useState<any>(null);
   const [images, setImages] = useState<BlogImage[]>([]);
+  const routeSlug = useParams<{ slug: string }>()?.slug;
+  const [intro, setIntro] = useState<'playing' | 'revealing' | 'off'>(
+    routeSlug === BOOK_INTRO_SLUG ? 'playing' : 'off'
+  );
+
+  const introTitles = useMemo(
+    () => (intro !== 'off' && !loading && content ? titlesFrom(content) : null),
+    [intro, loading, content]
+  );
 
   useEffect(() => {
     params.then(({ slug }) => {
@@ -69,7 +79,10 @@ export default function BlogPostPage({ params }: { params: Promise<{ slug: strin
 
   return (
     <div className="bg-main min-h-screen">
-      <main className="page-enter mx-auto max-w-2xl px-6 pb-32 pt-16 md:pt-20">
+      <main
+        className={`${intro === 'playing' ? '' : 'page-enter '}mx-auto max-w-2xl px-6 pb-32 pt-16 md:pt-20`}
+        style={intro === 'playing' ? { opacity: 0 } : intro === 'revealing' ? { animationDuration: '700ms' } : undefined}
+      >
         <Masthead />
 
         <div className="mt-14">
@@ -114,6 +127,16 @@ export default function BlogPostPage({ params }: { params: Promise<{ slug: strin
       </main>
 
       <ViewModeToggle />
+
+      {intro !== 'off' && (
+        <BookIntro
+          titles={introTitles}
+          excerpt={article?.excerpt ?? ''}
+          ready={!loading && Boolean(content)}
+          onReveal={() => setIntro('revealing')}
+          onDone={() => setIntro('off')}
+        />
+      )}
     </div>
   );
 }

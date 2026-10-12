@@ -1,0 +1,174 @@
+.bk {
+  --anatomy-paper: var(--paper, #faf9f7);
+  --anatomy-hi: #2a2522;
+  --anatomy-mid: #8d867c;
+  --anatomy-lo: #b9b2a7;
+  --anatomy-faint: #d9d2c6;
+  --anatomy-halo: #6f675b;
+  --anatomy-weight: 0.7px;
+  --bk-paper: var(--paper, #faf9f7);
+  --bk-paper-lo: #bdb3a3;
+  --bk-edge: #f1ebe0;
+  --bk-edge-lo: #b4a993;
+  --bk-cloth: #34302c;
+  --bk-cloth-lo: #0e0c0b;
+  --bk-end: #ede5d6;
+  --bk-end-lo: #b2a68f;
+  --bk-ribbon: oklch(0.5 0.11 262);
+  --bk-ribbon-lo: oklch(0.28 0.08 262);
+  --bk-band-a: #ece4d4;
+  --bk-band-a-lo: #a2967f;
+  --bk-band-b: #4a423b;
+  --bk-band-b-lo: #1a1714;
+  --bk-ink: var(--ink, #211d1a);
+  --bk-soft: var(--ink-2, #5c564f);
+  --bk-rule: #dcd5ca;
+  --bk-faint: #cdc5b8;
+  --bk-pencil: #8f8a84;
+  --bk-marble-a: #c7b99c;
+  --bk-marble-b: #998d77;
+  --bk-marble-c: #ddd2bd;
+  --bk-foil: #efe7d6;
+  --bk-deboss: #12100e;
+  --bk-edgeline: #d6cdbd;
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  background: var(--paper, #faf9f7);
+  cursor: pointer;
+  touch-action: none;
+}
+
+.bk svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.bk-f {
+  stroke-width: 0.6px;
+  stroke-linejoin: round;
+}
+
+.bk-f[data-m="paper"],
+.bk-p[data-ink="plate"] {
+  fill: color-mix(in oklab, var(--bk-paper-lo) calc(var(--s) * 100%), var(--bk-paper));
+  stroke: color-mix(in oklab, var(--bk-paper-lo) calc(var(--s) * 100%), var(--bk-paper));
+}
+.bk-p[data-ink="plate"] {
+  stroke: none;
+}
+.bk-p[data-ink="flap"] {
+  fill: color-mix(in oklab, var(--bk-paper-lo) calc((var(--s) + 0.22) * 100%), var(--bk-paper));
+}
+.bk-f[data-m="edge"] {
+  fill: color-mix(in oklab, var(--bk-edge-lo) calc(var(--s) * 100%), var(--bk-edge));
+  stroke: color-mix(in oklab, var(--bk-edge-lo) calc(var(--s) * 100%), var(--bk-edge));
+}
+.bk-f[data-m="cloth"] {
+  fill: color-mix(in oklab, var(--bk-cloth-lo) calc(var(--s) * 100%), var(--bk-cloth));
+  stroke: color-mix(in oklab, var(--bk-cloth-lo) calc(var(--s) * 100%), var(--bk-cloth));
+}
+.bk-f[data-m="endpaper"] {
+  fill: color-mix(in oklab, var(--bk-end-lo) calc(var(--s) * 100%), var(--bk-end));
+  stroke: color-mix(in oklab, var(--bk-end-lo) calc(var(--s) * 100%), var(--bk-end));
+}
+.bk-f[data-m="ribbon"] {
+  fill: color-mix(in oklab, var(--bk-ribbon-lo) calc(var(--s) * 100%), var(--bk-ribbon));
+  stroke: color-mix(in oklab, var(--bk-ribbon-lo) calc(var(--s) * 100%), var(--bk-ribbon));
+}
+.bk-f[data-m="bandA"] {
+  fill: color-mix(in oklab, var(--bk-band-a-lo) calc(var(--s) * 100%), var(--bk-band-a));
+  stroke: color-mix(in oklab, var(--bk-band-a-lo) calc(var(--s) * 100%), var(--bk-band-a));
+}
+.bk-f[data-m="bandB"] {
+  fill: color-mix(in oklab, var(--bk-band-b-lo) calc(var(--s) * 100%), var(--bk-band-b));
+  stroke: color-mix(in oklab, var(--bk-band-b-lo) calc(var(--s) * 100%), var(--bk-band-b));
+}
+
+.bk .bk-edge[data-tone="hi"] {
+  stroke: #0b0a09;
+}
+.bk .bk-leaf-edge {
+  stroke: #a39b8f;
+  stroke-width: 0.6px;
+}
+.bk .bk-ribbon-edge {
+  stroke: oklch(0.3 0.08 262);
+  stroke-width: 0.5px;
+}
+
+.bk-l {
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: max(0.4px, calc(var(--k) * 0.22px));
+}
+.bk-l[data-ink="rule"] {
+  stroke: var(--bk-rule);
+  stroke-linecap: butt;
+  stroke-width: max(0.5px, calc(var(--k) * 1.2px));
+}
+.bk-l[data-ink="ink"] { stroke: var(--bk-ink); }
+.bk-l[data-ink="soft"] { stroke: var(--bk-soft); }
+.bk-l[data-ink="faint"] { stroke: var(--bk-faint); }
+.bk-l[data-ink="pencil"] {
+  stroke: var(--bk-pencil);
+  stroke-width: max(0.45px, calc(var(--k) * 0.32px));
+}
+.bk-l[data-ink^="marble"] {
+  stroke-width: max(0.5px, calc(var(--k) * 0.95px));
+  stroke-linecap: butt;
+}
+.bk-l[data-ink="marbleA"] { stroke: var(--bk-marble-a); }
+.bk-l[data-ink="marbleB"] { stroke: var(--bk-marble-b); }
+.bk-l[data-ink="marbleC"] { stroke: var(--bk-marble-c); }
+.bk-l[data-ink="foil"] {
+  stroke: var(--bk-foil);
+  stroke-width: max(0.4px, calc(var(--k) * 0.3px));
+}
+.bk-l[data-ink="deboss"] {
+  stroke: var(--bk-deboss);
+  stroke-width: max(0.45px, calc(var(--k) * 0.5px));
+}
+.bk-l[data-ink="weave"] {
+  stroke: #ffffff;
+  stroke-opacity: 0.035;
+  stroke-width: max(0.3px, calc(var(--k) * 0.25px));
+  stroke-linecap: butt;
+}
+.bk-l[data-ink="edgeline"] {
+  stroke: var(--bk-edgeline);
+  stroke-width: 0.5px;
+  stroke-linecap: butt;
+}
+
+.bk-d[data-ink="soft"] { fill: var(--bk-soft); }
+.bk-d[data-ink="foil"] { fill: var(--bk-foil); }
+.bk-d[data-ink="ink"] { fill: var(--bk-ink); }
+.bk-p[data-ink="foil"] { fill: var(--bk-foil); }
+.bk-p[data-ink="soft"] { fill: var(--bk-soft); }
+
+.bk-t { stroke: none; text-rendering: geometricPrecision; }
+.bk-t[data-font="sans"] { font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif; }
+.bk-t[data-font="display"] { font-family: var(--font-display), ui-sans-serif, system-ui, sans-serif; font-weight: 500; }
+.bk-t[data-font="mono"] { font-family: var(--font-geist-mono), ui-monospace, monospace; }
+.bk-t[data-ink="ink"] { fill: var(--bk-ink); }
+.bk-t[data-ink="soft"] { fill: var(--bk-soft); }
+.bk-t[data-ink="foil"] { fill: var(--bk-foil); }
+.bk-t[data-ink="deboss"] { fill: var(--bk-deboss); }
+
+.bk-hint {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 22px;
+  text-align: center;
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--ink-3, #a09a91);
+  pointer-events: none;
+  transition: opacity 300ms ease;
+}
