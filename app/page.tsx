@@ -20,7 +20,7 @@ export default function Home() {
             Software engineer, occasional chilli chef, lifelong baseball guy.
           </h1>
           <p className="mt-6 leading-relaxed text-[var(--ink-2)]">
-            Currently spending my time exploring the mountains, backend development, content creation, and prediction markets. Also looking for new-grad roles in New York City for June 2027. I study Mathematics and
+            Currently spending my time exploring the mountains, backend development, content creation, and prediction markets. Also looking for swe roles for June 2027. I study Mathematics and
             Computer Engineering at{' '}
             <a
               href="https://www.queensu.ca/"
@@ -52,7 +52,7 @@ export default function Home() {
               Clash Royale
             </a>{' '}
             (in beta), played Baseball at the national level in Canada, and did mathematical modelling for a
-            pharmacokinetics researcher.
+            pharmacokinetics researcher. Find me at me[at]michaelyhan[dot]com.
           </p>
 
           <div className="mt-10">
