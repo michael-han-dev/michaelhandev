@@ -13,7 +13,7 @@ export function GET() {
 
 > Software engineer, occasional chilli chef, lifelong baseball guy.
 
-Currently spending my time exploring the mountains, backend development, content creation, and prediction markets. I study Mathematics and Computer Engineering at [Queen's University](https://www.queensu.ca/). Expected to graduate in 2027.
+Currently spending my time exploring the mountains, backend development, content creation, and prediction markets. Also looking for new-grad roles in New York City for June 2027. I study Mathematics and Computer Engineering at [Queen's University](https://www.queensu.ca/). Expected to graduate in 2027.
 
 I previously was the #10 ranked player globally in [Brawl Stars](https://supercell.com/en/games/brawlstars/), top 200 in [Clash Royale](https://supercell.com/en/games/clashroyale/) (in beta), played Baseball at the national level in Canada, and did mathematical modelling for a pharmacokinetics researcher.
 

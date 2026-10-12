@@ -20,7 +20,7 @@ export default function Home() {
             Software engineer, occasional chilli chef, lifelong baseball guy.
           </h1>
           <p className="mt-6 leading-relaxed text-[var(--ink-2)]">
-            Currently spending my time exploring the mountains, backend development, content creation, and prediction markets. I study Mathematics and
+            Currently spending my time exploring the mountains, backend development, content creation, and prediction markets. Also looking for new-grad roles in New York City for June 2027. I study Mathematics and
             Computer Engineering at{' '}
             <a
               href="https://www.queensu.ca/"
