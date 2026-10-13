@@ -32,13 +32,6 @@ export const projects: Project[] = [
     technologies: ["Typescript", "Groq", "OpenAI"]
   },
   {
-    id: "heida",
-    title: "Heida.app",
-    github: "https://heida.app/",
-    description: "Heida is a comprehensive AI interface designed for professionals to interact with multiple AI models. It supports connection to 220+ AI models including OpenRouter models, Claude, and GPT-4 while allowing users to use their own API keys for cost control. The platform features document intelligence for analyzing PDFs and spreadsheets, interactive tools for visualizations and code execution, and AI augmentation with web search capabilities.",
-    technologies: ["Next.js", "Supabase", "Typescript","FastAPI", "Docker", "Redis", "Vector Embeddings"]
-  },
-  {
     id: "queenspurity",
     title: "Queen's University Purity Score",
     github: "https://www.queenspuritytest.com/",
