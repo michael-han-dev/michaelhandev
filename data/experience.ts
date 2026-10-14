@@ -16,7 +16,7 @@ export const experiences: Experience[] = [
     company: "Rootly (YC S21)",
     description: "Building end to end AI incident management software serving companies like Nvidia, Dropbox, Figma and 100s more.",
     startDate: "2025-08-27",
-    current: true,
+    endDate: "2026-09-30",
     link: "https://rootly.com/"
   },
   {
