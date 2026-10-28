@@ -17,7 +17,7 @@ export default function Home() {
 
         <section className="mt-16">
           <h1 className="text-lg leading-snug text-[var(--ink)]">
-            Software engineer, occasional chilli chef, lifelong baseball guy.
+            Software engineer, occasional chili chef, lifelong baseball guy.
           </h1>
           <p className="mt-6 leading-relaxed text-[var(--ink-2)]">
             Currently spending my time exploring the mountains, backend development, content creation, and prediction markets. Also looking for swe roles for June 2027. I study Mathematics and

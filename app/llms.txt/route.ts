@@ -11,7 +11,7 @@ export function GET() {
 
   const markdown = `# Michael Han
 
-> Software engineer, occasional chilli chef, lifelong baseball guy.
+> Software engineer, occasional chili chef, lifelong baseball guy.
 
 Currently spending my time exploring the mountains, backend development, content creation, and prediction markets. Also looking for swe roles for June 2027. I study Mathematics and Computer Engineering at [Queen's University](https://www.queensu.ca/). Expected to graduate in 2027.
 
