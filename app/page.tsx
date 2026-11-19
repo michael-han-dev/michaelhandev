@@ -75,7 +75,7 @@ export default function Home() {
               <div className="flex items-center gap-2.5">
                 <span className="pulse-dot" />
                 <span>
-                  Worked on the engineering team at{' '}
+                  Built{' '}
                   <a
                     href="https://www.questrade.com/"
                     target="_blank"
@@ -84,6 +84,7 @@ export default function Home() {
                   >
                     Questrade
                   </a>
+                  ’s news-feed image-matching pipeline, pairing articles with 6,000+ images.
                 </span>
               </div>
               <div className="flex items-center gap-2.5">
