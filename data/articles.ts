@@ -20,7 +20,7 @@ export const articles: Article[] = [
   {
     id: "living-bookshelf",
     title: "My Bookshelf",
-    excerpt: "Stuff to Read. Last Updated 2025-07-02",
+    excerpt: "Stuff to Read. Last Updated 2026-11-18",
     date: "2025-07-22", 
     slug: "living-bookshelf",
     readTime: 1
