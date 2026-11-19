@@ -26,3 +26,6 @@
 -  the beginning of infinity by david deustch
 -  fundraising by ryan breslow
 -  freakonomics by steven levitt, stephen dubner
+-  Man’s Search for Meaning by Viktor E. Frankl
+-  This Is How You Lose the Time War by Amal El-Mohtar and Max Gladstone
+-  The Caves of Steel by Isaac Asimov
