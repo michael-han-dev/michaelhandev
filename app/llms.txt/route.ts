@@ -19,7 +19,7 @@ I previously was the #10 ranked player globally in [Brawl Stars](https://superce
 
 ## As of late
 
-- Working on the engineering team at [Rootly (YC S21)](https://rootly.com/).
+- Built a Notion-style editor for incident retrospectives at [Rootly](https://rootly.com/).
 - Built [Questrade](https://www.questrade.com/)’s news-feed image-matching pipeline, pairing articles with 6,000+ images.
 - Climbed Kilimanjaro and hiked Everest Base Camp.
 

@@ -61,15 +61,16 @@ export default function Home() {
               <div className="flex items-center gap-2.5">
                 <span className="pulse-dot" />
                 <span>
-                  Working on the engineering team at{' '}
+                  Built a Notion-style editor for incident retrospectives at{' '}
                   <a
                     href="https://rootly.com/"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="underline decoration-[var(--accent)] underline-offset-2 transition-colors hover:text-[var(--accent)]"
                   >
-                    Rootly (YC S21)
+                    Rootly
                   </a>
+                  .
                 </span>
               </div>
               <div className="flex items-center gap-2.5">
