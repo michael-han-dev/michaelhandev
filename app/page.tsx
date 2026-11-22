@@ -61,9 +61,18 @@ export default function Home() {
               <div className="flex items-center gap-2.5">
                 <span className="pulse-dot" />
                 <span>
-                  Built a Notion-style editor for incident retrospectives at{' '}
+                  Built a{' '}
                   <a
-                    href="https://rootly.com/"
+                    href="https://rootly.com/retrospectives"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="underline decoration-[var(--accent)] underline-offset-2 transition-colors hover:text-[var(--accent)]"
+                  >
+                    Notion-style editor
+                  </a>{' '}
+                  for incident retrospectives at{' '}
+                  <a
+                    href="https://rootly.com/retrospectives"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="underline decoration-[var(--accent)] underline-offset-2 transition-colors hover:text-[var(--accent)]"
